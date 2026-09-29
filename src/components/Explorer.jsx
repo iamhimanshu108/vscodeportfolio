@@ -10,8 +10,14 @@ import {
 import { documents, profile } from "../data/portfolio.js";
 import { FileTypeIcon } from "./FileTypeIcon.jsx";
 
-export function Explorer({ selectedId, onOpenDocument, onClose }) {
+export function Explorer({
+  selectedId,
+  onOpenDocument,
+  onClose,
+  onOpenProfile,
+}) {
   const [sourceOpen, setSourceOpen] = useState(true);
+  const [avatarLoadFailed, setAvatarLoadFailed] = useState(false);
 
   return (
     <aside className="explorer" aria-label="File explorer">
@@ -60,14 +66,29 @@ export function Explorer({ selectedId, onOpenDocument, onClose }) {
         </div>
       )}
       <div className="explorer-spacer" />
-      <div className="explorer-footer">
-        <div className="avatar-mark">HY</div>
+      <button
+        className="explorer-footer explorer-profile"
+        onClick={onOpenProfile}
+        aria-label={`Open ${profile.name} profile photo`}
+        aria-haspopup="dialog"
+      >
+        <span className="avatar-mark">
+          {avatarLoadFailed ? (
+            "HY"
+          ) : (
+            <img
+              src={profile.avatarUrl}
+              alt=""
+              onError={() => setAvatarLoadFailed(true)}
+            />
+          )}
+        </span>
         <div className="explorer-person">
           <strong>{profile.name}</strong>
           <span>{profile.role} portfolio</span>
         </div>
         <Activity size={15} className="footer-activity" />
-      </div>
+      </button>
     </aside>
   );
 }

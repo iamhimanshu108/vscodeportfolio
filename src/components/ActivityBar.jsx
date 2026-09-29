@@ -1,12 +1,6 @@
-import { FolderOpen, PanelBottom, Search } from "lucide-react";
+import { Folder, Search } from "lucide-react";
 
-export function ActivityBar({
-  explorerOpen,
-  outputOpen,
-  onOpenPalette,
-  onToggleExplorer,
-  onToggleOutput,
-}) {
+export function ActivityBar({ explorerOpen, onOpenPalette, onToggleExplorer }) {
   return (
     <nav className="activitybar" aria-label="Workspace tools">
       <button
@@ -16,7 +10,7 @@ export function ActivityBar({
         aria-pressed={explorerOpen}
         title="Explorer"
       >
-        <FolderOpen size={20} />
+        <Folder size={20} />
       </button>
       <button
         className="activity-button"
@@ -25,15 +19,6 @@ export function ActivityBar({
         title="Search"
       >
         <Search size={19} />
-      </button>
-      <button
-        className={`activity-button activity-bottom ${outputOpen ? "is-active" : ""}`}
-        onClick={onToggleOutput}
-        aria-label="Toggle output panel"
-        aria-pressed={outputOpen}
-        title="Output"
-      >
-        <PanelBottom size={19} />
       </button>
     </nav>
   );

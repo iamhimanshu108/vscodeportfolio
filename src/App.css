@@ -133,7 +133,7 @@
   color: #77818a;
   background: transparent;
   border: 0;
-  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
   cursor: pointer;
 }
 .activity-button:hover {
@@ -141,10 +141,7 @@
 }
 .activity-button.is-active {
   color: #e2e7eb;
-  border-left-color: var(--accent);
-}
-.activity-bottom {
-  margin-top: auto;
+  border-right-color: var(--accent);
 }
 .explorer {
   width: 244px;
@@ -273,6 +270,17 @@
   border-top: 1px solid var(--border-soft);
   background: #17191b;
 }
+.explorer-profile {
+  width: 100%;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.explorer-profile:hover {
+  background: #202426;
+}
 .avatar-mark {
   width: 30px;
   height: 30px;
@@ -283,6 +291,12 @@
   color: #d4f3ee;
   background: #245552;
   font: 600 10px var(--mono);
+}
+.avatar-mark img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
 }
 .explorer-person {
   display: flex;
@@ -302,6 +316,81 @@
 .footer-activity {
   margin-left: auto;
   color: #79828c;
+}
+.profile-dialog-backdrop {
+  position: fixed;
+  z-index: 12;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: #080a0bd1;
+  backdrop-filter: blur(3px);
+}
+.profile-dialog {
+  width: min(360px, 100%);
+  overflow: hidden;
+  border: 1px solid #444b50;
+  border-radius: 5px;
+  background: #202326;
+  box-shadow: 0 20px 60px #0009;
+  animation: palette-in 0.16s ease-out;
+}
+.profile-dialog-top {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px 0 14px;
+  border-bottom: 1px solid #343a3e;
+  color: #869199;
+  font: 9px var(--mono);
+  letter-spacing: 0.08em;
+}
+.profile-dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 22px;
+}
+.profile-photo-large {
+  width: 132px;
+  height: 132px;
+  border: 2px solid #73998f;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #21282a;
+}
+.profile-photo-fallback {
+  display: grid;
+  place-items: center;
+  color: #d4f3ee;
+  background: #245552;
+  font: 600 22px var(--mono);
+}
+.profile-dialog-content h2 {
+  margin: 16px 0 0;
+  color: #e2e7eb;
+  font-size: 16px;
+  font-weight: 600;
+}
+.profile-dialog-role,
+.profile-dialog-location {
+  margin-top: 6px;
+  color: #99a3ab;
+  font-size: 11px;
+}
+.profile-dialog-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #818c94;
+}
+.profile-dialog-location svg {
+  color: var(--accent);
+}
+.profile-dialog-content .github-profile-link {
+  margin: 17px 0 0;
 }
 .editor-workspace {
   display: flex;

@@ -5,6 +5,7 @@ import { ActivityBar } from "./components/ActivityBar.jsx";
 import { EditorWorkspace } from "./components/EditorWorkspace.jsx";
 import { Explorer } from "./components/Explorer.jsx";
 import { OutputPanel } from "./components/OutputPanel.jsx";
+import { ProfileDialog } from "./components/ProfileDialog.jsx";
 import { StatusBar } from "./components/StatusBar.jsx";
 import { TitleBar } from "./components/TitleBar.jsx";
 import { documents } from "./data/portfolio.js";
@@ -16,6 +17,7 @@ function App() {
   const [explorerOpen, setExplorerOpen] = useState(true);
   const [outputOpen, setOutputOpen] = useState(true);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const selectedDocument =
     documents.find((document) => document.id === selectedId) ?? documents[0];
 
@@ -40,11 +42,14 @@ function App() {
         event.preventDefault();
         setPaletteOpen(true);
       }
-      if (event.key === "Escape" && paletteOpen) setPaletteOpen(false);
+      if (event.key === "Escape") {
+        if (paletteOpen) setPaletteOpen(false);
+        if (profileOpen) setProfileOpen(false);
+      }
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [paletteOpen]);
+  }, [paletteOpen, profileOpen]);
 
   return (
     <div className="app-shell">
@@ -58,16 +63,15 @@ function App() {
       <div className="workspace">
         <ActivityBar
           explorerOpen={explorerOpen}
-          outputOpen={outputOpen}
           onOpenPalette={() => setPaletteOpen(true)}
           onToggleExplorer={() => setExplorerOpen((open) => !open)}
-          onToggleOutput={() => setOutputOpen((open) => !open)}
         />
         {explorerOpen && (
           <Explorer
             selectedId={selectedId}
             onOpenDocument={openDocument}
             onClose={() => setExplorerOpen(false)}
+            onOpenProfile={() => setProfileOpen(true)}
           />
         )}
         <EditorWorkspace
@@ -113,6 +117,7 @@ function App() {
           onToggleOutput={() => setOutputOpen((open) => !open)}
         />
       )}
+      {profileOpen && <ProfileDialog onClose={() => setProfileOpen(false)} />}
     </div>
   );
 }

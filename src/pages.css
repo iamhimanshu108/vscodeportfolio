@@ -657,7 +657,7 @@
 }
 .github-stats {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 9px;
 }
 .github-stat {
@@ -691,6 +691,91 @@
   color: #d7b97c;
   font-size: 10px;
   line-height: 1.6;
+}
+.contribution-section {
+  margin-top: 18px;
+  padding: 12px 13px 10px;
+  border: 1px solid #30383b;
+  border-radius: 4px;
+  background: #171a1c;
+}
+.contribution-heading {
+  margin: 0 0 12px;
+}
+.contribution-heading > span {
+  color: #86929a;
+  font: 9px var(--mono);
+}
+.contribution-scroll {
+  overflow-x: auto;
+  padding-bottom: 3px;
+  scrollbar-color: #394144 transparent;
+  scrollbar-width: thin;
+}
+.contribution-calendar {
+  width: max-content;
+}
+.contribution-months {
+  display: grid;
+  grid-template-columns: repeat(var(--week-count), 10px);
+  gap: 3px;
+  height: 15px;
+  color: #818c94;
+  font: 8px var(--mono);
+}
+.contribution-months span {
+  white-space: nowrap;
+}
+.contribution-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 10px;
+  grid-template-rows: repeat(7, 10px);
+  gap: 3px;
+  width: max-content;
+}
+.contribution-week {
+  display: grid;
+  grid-template-rows: repeat(7, 10px);
+  gap: 3px;
+}
+.contribution-cell {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: #24292f;
+}
+.contribution-cell.level-1 {
+  background: #0e4429;
+}
+.contribution-cell.level-2 {
+  background: #006d32;
+}
+.contribution-cell.level-3 {
+  background: #26a641;
+}
+.contribution-cell.level-4 {
+  background: #39d353;
+}
+.contribution-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 9px;
+  color: #818c94;
+  font: 8px var(--mono);
+}
+.contribution-legend span:first-child {
+  margin-right: 2px;
+}
+.contribution-legend span:last-child {
+  margin-left: 2px;
+}
+.contribution-legend .contribution-cell {
+  width: 9px;
+  height: 9px;
 }
 .github-activity-heading {
   display: flex;
@@ -809,6 +894,7 @@
     display: none;
   }
   .github-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 6px;
   }
   .github-stat {
@@ -901,7 +987,11 @@
     width: 13px;
   }
   .github-stat {
+    grid-column: auto;
     min-height: 72px;
+  }
+  .github-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .github-stat strong {
     font-size: 17px;

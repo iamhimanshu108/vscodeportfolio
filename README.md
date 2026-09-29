@@ -1,16 +1,16 @@
-# React + Vite
+# Himanshu Yadav Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive React + JavaScript portfolio presented as a VS Code-inspired workspace.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```sh
+npm install
+npm run dev
+```
 
-## React Compiler
+## Edit portfolio content
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Update `src/data/portfolio.js` for the profile, contact and social links, projects, skills, experience, education, certificates, resume URL, and GitHub username. The page components read from this shared JavaScript file.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The GitHub page loads the public avatar, repository and follower counts, stars, forks, and recent repositories from the GitHub API. Change `profile.githubUsername` in the data file to use a different public account.

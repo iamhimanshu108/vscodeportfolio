@@ -28,11 +28,7 @@ export function ResumePage() {
       </div>
       <div className="resume-summary">
         <FileText size={17} />
-        <p>
-          Full Stack Web Developer and Automation Specialist focused on MERN,
-          Python, FastAPI, Generative AI, RAG, system design, DevOps, and
-          workflow automation.
-        </p>
+        <p>{profile.resumeSummary}</p>
       </div>
       <div className="resume-columns">
         <section>
