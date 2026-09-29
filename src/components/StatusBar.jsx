@@ -1,23 +1,19 @@
-import { Braces, Check, PanelBottom } from "lucide-react";
+import { PanelBottom } from "lucide-react";
 
-export function StatusBar({ document, outputOpen, onToggleOutput }) {
+export function StatusBar({ document, outputOpen, onToggleOutput, onOpenSettings, onOpenPalette }) {
   return (
     <footer className="statusbar">
       <div className="status-left">
-        <span className="status-item status-branch">
-          <Braces size={13} />
-          <span>portfolio</span>
-        </span>
-        <span className="status-item">
-          <Check size={13} /> Ready
+        <span className="status-item status-activity">
+          <span className="status-live-dot" aria-hidden="true" />
         </span>
       </div>
       <div className="status-right">
-        <span className="status-item status-current-file">
+        <button className="status-item status-current-file" onClick={onOpenPalette}>
           {document.fileName}
-        </span>
-        <span className="status-item status-language">JavaScript JSX</span>
-        <span className="status-item status-encoding">UTF-8</span>
+        </button>
+        <button className="status-item status-language" onClick={onOpenSettings}>JavaScript JSX</button>
+        <button className="status-item status-encoding" onClick={onOpenSettings}>UTF-8</button>
         <button
           className="status-item status-panel-button"
           onClick={onToggleOutput}

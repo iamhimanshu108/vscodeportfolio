@@ -2,7 +2,7 @@ export const profile = {
   name: "Himanshu Yadav",
   role: "AI Full Stack Developer",
   email: "hiyadav2022@gmail.com",
-  location: "India // Global Remote",
+  location: "Guwahati, India",
   website: "https://www.iamhimanshu.in",
   githubUsername: "iamhimanshu108",
   githubUrl: "https://github.com/iamhimanshu108",
@@ -114,39 +114,24 @@ export const projects = [
 
 export const skills = [
   {
-    id: "full-stack",
-    title: "Full-Stack / MERN",
-    items: ["MERN Stack", "MongoDB", "Express.js", "React", "Node.js"],
+    id: "full-stack-engineering",
+    title: "Full-Stack Engineering",
+    items: ["MERN Stack", "React", "Next.js", "Node.js", "TypeScript", "JavaScript", "REST APIs"],
   },
   {
-    id: "python-backend",
-    title: "Python Backend",
-    items: ["Python", "FastAPI", "REST APIs", "Microservices"],
+    id: "ai-data",
+    title: "AI, Data & Backend",
+    items: ["Python", "FastAPI", "GenAI", "AI Integrations", "RAG", "LLMs", "Microservices", "PostgreSQL", "MongoDB", "MySQL"],
   },
   {
-    id: "ai",
-    title: "AI / GenAI / RAG",
-    items: ["GenAI", "AI Integrations", "RAG", "LLMs"],
+    id: "devops-architecture",
+    title: "DevOps & Architecture",
+    items: ["Docker", "Git", "CI/CD", "Linux", "System Design", "API Design", "Scalable Systems"],
   },
   {
-    id: "frontend",
-    title: "Frontend Engineering",
-    items: ["React", "Next.js", "TypeScript", "JavaScript"],
-  },
-  {
-    id: "databases",
-    title: "Databases",
-    items: ["PostgreSQL", "MongoDB", "MySQL"],
-  },
-  {
-    id: "devops",
-    title: "DevOps & Infrastructure",
-    items: ["Docker", "Git", "CI/CD", "Linux"],
-  },
-  {
-    id: "architecture",
-    title: "Architecture & Design",
-    items: ["System Design", "API Design", "Scalable Systems", "Automation"],
+    id: "automation",
+    title: "Automation & Integrations",
+    items: ["Automation", "Workflow Design", "API Integrations", "Apps Script"],
   },
 ];
 
@@ -168,24 +153,6 @@ export const experience = [
     period: "May 2025 - Jul 2025",
     highlights: [
       "Contributed to frontend layouts and user interfaces with version control workflows.",
-    ],
-  },
-  {
-    id: "unified-mentor",
-    role: "Full Stack Developer",
-    company: "Unified Mentor Private Limited",
-    period: "Dec 2024 - Jan 2025",
-    highlights: [
-      "Assisted with backend development, Spring Security integration, and database operations.",
-    ],
-  },
-  {
-    id: "prodigy-intern",
-    role: "Web Development Intern",
-    company: "Prodigy InfoTech",
-    period: "May 2024 - Jun 2024",
-    highlights: [
-      "Assisted with responsive frontend implementations using HTML, CSS, and JavaScript.",
     ],
   },
 ];
@@ -343,13 +310,6 @@ export const documents = [
     title: "Contact",
     type: "mail",
     shortDescription: "Email and social profiles",
-  },
-  {
-    id: "resume",
-    fileName: "resume.pdf",
-    title: "Resume",
-    type: "pdf",
-    shortDescription: "Download resume",
   },
 ];
 

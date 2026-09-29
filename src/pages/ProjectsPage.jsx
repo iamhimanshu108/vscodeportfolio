@@ -10,9 +10,6 @@ export function ProjectsPage() {
           <h1>
             Projects<span className="title-period">.</span>
           </h1>
-          <p className="page-lede">
-            A selection of products and systems I have worked on.
-          </p>
         </div>
         <span className="page-count">
           {String(projects.length).padStart(2, "0")} projects

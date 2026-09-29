@@ -1,26 +1,23 @@
-import { Braces, PanelBottom, PanelLeftClose, Search } from "lucide-react";
-import { profile } from "../data/portfolio.js";
+import { ArrowLeft, ArrowRight, Code2, Search } from "lucide-react";
 
 export function TitleBar({
-  explorerOpen,
-  outputOpen,
   onOpenPalette,
-  onToggleExplorer,
-  onToggleOutput,
+  onToggleView,
 }) {
   return (
     <header className="titlebar">
-      <div className="window-controls" aria-hidden="true">
-        <span className="window-dot close-dot" />
-        <span className="window-dot minimize-dot" />
-        <span className="window-dot maximize-dot" />
-      </div>
-      <div className="titlebar-brand">
-        <span className="brand-glyph">
-          <Braces size={15} />
-        </span>
-        <span>{profile.name}</span>
-        <span className="titlebar-muted">/ Portfolio</span>
+      <span className="vscode-logo" aria-label="Visual Studio Code"><Code2 size={20} /></span>
+      <nav className="top-menu" aria-label="Application menu">
+        {['File', 'Edit', 'Selection'].map((item) => (
+          <button key={item}>{item}</button>
+        ))}
+        <button onClick={onToggleView}>View</button>
+        {['Go', 'Run'].map((item) => <button key={item}>{item}</button>)}
+        <button aria-label="More actions">…</button>
+      </nav>
+      <div className="titlebar-navigation" aria-hidden="true">
+        <ArrowLeft size={16} />
+        <ArrowRight size={16} />
       </div>
       <button
         className="search-trigger"
@@ -31,24 +28,6 @@ export function TitleBar({
         <span>Search files and actions</span>
         <kbd>Ctrl P</kbd>
       </button>
-      <div className="titlebar-tools">
-        <button
-          className="icon-button title-tool"
-          onClick={onToggleExplorer}
-          aria-label={explorerOpen ? "Hide explorer" : "Show explorer"}
-          title="Toggle Explorer"
-        >
-          <PanelLeftClose size={16} />
-        </button>
-        <button
-          className="icon-button title-tool"
-          onClick={onToggleOutput}
-          aria-label={outputOpen ? "Hide output panel" : "Show output panel"}
-          title="Toggle Output"
-        >
-          <PanelBottom size={16} />
-        </button>
-      </div>
     </header>
   );
 }

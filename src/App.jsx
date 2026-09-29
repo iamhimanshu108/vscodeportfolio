@@ -8,6 +8,7 @@ import { OutputPanel } from "./components/OutputPanel.jsx";
 import { ProfileDialog } from "./components/ProfileDialog.jsx";
 import { StatusBar } from "./components/StatusBar.jsx";
 import { TitleBar } from "./components/TitleBar.jsx";
+import { SettingsPopover } from "./components/SettingsPopover.jsx";
 import { documents } from "./data/portfolio.js";
 import "./App.css";
 
@@ -18,6 +19,12 @@ function App() {
   const [outputOpen, setOutputOpen] = useState(true);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [theme, setTheme] = useState("midnight");
+  const [font, setFont] = useState("mono");
+  const [textColor, setTextColor] = useState("default");
+  const [viewOpen, setViewOpen] = useState(false);
+  const [zoom, setZoom] = useState(1);
   const selectedDocument =
     documents.find((document) => document.id === selectedId) ?? documents[0];
 
@@ -52,19 +59,24 @@ function App() {
   }, [paletteOpen, profileOpen]);
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell theme-${theme} font-${font} text-${textColor}`} style={{ zoom }}>
       <TitleBar
         explorerOpen={explorerOpen}
         outputOpen={outputOpen}
         onOpenPalette={() => setPaletteOpen(true)}
+        onToggleView={() => setViewOpen((open) => !open)}
         onToggleExplorer={() => setExplorerOpen((open) => !open)}
         onToggleOutput={() => setOutputOpen((open) => !open)}
+        onOpenSettings={() => setSettingsOpen(true)}
+        onOpenPalette={() => setPaletteOpen(true)}
       />
       <div className="workspace">
         <ActivityBar
           explorerOpen={explorerOpen}
           onOpenPalette={() => setPaletteOpen(true)}
           onToggleExplorer={() => setExplorerOpen((open) => !open)}
+          onOpenProfile={() => setProfileOpen(true)}
+          onOpenSettings={() => setSettingsOpen((open) => !open)}
         />
         {explorerOpen && (
           <Explorer
@@ -118,6 +130,17 @@ function App() {
         />
       )}
       {profileOpen && <ProfileDialog onClose={() => setProfileOpen(false)} />}
+      {settingsOpen && (
+        <SettingsPopover theme={theme} font={font} textColor={textColor} onThemeChange={setTheme} onFontChange={setFont} onTextColorChange={setTextColor} onClose={() => setSettingsOpen(false)} />
+      )}
+      {viewOpen && (
+        <div className="view-popover">
+          <strong>VIEW</strong>
+          <button onClick={() => setZoom((value) => Math.min(1.4, value + 0.1))}>Zoom In</button>
+          <button onClick={() => setZoom((value) => Math.max(0.8, value - 0.1))}>Zoom Out</button>
+          <button onClick={() => setZoom(1)}>Reset Zoom</button>
+        </div>
+      )}
     </div>
   );
 }

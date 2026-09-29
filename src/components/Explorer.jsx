@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  Activity,
   ChevronDown,
   ChevronRight,
   Folder,
@@ -14,10 +13,8 @@ export function Explorer({
   selectedId,
   onOpenDocument,
   onClose,
-  onOpenProfile,
 }) {
   const [sourceOpen, setSourceOpen] = useState(true);
-  const [avatarLoadFailed, setAvatarLoadFailed] = useState(false);
 
   return (
     <aside className="explorer" aria-label="File explorer">
@@ -65,30 +62,6 @@ export function Explorer({
           </div>
         </div>
       )}
-      <div className="explorer-spacer" />
-      <button
-        className="explorer-footer explorer-profile"
-        onClick={onOpenProfile}
-        aria-label={`Open ${profile.name} profile photo`}
-        aria-haspopup="dialog"
-      >
-        <span className="avatar-mark">
-          {avatarLoadFailed ? (
-            "HY"
-          ) : (
-            <img
-              src={profile.avatarUrl}
-              alt=""
-              onError={() => setAvatarLoadFailed(true)}
-            />
-          )}
-        </span>
-        <div className="explorer-person">
-          <strong>{profile.name}</strong>
-          <span>{profile.role} portfolio</span>
-        </div>
-        <Activity size={15} className="footer-activity" />
-      </button>
     </aside>
   );
 }

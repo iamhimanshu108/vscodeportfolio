@@ -365,6 +365,8 @@
 .skill-group .tag-list {
   margin-top: 10px;
 }
+.skill-group .tag-list span { display: inline-flex; align-items: center; gap: 5px; }
+.skill-group .tag-list svg { color: var(--accent); flex: 0 0 auto; }
 .education-list {
   display: grid;
   gap: 0;

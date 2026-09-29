@@ -1,4 +1,4 @@
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { education, experience, profile } from "../data/portfolio.js";
 
 export function AboutPage() {
@@ -12,10 +12,6 @@ export function AboutPage() {
       <div className="about-location">
         <MapPin size={15} />
         <span>{profile.location}</span>
-        <span className="about-divider">/</span>
-        <a href={profile.website} target="_blank" rel="noreferrer">
-          iamhimanshu.in <ArrowUpRight size={12} />
-        </a>
       </div>
       <div className="page-rule" />
       <section className="about-work">

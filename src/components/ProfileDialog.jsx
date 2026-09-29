@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, GitBranch, MapPin, X } from "lucide-react";
+import { ArrowUpRight, MapPin, X } from "lucide-react";
 import { profile } from "../data/portfolio.js";
 
 export function ProfileDialog({ onClose }) {
@@ -50,15 +50,17 @@ export function ProfileDialog({ onClose }) {
           <p className="profile-dialog-location">
             <MapPin size={14} /> {profile.location}
           </p>
-          <a
-            className="github-profile-link"
-            href={profile.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <GitBranch size={15} /> View GitHub profile{" "}
-            <ArrowUpRight size={13} />
-          </a>
+          <div className="profile-social-links">
+            <a className="github-profile-link" href={profile.githubUrl} target="_blank" rel="noreferrer">
+              <strong>⌘</strong> GitHub <ArrowUpRight size={13} />
+            </a>
+            <a className="github-profile-link" href={profile.linkedinUrl} target="_blank" rel="noreferrer">
+              <strong>in</strong> LinkedIn <ArrowUpRight size={13} />
+            </a>
+            <a className="github-profile-link" href={profile.xUrl} target="_blank" rel="noreferrer">
+              <strong>𝕏</strong> X <ArrowUpRight size={13} />
+            </a>
+          </div>
         </div>
       </section>
     </div>

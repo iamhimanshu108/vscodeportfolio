@@ -1,4 +1,4 @@
-import { Braces, ChevronRight, FileText, FolderOpen, Mail } from "lucide-react";
+import { Braces, ChevronRight, Download, FileText, Mail } from "lucide-react";
 import { documents, profile } from "../data/portfolio.js";
 
 export function HomePage({ onOpenDocument }) {
@@ -13,17 +13,11 @@ export function HomePage({ onOpenDocument }) {
       </div>
       <div className="intro-layout">
         <section className="intro-copy">
-          <div className="eyebrow">
-            <span className="live-dot" /> {profile.eyebrow}{" "}
-            <span className="eyebrow-rule" />
-          </div>
           <h1>
             {profile.name}
             <span className="title-period">.</span>
           </h1>
-          <p className="intro-role">
-            {profile.role} <span className="role-slash">/</span> Portfolio
-          </p>
+          <p className="intro-role">{profile.role}</p>
           <p className="intro-description">{profile.intro}</p>
           <div className="focus-list">
             {profile.focus.map((focus) => (
@@ -31,17 +25,11 @@ export function HomePage({ onOpenDocument }) {
             ))}
           </div>
           <div className="intro-actions">
-            <button
-              className="primary-action"
-              onClick={() => onOpenDocument("projects")}
-            >
-              <FolderOpen size={15} /> Browse projects
-            </button>
-            <button
-              className="secondary-action"
-              onClick={() => onOpenDocument("about")}
-            >
-              <FileText size={15} /> Who am I
+            <a className="primary-action" href={profile.resumeUrl} target="_blank" rel="noreferrer">
+              <Download size={15} /> Resume
+            </a>
+            <button className="secondary-action" onClick={() => onOpenDocument("about")}>
+              <FileText size={15} /> Who Am I
             </button>
           </div>
         </section>

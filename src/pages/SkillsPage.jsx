@@ -1,4 +1,4 @@
-import { Code2, Layers3 } from "lucide-react";
+import { Braces, Code2, Database, GitBranch, Layers3, Server, Sparkles } from "lucide-react";
 import { skills } from "../data/portfolio.js";
 
 export function SkillsPage() {
@@ -8,9 +8,6 @@ export function SkillsPage() {
       <h1>
         Skills<span className="title-period">.</span>
       </h1>
-      <p className="page-lede">
-        Technologies and disciplines used across my work.
-      </p>
       <div className="skills-grid">
         {skills.map((category, index) => (
           <section className="skill-group" key={category.id}>
@@ -22,7 +19,10 @@ export function SkillsPage() {
             </div>
             <div className="tag-list">
               {category.items.map((item) => (
-                <span key={item}>{item}</span>
+                <span key={item}>
+                  {index === 2 ? <Database size={11} /> : index === 1 ? <Server size={11} /> : index === 3 ? <GitBranch size={11} /> : index === 4 ? <Sparkles size={11} /> : <Braces size={11} />}
+                  {item}
+                </span>
               ))}
             </div>
           </section>
