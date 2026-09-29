@@ -1,6 +1,10 @@
-import { Type, Palette, X } from "lucide-react";
+import { useState } from "react";
+import { Type, Palette, X, Hash, PanelRight, WrapText } from "lucide-react";
 
 export function SettingsPopover({ theme, font, textColor, onThemeChange, onFontChange, onTextColorChange, onClose }) {
+  const [lineNumbers, setLineNumbers] = useState(true);
+  const [minimap, setMinimap] = useState(true);
+  const [wordWrap, setWordWrap] = useState(true);
   return (
     <aside className="settings-popover" aria-label="Settings">
       <div className="settings-heading">
@@ -28,6 +32,18 @@ export function SettingsPopover({ theme, font, textColor, onThemeChange, onFontC
           <option value="green">Terminal green</option>
           <option value="purple">Syntax purple</option>
         </select>
+      </label>
+      <label><Hash size={15} /> Line numbers
+        <select value={lineNumbers ? "on" : "off"} onChange={(e) => setLineNumbers(e.target.value === "on")}><option value="on">On</option><option value="off">Off</option></select>
+      </label>
+      <label><PanelRight size={15} /> Minimap
+        <select value={minimap ? "on" : "off"} onChange={(e) => setMinimap(e.target.value === "on")}><option value="on">On</option><option value="off">Off</option></select>
+      </label>
+      <label><WrapText size={15} /> Word wrap
+        <select value={wordWrap ? "on" : "off"} onChange={(e) => setWordWrap(e.target.value === "on")}><option value="on">On</option><option value="off">Off</option></select>
+      </label>
+      <label><Type size={15} /> Tab size
+        <select defaultValue="2"><option value="2">2 spaces</option><option value="4">4 spaces</option><option value="8">8 spaces</option></select>
       </label>
     </aside>
   );

@@ -121,7 +121,7 @@ export const skills = [
   {
     id: "ai-data",
     title: "AI, Data & Backend",
-    items: ["Python", "FastAPI", "GenAI", "AI Integrations", "RAG", "LLMs", "Microservices", "PostgreSQL", "MongoDB", "MySQL"],
+    items: ["Python", "FastAPI", "Gen AI", "AI Integrations", "RAG", "LLMs", "Microservices", "PostgreSQL", "MongoDB", "MySQL"],
   },
   {
     id: "devops-architecture",

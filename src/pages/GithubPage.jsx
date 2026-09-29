@@ -196,14 +196,6 @@ export function GithubPage() {
           <GitBranch size={15} /> View Profile <ExternalLink size={12} />
         </a>
       </div>
-      <div className="github-social-links" aria-label="Other social profiles">
-        <a href={profile.linkedinUrl} target="_blank" rel="noreferrer">
-          <Network size={13} /> View LinkedIn profile <ArrowUpRight size={12} />
-        </a>
-        <a href={profile.xUrl} target="_blank" rel="noreferrer">
-          <AtSign size={13} /> View X profile <ArrowUpRight size={12} />
-        </a>
-      </div>
       <div className="github-profile-rule" />
       <div className="github-stats">
         {stats.map(({ label, value, Icon, title, suffix }) => (

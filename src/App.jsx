@@ -24,6 +24,7 @@ function App() {
   const [font, setFont] = useState("mono");
   const [textColor, setTextColor] = useState("default");
   const [viewOpen, setViewOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState(null);
   const [zoom, setZoom] = useState(1);
   const selectedDocument =
     documents.find((document) => document.id === selectedId) ?? documents[0];
@@ -52,10 +53,18 @@ function App() {
       if (event.key === "Escape") {
         if (paletteOpen) setPaletteOpen(false);
         if (profileOpen) setProfileOpen(false);
+        setActiveMenu(null);
       }
     };
+    const onPointerDown = (event) => {
+      if (!event.target.closest(".menu-anchor")) setActiveMenu(null);
+    };
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
   }, [paletteOpen, profileOpen]);
 
   return (
@@ -65,6 +74,8 @@ function App() {
         outputOpen={outputOpen}
         onOpenPalette={() => setPaletteOpen(true)}
         onToggleView={() => setViewOpen((open) => !open)}
+        activeMenu={activeMenu}
+        onMenuToggle={(menu) => setActiveMenu((current) => current === menu ? null : menu)}
         onToggleExplorer={() => setExplorerOpen((open) => !open)}
         onToggleOutput={() => setOutputOpen((open) => !open)}
         onOpenSettings={() => setSettingsOpen(true)}

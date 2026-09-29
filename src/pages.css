@@ -796,12 +796,13 @@
   scrollbar-width: thin;
 }
 .contribution-calendar {
-  width: max-content;
+  width: 100%;
+  min-width: 676px;
 }
 .contribution-months {
   position: relative;
   display: block;
-  width: calc(var(--week-count) * 13px - 3px);
+  width: 100%;
   height: 15px;
   color: #818c94;
   font: 8px var(--mono);
@@ -815,17 +816,18 @@
   display: flex;
   align-items: flex-start;
   gap: 3px;
-  width: max-content;
+  width: 100%;
 }
 .contribution-week {
   display: grid;
-  flex: 0 0 10px;
+  flex: 1 1 0;
+  min-width: 7px;
   grid-template-rows: repeat(7, 10px);
   gap: 3px;
 }
 .contribution-cell {
   display: block;
-  width: 10px;
+  width: 100%;
   height: 10px;
   border-radius: 2px;
   background: #24292f;
@@ -1026,6 +1028,32 @@
   }
   .project-card {
     padding: 12px;
+  }
+  .skills-page h1 {
+    font-size: 32px;
+  }
+  .skills-grid {
+    gap: 0;
+    margin-top: 18px;
+  }
+  .skill-group {
+    padding: 14px 0;
+  }
+  .skill-group-heading h2 {
+    font-size: 10px;
+  }
+  .skill-group .tag-list {
+    gap: 5px;
+    margin-top: 9px;
+  }
+  .skill-group .tag-list span {
+    max-width: 100%;
+    padding: 4px 6px;
+    font-size: 9px;
+  }
+  .skill-group .tag-list span svg {
+    width: 10px;
+    height: 10px;
   }
   .experience-entry-head {
     flex-direction: column;
