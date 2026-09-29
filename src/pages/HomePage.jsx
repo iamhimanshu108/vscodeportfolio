@@ -41,7 +41,7 @@ export function HomePage({ onOpenDocument }) {
               className="secondary-action"
               onClick={() => onOpenDocument("about")}
             >
-              <FileText size={15} /> About me
+              <FileText size={15} /> Who am I
             </button>
           </div>
         </section>

@@ -291,9 +291,9 @@ export const documents = [
   {
     id: "about",
     fileName: "about.md",
-    title: "About",
+    title: "Who Am I",
     type: "markdown",
-    shortDescription: "Profile and focus",
+    shortDescription: "Background and technical focus",
   },
   {
     id: "projects",

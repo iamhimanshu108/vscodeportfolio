@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
+  AtSign,
   ExternalLink,
   Flame,
   GitFork,
   GitBranch,
   GitCommitHorizontal,
+  Network,
   Star,
 } from "lucide-react";
 import { profile } from "../data/portfolio.js";
@@ -194,6 +196,14 @@ export function GithubPage() {
           <GitBranch size={15} /> View Profile <ExternalLink size={12} />
         </a>
       </div>
+      <div className="github-social-links" aria-label="Other social profiles">
+        <a href={profile.linkedinUrl} target="_blank" rel="noreferrer">
+          <Network size={13} /> View LinkedIn profile <ArrowUpRight size={12} />
+        </a>
+        <a href={profile.xUrl} target="_blank" rel="noreferrer">
+          <AtSign size={13} /> View X profile <ArrowUpRight size={12} />
+        </a>
+      </div>
       <div className="github-profile-rule" />
       <div className="github-stats">
         {stats.map(({ label, value, Icon, title, suffix }) => (
@@ -239,9 +249,18 @@ export function GithubPage() {
               style={{ "--week-count": contributionWeeks.length }}
             >
               <div className="contribution-months" aria-hidden="true">
-                {contributionWeeks.map((week, index) => (
-                  <span key={index}>{getMonthLabel(week)}</span>
-                ))}
+                {contributionWeeks.map((week, index) => {
+                  const month = getMonthLabel(week);
+                  const previousMonth =
+                    index > 0
+                      ? getMonthLabel(contributionWeeks[index - 1])
+                      : "";
+                  return month && month !== previousMonth ? (
+                    <span key={index} style={{ left: `${index * 13}px` }}>
+                      {month}
+                    </span>
+                  ) : null;
+                })}
               </div>
               <div
                 className="contribution-grid"
