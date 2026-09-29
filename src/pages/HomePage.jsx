@@ -25,6 +25,11 @@ export function HomePage({ onOpenDocument }) {
             {profile.role} <span className="role-slash">/</span> Portfolio
           </p>
           <p className="intro-description">{profile.intro}</p>
+          <div className="focus-list">
+            {profile.focus.map((focus) => (
+              <span key={focus}>{focus}</span>
+            ))}
+          </div>
           <div className="intro-actions">
             <button
               className="primary-action"

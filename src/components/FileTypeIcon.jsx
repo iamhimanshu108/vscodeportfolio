@@ -4,7 +4,7 @@ export function FileTypeIcon({ type, size = 15, className = "" }) {
   const Icon =
     type === "react"
       ? FileCode2
-      : type === "markdown"
+      : type === "markdown" || type === "pdf"
         ? FileText
         : type === "mail"
           ? Mail

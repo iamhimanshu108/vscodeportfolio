@@ -1,19 +1,281 @@
 export const profile = {
   name: "Himanshu Yadav",
-  role: "Developer",
-  eyebrow: "PERSONAL WORKSPACE",
+  role: "AI Full Stack Developer",
+  email: "hiyadav2022@gmail.com",
+  location: "India // Global Remote",
+  website: "https://www.iamhimanshu.in",
+  githubUsername: "iamhimanshu108",
+  githubUrl: "https://github.com/iamhimanshu108",
+  linkedinUrl: "https://www.linkedin.com/in/iamhimanshu108",
+  xUrl: "https://x.com/iamhimanshu108",
+  resumeUrl:
+    "https://drive.google.com/file/d/1KOeUEkU3p2jdlHc8vNT_i3xOJifZ_dnT/view?usp=sharing",
+  eyebrow: "FULL-STACK / AI / AUTOMATION",
   intro:
-    "A space for the projects, notes, and experiences that shape my work. The collection is being assembled.",
+    "I build intelligent full-stack products with MERN, Python, FastAPI, and modern AI.",
+  bio: [
+    "Specializing in GenAI, RAG pipelines, automation, and scalable web systems.",
+    "Focus: Microservices, AI Integrations, Automation.",
+  ],
+  focus: [
+    "GenAI",
+    "RAG pipelines",
+    "Microservices",
+    "AI Integrations",
+    "Automation",
+    "Scalable web systems",
+  ],
   workspaceName: "HIMANSHU-PORTFOLIO",
-  homeTitle: "Portfolio files",
+  homeTitle: "Explore my work",
   preview: {
     fileName: "profile.js",
-    kind: "developer portfolio",
-    status: "in progress",
+    kind: "full-stack + AI",
+    status: "building",
     language: "JavaScript",
     encoding: "UTF-8",
   },
 };
+
+export const projects = [
+  {
+    id: "ats-score-analyzer",
+    title: "ATS Score Analyzer",
+    fileName: "ats_score_analyzer.ts",
+    status: "Deployed",
+    description:
+      "AI-powered resume evaluation that compares a candidate's resume with a job description and returns a compatibility score, missing skills, and actionable suggestions.",
+    technologies: ["React", "Gemini AI", "TypeScript", "Tailwind CSS"],
+    repoUrl: "https://github.com/iamhimanshu108/ats-score-analyzer",
+  },
+  {
+    id: "ai-email-assistant",
+    title: "AI Email Reply Assistant",
+    fileName: "ai_email_assistant.java",
+    status: "Deployed",
+    description:
+      "Email composition and reply assistant using Spring Boot, React, Spring Security, and Gemini to draft context-aware responses.",
+    technologies: ["Spring Boot", "React", "Gemini API", "Spring Security"],
+    repoUrl: "https://github.com/iamhimanshu108/ai-email-assistant",
+  },
+  {
+    id: "automation-router",
+    title: "Multi-Channel Automation Router",
+    fileName: "automation_router.py",
+    status: "Deployed",
+    description:
+      "Trigger-based workflows connecting WhatsApp, Telegram, email, AppSheet, and Google Sheets with FastAPI, Node.js, and Docker.",
+    technologies: ["Python", "FastAPI", "Google Apps Script", "Docker"],
+    repoUrl: "https://github.com/iamhimanshu108/automation-router",
+  },
+  {
+    id: "crypto-tracker",
+    title: "Crypto Tracker",
+    fileName: "crypto_tracker.ts",
+    status: "Deployed",
+    description:
+      "Cryptocurrency tracking interface with live market prices, trend charts, sentiment metrics, and personal watchlists using the CoinGecko API.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "CoinGecko API"],
+    repoUrl: "https://github.com/iamhimanshu108/crypto-tracker",
+  },
+  {
+    id: "weather-dashboard",
+    title: "Weather Dashboard",
+    fileName: "weather_dashboard.ts",
+    status: "Deployed",
+    description:
+      "Weather forecasts with alerts, historical climate context, and location-aware conditions using the OpenWeather API.",
+    technologies: ["React", "TypeScript", "Tailwind CSS", "OpenWeather API"],
+    repoUrl: "https://github.com/iamhimanshu108/weather-dashboard",
+  },
+  {
+    id: "otp-security-service",
+    title: "OTP Security Service",
+    fileName: "otp_security_service.java",
+    status: "Deployed",
+    description:
+      "Authentication and OTP verification service built with Spring Boot, Spring Security, JWT, and MySQL.",
+    technologies: ["Spring Boot", "Spring Security", "JWT", "MySQL"],
+    repoUrl: "https://github.com/iamhimanshu108/otp-verification-service",
+  },
+  {
+    id: "employee-management",
+    title: "Employee Management System",
+    fileName: "employee_management.java",
+    status: "Deployed",
+    description:
+      "Employee lifecycle and department management application with role permissions, built with Spring Boot, React, and MySQL.",
+    technologies: ["Spring Boot", "React", "MySQL", "REST API"],
+    repoUrl: "https://github.com/iamhimanshu108/employee-management-system",
+  },
+];
+
+export const skills = [
+  {
+    id: "full-stack",
+    title: "Full-Stack / MERN",
+    items: ["MERN Stack", "MongoDB", "Express.js", "React", "Node.js"],
+  },
+  {
+    id: "python-backend",
+    title: "Python Backend",
+    items: ["Python", "FastAPI", "REST APIs", "Microservices"],
+  },
+  {
+    id: "ai",
+    title: "AI / GenAI / RAG",
+    items: ["GenAI", "AI Integrations", "RAG", "LLMs"],
+  },
+  {
+    id: "frontend",
+    title: "Frontend Engineering",
+    items: ["React", "Next.js", "TypeScript", "JavaScript"],
+  },
+  {
+    id: "databases",
+    title: "Databases",
+    items: ["PostgreSQL", "MongoDB", "MySQL"],
+  },
+  {
+    id: "devops",
+    title: "DevOps & Infrastructure",
+    items: ["Docker", "Git", "CI/CD", "Linux"],
+  },
+  {
+    id: "architecture",
+    title: "Architecture & Design",
+    items: ["System Design", "API Design", "Scalable Systems", "Automation"],
+  },
+];
+
+export const experience = [
+  {
+    id: "bizskill-web-developer",
+    role: "Web Developer",
+    company: "BizSkill",
+    period: "Jul 2025 - Present",
+    highlights: [
+      "Developed responsive web dashboards using HTML, CSS, and JavaScript.",
+      "Integrated Apps Script solutions to automate internal reporting processes.",
+    ],
+  },
+  {
+    id: "bizskill-intern",
+    role: "Web Development Intern",
+    company: "BizSkill",
+    period: "May 2025 - Jul 2025",
+    highlights: [
+      "Contributed to frontend layouts and user interfaces with version control workflows.",
+    ],
+  },
+  {
+    id: "unified-mentor",
+    role: "Full Stack Developer",
+    company: "Unified Mentor Private Limited",
+    period: "Dec 2024 - Jan 2025",
+    highlights: [
+      "Assisted with backend development, Spring Security integration, and database operations.",
+    ],
+  },
+  {
+    id: "prodigy-intern",
+    role: "Web Development Intern",
+    company: "Prodigy InfoTech",
+    period: "May 2024 - Jun 2024",
+    highlights: [
+      "Assisted with responsive frontend implementations using HTML, CSS, and JavaScript.",
+    ],
+  },
+];
+
+export const education = [
+  {
+    id: "mca",
+    degree: "Master of Computer Applications (MCA)",
+    institution: "Sikkim Manipal University",
+    institutionUrl: "https://smu.edu.in",
+    location: "India // Distance Education",
+    period: "2026 - 2028",
+    status: "In progress",
+    highlights: [
+      "Advanced study of cloud architectures, distributed systems, software engineering, and enterprise Java web frameworks.",
+      "Developing microservice backends, REST API routers, and AI automation systems.",
+    ],
+  },
+  {
+    id: "bca",
+    degree: "Bachelor of Computer Applications (BCA)",
+    institution: "IGNOU",
+    institutionUrl: "https://www.ignou.ac.in",
+    location: "New Delhi, India",
+    period: "2021 - 2024",
+    status: "Completed",
+    highlights: [
+      "Studied data structures and algorithms, object-oriented programming with Java, and database management systems.",
+      "Built capstone projects integrating REST architectures and cloud databases.",
+    ],
+  },
+];
+
+export const certificates = [
+  {
+    id: "generative-ai-foundations",
+    title: "Generative AI Foundations Certificate",
+    issuer: "upGrad & Microsoft",
+    issueDate: "May 2026",
+    credentialId: "harU1961VhMwXqQp",
+    skills: [
+      "Generative AI",
+      "Prompt Engineering",
+      "AI Research",
+      "Automation",
+    ],
+    description:
+      "Generative AI foundations, prompt engineering, AI-assisted research and analysis, and automation.",
+    certificateUrl:
+      "https://drive.google.com/file/d/1a055575bVPGVlyqA1TfdYKpPGuZwMUZo/view?usp=sharing",
+  },
+  {
+    id: "nodejs-course",
+    title: "Node.js - Beginner to Advance Course with Projects",
+    issuer: "Udemy (Hitesh Choudhary & Piyush Garg)",
+    issueDate: "Aug 2026",
+    credentialId: "UC-ac4fdbfa-c4ce-481f-be51-7590b95e82e6",
+    skills: ["Node.js", "JavaScript", "Express.js", "REST APIs", "Async I/O"],
+    description:
+      "Hands-on backend training covering Node.js, asynchronous programming, server architecture, and REST API development.",
+    certificateUrl:
+      "https://drive.google.com/file/d/1SKglyrBwLD-HCOJpBUmqpHK_8Re2PuZ-/view?usp=sharing",
+  },
+  {
+    id: "full-stack-development",
+    title: "Full Stack Web Development 2.0",
+    issuer: "Physics Wallah (PW Skills)",
+    issueDate: "May 2025",
+    credentialId: "70752542-0e29-46d1-b4b8-61aab87d584a",
+    skills: ["React", "Node.js", "Express.js", "MongoDB", "REST APIs"],
+    description:
+      "Full-stack web development covering modern application architecture, API integration, and deployment.",
+    certificateUrl:
+      "https://drive.google.com/file/d/1zyZVjYX-BUGGKYAP7GV-wc7JpyiLBPEL/view?usp=sharing",
+  },
+  {
+    id: "java-full-stack",
+    title: "Spark 2.0: Job Ready Java Full Stack LIVE Course",
+    issuer: "Physics Wallah / PW Skills",
+    issueDate: "Nov 2024",
+    skills: [
+      "Java",
+      "Spring Boot",
+      "REST APIs",
+      "Hibernate JPA",
+      "Spring Security",
+    ],
+    description:
+      "Live Java full-stack course covering core and advanced Java, Spring Boot, databases, and REST API development.",
+    certificateUrl:
+      "https://drive.google.com/file/d/1QyBQZ4YuPL7Fv8IkoHqmYhLSxc66uO9b/view?usp=sharing",
+  },
+];
 
 export const documents = [
   {
@@ -21,51 +283,70 @@ export const documents = [
     fileName: "home.jsx",
     title: "Portfolio",
     type: "react",
-    shortDescription: "A personal workspace",
+    shortDescription: "Profile and navigation",
   },
   {
     id: "about",
     fileName: "about.md",
-    title: "A little about me",
+    title: "About",
     type: "markdown",
-    shortDescription: "Background and approach",
-    description: "A short introduction to the person behind this workspace.",
-    emptyTitle: "About details are on the way.",
-    emptyDescription:
-      "Personal background and a fuller introduction have not been added yet.",
+    shortDescription: "Profile and focus",
   },
   {
     id: "projects",
     fileName: "projects.js",
-    title: "Selected projects",
+    title: "Projects",
     type: "javascript",
-    shortDescription: "Things I have worked on",
-    description: "A collection of projects, experiments, and shipped work.",
-    emptyTitle: "Project details have not been added yet.",
-    emptyDescription:
-      "Project descriptions and links will appear here when they are ready to share.",
+    shortDescription: "Selected projects",
   },
   {
     id: "experience",
     fileName: "experience.md",
     title: "Experience",
     type: "markdown",
-    shortDescription: "Work and learning",
-    description: "A concise timeline of roles, collaborations, and learning.",
-    emptyTitle: "Experience details have not been added yet.",
-    emptyDescription:
-      "This section is reserved for verified roles, dates, and outcomes.",
+    shortDescription: "Roles and contributions",
+  },
+  {
+    id: "skills",
+    fileName: "skills.js",
+    title: "Skills",
+    type: "javascript",
+    shortDescription: "Tools and technologies",
+  },
+  {
+    id: "education",
+    fileName: "education.md",
+    title: "Education",
+    type: "markdown",
+    shortDescription: "Education history",
+  },
+  {
+    id: "certificates",
+    fileName: "certificates.js",
+    title: "Certificates",
+    type: "javascript",
+    shortDescription: "Courses and credentials",
+  },
+  {
+    id: "github",
+    fileName: "github.md",
+    title: "GitHub",
+    type: "markdown",
+    shortDescription: "Public profile and activity",
   },
   {
     id: "contact",
     fileName: "contact.md",
     title: "Contact",
     type: "mail",
-    shortDescription: "Ways to get in touch",
-    description: "Contact details and profile links.",
-    emptyTitle: "Contact links are not configured yet.",
-    emptyDescription:
-      "An email address or public profile can be added here when available.",
+    shortDescription: "Email and social profiles",
+  },
+  {
+    id: "resume",
+    fileName: "resume.pdf",
+    title: "Resume",
+    type: "pdf",
+    shortDescription: "Download resume",
   },
 ];
 
