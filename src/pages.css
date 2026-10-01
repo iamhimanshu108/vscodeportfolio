@@ -4,6 +4,18 @@
   padding: 17px 0 32px;
   color: var(--text);
 }
+
+.portfolio-page h1,
+.portfolio-page h2,
+.portfolio-page h3,
+.portfolio-page h4,
+.portfolio-page h5,
+.portfolio-page h6 {
+  font-family: var(--heading);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
 .page-kicker {
   margin-bottom: 13px;
   color: #78858d;
@@ -13,10 +25,25 @@
 .portfolio-page h1 {
   margin: 0;
   color: #e3e7eb;
-  font-size: clamp(27px, 3.2vw, 36px);
+  font-family: var(--heading);
+  font-size: clamp(31px, 3.6vw, 42px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.portfolio-page h2 {
+  margin: 0 0 10px;
+  color: #e3e7eb;
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 700;
+}
+
+.portfolio-page h3 {
+  margin: 0 0 8px;
+  color: #dfe5e9;
+  font-size: clamp(18px, 1.5vw, 22px);
   font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0;
 }
 .app-shell .intro-copy h1 {
   font-size: 28px !important;
