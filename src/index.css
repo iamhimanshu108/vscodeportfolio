@@ -10,17 +10,17 @@
   -moz-osx-font-smoothing: grayscale;
   font-optical-sizing: auto;
   font-weight: 400;
-  --canvas: #111315;
-  --surface: #181a1d;
-  --surface-raised: #202326;
-  --surface-hover: #282c30;
-  --border: #303438;
-  --border-soft: #25292c;
-  --text: #d8dce3;
-  --text-secondary: #a3aab4;
-  --text-muted: #727b86;
-  --accent: #69c5c0;
-  --accent-soft: #a5ded9;
+  --canvas: #0f1419;
+  --surface: #151b21;
+  --surface-raised: #1c242c;
+  --surface-hover: #25313a;
+  --border: #2d3943;
+  --border-soft: #202a32;
+  --text: #d7dee5;
+  --text-secondary: #9aa7b2;
+  --text-muted: #687681;
+  --accent: #62c7bd;
+  --accent-soft: #9be0d7;
   --blue: #82b6f4;
   --gold: #e0bd75;
   --green: #8ac89a;
@@ -63,6 +63,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background: var(--canvas);
+  color: var(--text);
 }
 
 button,

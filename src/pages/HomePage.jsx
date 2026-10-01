@@ -1,8 +1,7 @@
-import { Braces, ChevronRight, Download, FileText, Mail } from "lucide-react";
-import { documents, profile } from "../data/portfolio.js";
+import { Braces, Download, FileText } from "lucide-react";
+import { profile } from "../data/portfolio.js";
 
 export function HomePage({ onOpenDocument }) {
-  const pageDocuments = documents.filter((document) => document.id !== "home");
   return (
     <>
       <div className="code-intro">
@@ -92,42 +91,6 @@ export function HomePage({ onOpenDocument }) {
         <span>{"}"}</span>
         <i />
       </div>
-      <section className="browse-section">
-        <div className="section-heading">
-          <div>
-            <span className="section-kicker">DIRECTORY</span>
-            <h2>{profile.homeTitle}</h2>
-          </div>
-          <span className="section-count">
-            {String(pageDocuments.length).padStart(2, "0")} documents
-          </span>
-        </div>
-        <div className="document-grid">
-          {pageDocuments.map((document, index) => (
-            <button
-              key={document.id}
-              className="document-card"
-              onClick={() => onOpenDocument(document.id)}
-            >
-              <span className={`document-icon icon-${document.type}`}>
-                {document.type === "markdown" ? (
-                  <FileText size={17} />
-                ) : document.type === "mail" ? (
-                  <Mail size={17} />
-                ) : (
-                  <Braces size={17} />
-                )}
-              </span>
-              <span className="document-card-copy">
-                <strong>{document.fileName}</strong>
-                <span>{document.shortDescription}</span>
-              </span>
-              <span className="document-index">0{index + 1}</span>
-              <ChevronRight size={15} className="document-arrow" />
-            </button>
-          ))}
-        </div>
-      </section>
       <div className="document-end">
         <span className="syntax-keyword">export default</span>{" "}
         <span className="syntax-variable">developer</span>
