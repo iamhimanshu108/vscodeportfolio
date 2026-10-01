@@ -4,7 +4,6 @@ import { projects } from "../data/portfolio.js";
 export function ProjectsPage() {
   return (
     <section className="portfolio-page projects-page">
-      <div className="page-kicker">WORK / SELECTED PROJECTS</div>
       <div className="page-heading-row">
         <div>
           <h1>

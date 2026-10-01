@@ -4,7 +4,6 @@ import { skills } from "../data/portfolio.js";
 export function SkillsPage() {
   return (
     <section className="portfolio-page skills-page">
-      <div className="page-kicker">TOOLKIT / SKILLS</div>
       <h1>
         Skills<span className="title-period">.</span>
       </h1>

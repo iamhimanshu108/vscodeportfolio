@@ -68,7 +68,6 @@ export function ContactPage() {
 
   return (
     <section className="portfolio-page contact-page">
-      <div className="page-kicker">CONNECT</div>
       <h1>
         Let's talk<span className="title-period">.</span>
       </h1>

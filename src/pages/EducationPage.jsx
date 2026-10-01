@@ -4,11 +4,9 @@ import { education } from "../data/portfolio.js";
 export function EducationPage() {
   return (
     <section className="portfolio-page education-page">
-      <div className="page-kicker">BACKGROUND / EDUCATION</div>
       <h1>
         Education<span className="title-period">.</span>
       </h1>
-      <p className="page-lede">Formal study and the work built alongside it.</p>
       <div className="education-list">
         {education.map((item) => (
           <article className="education-entry" key={item.id}>

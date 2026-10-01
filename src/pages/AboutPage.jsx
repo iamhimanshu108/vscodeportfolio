@@ -4,7 +4,6 @@ import { education, experience, profile } from "../data/portfolio.js";
 export function AboutPage() {
   return (
     <section className="portfolio-page about-page">
-      <div className="page-kicker">PROFILE / WHO AM I</div>
       <h1>
         Who Am I<span className="title-period">.</span>
       </h1>

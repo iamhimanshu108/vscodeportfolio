@@ -169,7 +169,6 @@ export function GithubPage() {
       className="portfolio-page github-page"
       aria-busy={loadState === "loading"}
     >
-      <div className="page-kicker">OPEN SOURCE / GITHUB</div>
       <div className="github-profile-head">
         {github?.avatar_url ? (
           <img

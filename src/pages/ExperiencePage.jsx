@@ -4,13 +4,9 @@ import { experience } from "../data/portfolio.js";
 export function ExperiencePage() {
   return (
     <section className="portfolio-page experience-page">
-      <div className="page-kicker">CAREER / EXPERIENCE</div>
       <h1>
         Experience<span className="title-period">.</span>
       </h1>
-      <p className="page-lede">
-        Work, internships, and the things built along the way.
-      </p>
       <div className="experience-timeline">
         {experience.map((item) => (
           <article className="experience-entry" key={item.id}>
