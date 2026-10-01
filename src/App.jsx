@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import { CommandPalette } from "./components/CommandPalette.jsx";
 import { ActivityBar } from "./components/ActivityBar.jsx";
+import { ActivityPanel } from "./components/ActivityPanel.jsx";
 import { EditorWorkspace } from "./components/EditorWorkspace.jsx";
 import { Explorer } from "./components/Explorer.jsx";
 import { OutputPanel } from "./components/OutputPanel.jsx";
@@ -15,7 +16,8 @@ import "./App.css";
 function App() {
   const [selectedId, setSelectedId] = useState("home");
   const [openTabs, setOpenTabs] = useState(["home"]);
-  const [explorerOpen, setExplorerOpen] = useState(true);
+  const [sidebarView, setSidebarView] = useState("explorer");
+  const explorerOpen = sidebarView === "explorer";
   const [outputOpen, setOutputOpen] = useState(true);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -28,11 +30,14 @@ function App() {
   const [zoom, setZoom] = useState(1);
   const selectedDocument =
     documents.find((document) => document.id === selectedId) ?? documents[0];
+  const toggleSidebarView = (view) =>
+    setSidebarView((current) => (current === view ? null : view));
+  const toggleExplorer = () => toggleSidebarView("explorer");
 
   const openDocument = (id) => {
     setSelectedId(id);
     setOpenTabs((tabs) => (tabs.includes(id) ? tabs : [...tabs, id]));
-    if (window.matchMedia("(max-width: 760px)").matches) setExplorerOpen(false);
+    if (window.matchMedia("(max-width: 760px)").matches) setSidebarView(null);
   };
 
   const closeTab = (id) => {
@@ -68,24 +73,29 @@ function App() {
   }, [paletteOpen, profileOpen]);
 
   return (
-    <div className={`app-shell theme-${theme} font-${font} text-${textColor}`} style={{ zoom }}>
+    <div
+      className={`app-shell theme-${theme} font-${font} text-${textColor}`}
+      style={{ zoom }}
+    >
       <TitleBar
         explorerOpen={explorerOpen}
         outputOpen={outputOpen}
         onOpenPalette={() => setPaletteOpen(true)}
         onToggleView={() => setViewOpen((open) => !open)}
         activeMenu={activeMenu}
-        onMenuToggle={(menu) => setActiveMenu((current) => current === menu ? null : menu)}
-        onToggleExplorer={() => setExplorerOpen((open) => !open)}
+        onMenuToggle={(menu) =>
+          setActiveMenu((current) => (current === menu ? null : menu))
+        }
+        onToggleExplorer={toggleExplorer}
         onToggleOutput={() => setOutputOpen((open) => !open)}
         onOpenSettings={() => setSettingsOpen(true)}
         onOpenPalette={() => setPaletteOpen(true)}
       />
       <div className="workspace">
         <ActivityBar
-          explorerOpen={explorerOpen}
+          activeView={sidebarView}
+          onSelectView={toggleSidebarView}
           onOpenPalette={() => setPaletteOpen(true)}
-          onToggleExplorer={() => setExplorerOpen((open) => !open)}
           onOpenProfile={() => setProfileOpen(true)}
           onOpenSettings={() => setSettingsOpen((open) => !open)}
         />
@@ -93,8 +103,17 @@ function App() {
           <Explorer
             selectedId={selectedId}
             onOpenDocument={openDocument}
-            onClose={() => setExplorerOpen(false)}
+            onClose={() => setSidebarView(null)}
             onOpenProfile={() => setProfileOpen(true)}
+          />
+        )}
+        {sidebarView && sidebarView !== "explorer" && (
+          <ActivityPanel
+            view={sidebarView}
+            selectedId={selectedId}
+            onOpenDocument={openDocument}
+            onShowOutput={() => setOutputOpen(true)}
+            onClose={() => setSidebarView(null)}
           />
         )}
         <EditorWorkspace
@@ -124,7 +143,7 @@ function App() {
       {!explorerOpen && (
         <button
           className="mobile-menu-button"
-          onClick={() => setExplorerOpen(true)}
+          onClick={() => setSidebarView("explorer")}
           aria-label="Open explorer"
         >
           <Menu size={19} />
@@ -136,19 +155,35 @@ function App() {
           outputOpen={outputOpen}
           onClose={() => setPaletteOpen(false)}
           onOpenDocument={openDocument}
-          onToggleExplorer={() => setExplorerOpen((open) => !open)}
+          onToggleExplorer={toggleExplorer}
           onToggleOutput={() => setOutputOpen((open) => !open)}
         />
       )}
       {profileOpen && <ProfileDialog onClose={() => setProfileOpen(false)} />}
       {settingsOpen && (
-        <SettingsPopover theme={theme} font={font} textColor={textColor} onThemeChange={setTheme} onFontChange={setFont} onTextColorChange={setTextColor} onClose={() => setSettingsOpen(false)} />
+        <SettingsPopover
+          theme={theme}
+          font={font}
+          textColor={textColor}
+          onThemeChange={setTheme}
+          onFontChange={setFont}
+          onTextColorChange={setTextColor}
+          onClose={() => setSettingsOpen(false)}
+        />
       )}
       {viewOpen && (
         <div className="view-popover">
           <strong>VIEW</strong>
-          <button onClick={() => setZoom((value) => Math.min(1.4, value + 0.1))}>Zoom In</button>
-          <button onClick={() => setZoom((value) => Math.max(0.8, value - 0.1))}>Zoom Out</button>
+          <button
+            onClick={() => setZoom((value) => Math.min(1.4, value + 0.1))}
+          >
+            Zoom In
+          </button>
+          <button
+            onClick={() => setZoom((value) => Math.max(0.8, value - 0.1))}
+          >
+            Zoom Out
+          </button>
           <button onClick={() => setZoom(1)}>Reset Zoom</button>
         </div>
       )}
