@@ -13,7 +13,7 @@ export function ResumePage() {
           <h1>
             Resume<span className="title-period">.</span>
           </h1>
-          <p className="page-lede">
+          <p className="page-lede text-[11px]">
             A quick overview of experience and technical focus.
           </p>
         </div>
@@ -26,7 +26,7 @@ export function ResumePage() {
           <ArrowDownToLine size={15} /> Open PDF
         </a>
       </div>
-      <div className="resume-summary">
+      <div className="resume-summary text-[11px]">
         <FileText size={17} />
         <p>{profile.resumeSummary}</p>
       </div>
@@ -34,7 +34,7 @@ export function ResumePage() {
         <section>
           <h2>Experience</h2>
           {experience.map((item) => (
-            <div className="resume-role" key={item.id}>
+            <div className="resume-role text-[10px]" key={item.id}>
               <strong>{item.role}</strong>
               <span>
                 {item.company} / {item.period}
@@ -52,7 +52,7 @@ export function ResumePage() {
         </section>
       </div>
       <a
-        className="github-more-link"
+        className="github-more-link text-[10px]"
         href={profile.resumeUrl}
         target="_blank"
         rel="noreferrer"

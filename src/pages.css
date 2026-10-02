@@ -153,7 +153,6 @@
 .about-detail > p:last-child {
   margin-top: 8px;
   color: #9ba5ad;
-  font-size: 11px;
   line-height: 1.75;
 }
 .about-details {
@@ -183,7 +182,7 @@
 .about-detail .about-detail-meta {
   margin-top: 4px;
   color: #9bcfc9;
-  font: 9px var(--mono);
+  font-family: var(--mono);
 }
 .about-detail-meta span {
   padding: 0 3px;
@@ -191,7 +190,6 @@
 }
 .about-detail > p:last-child {
   margin-top: 8px;
-  font-size: 12px;
 }
 .about-focus h2,
 .resume-columns h2 {
@@ -283,7 +281,6 @@
   margin-top: 13px;
   color: #a9d9d4;
   text-decoration: none;
-  font-size: 10px;
 }
 .project-link:hover,
 .github-more-link:hover {
@@ -364,8 +361,10 @@
   margin: 11px 0 0;
   padding-left: 15px;
   color: #929ca4;
-  font-size: 10px;
   line-height: 1.65;
+}
+.experience-entry ul {
+  font-size: 10px;
 }
 .experience-entry li::marker,
 .education-content li::marker {
@@ -485,7 +484,7 @@
   gap: 7px 15px;
   margin-top: 9px;
   color: #7e8991;
-  font: 9px var(--mono);
+  font-family: var(--mono);
 }
 .education-content ul {
   margin-top: 8px;

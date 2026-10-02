@@ -128,7 +128,7 @@ export function ContactPage() {
           aria-label="Contact details"
         >
           <h2>Contact details</h2>
-          <a className="contact-email" href={`mailto:${profile.email}`}>
+          <a className="contact-email text-[10px]" href={`mailto:${profile.email}`}>
             <span className="contact-icon">
               <Mail size={17} />
             </span>
@@ -141,7 +141,7 @@ export function ContactPage() {
           <div className="social-links">
             {socialLinks.map(({ name, href, Icon, detail }) => (
               <a
-                className="social-link"
+                className="social-link text-[10px]"
                 href={href}
                 target="_blank"
                 rel="noreferrer"
@@ -156,7 +156,7 @@ export function ContactPage() {
               </a>
             ))}
           </div>
-          <div className="contact-resume">
+      <div className="contact-resume text-[10px]">
             <span>Want a concise overview?</span>
             <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
               Open resume <ArrowUpRight size={13} />

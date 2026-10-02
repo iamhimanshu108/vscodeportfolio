@@ -10,7 +10,7 @@ export function SkillsPage() {
       <div className="skills-grid">
         {skills.map((category, index) => (
           <section className="skill-group" key={category.id}>
-            <div className="skill-group-heading">
+            <div className="skill-group-heading text-[11px]">
               <span className="skill-group-icon">
                 {index % 2 ? <Layers3 size={15} /> : <Code2 size={15} />}
               </span>

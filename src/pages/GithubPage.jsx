@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
-  AtSign,
   ExternalLink,
   Flame,
   GitFork,
   GitBranch,
   GitCommitHorizontal,
-  Network,
   Star,
 } from "lucide-react";
 import { profile } from "../data/portfolio.js";
@@ -209,7 +207,7 @@ export function GithubPage() {
         ))}
       </div>
       {loadState === "unavailable" && (
-        <p className="github-api-note">
+        <p className="github-api-note text-[10px]">
           Live GitHub stats could not be loaded. Visit the public profile for
           current activity.
         </p>
@@ -228,7 +226,7 @@ export function GithubPage() {
           <div className="github-loading">Loading contribution history...</div>
         )}
         {contributionState === "unavailable" && (
-          <p className="github-api-note">
+          <p className="github-api-note text-[10px]">
             Contribution history could not be loaded. View the activity on
             GitHub.
           </p>

@@ -13,7 +13,7 @@ export function ExperiencePage() {
             <div className="timeline-marker">
               <BriefcaseBusiness size={14} />
             </div>
-            <div className="experience-entry-head">
+            <div className="experience-entry-head text-[11px]">
               <div>
                 <h2>{item.role}</h2>
                 <p>{item.company}</p>

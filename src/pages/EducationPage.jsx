@@ -13,7 +13,7 @@ export function EducationPage() {
             <div className="education-icon">
               <GraduationCap size={19} />
             </div>
-            <div className="education-content">
+            <div className="education-content text-[12px]">
               <div className="education-head">
                 <div>
                   <h2>{item.degree}</h2>
@@ -31,11 +31,11 @@ export function EducationPage() {
                   {item.status}
                 </span>
               </div>
-              <div className="education-meta">
+              <div className="education-meta text-[12px]">
                 <span>{item.period}</span>
                 <span>{item.location}</span>
               </div>
-              <ul>
+              <ul className="text-[12px]">
                 {item.highlights.map((highlight) => (
                   <li key={highlight}>{highlight}</li>
                 ))}

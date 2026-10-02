@@ -18,7 +18,7 @@ export function Explorer({
 
   return (
     <aside className="explorer" aria-label="File explorer">
-      <div className="pane-heading">
+      <div className="pane-heading text-[10px]">
         <span>EXPLORER</span>
         <button
           className="icon-button"
@@ -58,7 +58,7 @@ export function Explorer({
           <div className="tree-folder root-file">
             <Folder size={15} className="folder-color" />
             <span>public</span>
-            <span className="tree-muted">empty</span>
+                  <span className="tree-muted text-[10px]">empty</span>
           </div>
         </div>
       )}

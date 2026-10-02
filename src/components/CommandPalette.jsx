@@ -131,11 +131,11 @@ export function CommandPalette({
                   )}
                 </span>
                 <span className="result-label">{item.label}</span>
-                <span className="result-detail">{item.detail}</span>
+                <span className="result-detail text-[10px]">{item.detail}</span>
               </button>
             ))
           ) : (
-            <div className="palette-empty">
+            <div className="palette-empty text-[11px]">
               <CircleHelp size={17} />
               <span>No matching files or actions</span>
             </div>

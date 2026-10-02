@@ -8,7 +8,7 @@ export function CertificatesPage() {
       <h1>
         Certificates<span className="title-period">.</span>
       </h1>
-      <p className="page-lede">
+      <p className="page-lede text-[11px]">
         Courses and credentials across full-stack development and AI.
       </p>
       <div className="certificate-list">
@@ -36,7 +36,7 @@ export function CertificatesPage() {
                   <ArrowUpRight size={15} />
                 </a>
               </div>
-              <p className="certificate-description">
+              <p className="certificate-description text-[10px]">
                 {certificate.description}
               </p>
               <div className="tag-list">

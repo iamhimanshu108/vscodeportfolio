@@ -14,7 +14,7 @@ export function SettingsPopover({
   const [minimap, setMinimap] = useState(true);
   const [wordWrap, setWordWrap] = useState(true);
   return (
-    <aside className="settings-popover" aria-label="Settings">
+    <aside className="settings-popover text-[11px]" aria-label="Settings">
       <div className="settings-heading">
         <span>SETTINGS</span>
         <button

@@ -27,7 +27,7 @@ export function HomePage({ onOpenDocument }) {
             <a className="primary-action" href={profile.resumeUrl} target="_blank" rel="noreferrer">
               <Download size={15} /> Resume
             </a>
-            <button className="secondary-action" onClick={() => onOpenDocument("about")}>
+            <button className="secondary-action text-[10px]" onClick={() => onOpenDocument("about")}>
               <FileText size={15} /> Who Am I
             </button>
           </div>

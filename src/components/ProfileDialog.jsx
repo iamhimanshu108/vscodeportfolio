@@ -47,7 +47,7 @@ export function ProfileDialog({ onClose }) {
           )}
           <h2 id="profile-dialog-title">{profile.name}</h2>
           <p className="profile-dialog-role">{profile.role}</p>
-          <p className="profile-dialog-location">
+          <p className="profile-dialog-location text-[11px]">
             <MapPin size={14} /> {profile.location}
           </p>
           <div className="profile-social-links">

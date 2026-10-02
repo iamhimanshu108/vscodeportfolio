@@ -21,6 +21,6 @@ export function TitleBar({ onOpenPalette, activeMenu, onMenuToggle }) {
       </span>)}
     </nav>
     <div className="titlebar-navigation" aria-hidden="true"><ArrowLeft size={16} /><ArrowRight size={16} /></div>
-    <button className="search-trigger" onClick={onOpenPalette} aria-label="Search files and actions"><Search size={14} /><span>Search files and actions</span><kbd>Ctrl P</kbd></button>
+    <button className="search-trigger text-[10px]" onClick={onOpenPalette} aria-label="Search files and actions"><Search size={14} /><span>Search files and actions</span><kbd>Ctrl P</kbd></button>
   </header>;
 }

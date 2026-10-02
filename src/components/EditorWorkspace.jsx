@@ -25,7 +25,7 @@ export function EditorWorkspace({
               <button
                 role="tab"
                 aria-selected={selectedId === id}
-                className={`editor-tab ${selectedId === id ? "is-current" : ""}`}
+                className={`editor-tab text-[10px] ${selectedId === id ? "is-current" : ""}`}
                 onClick={() => onSelectDocument(id)}
               >
                 <FileTypeIcon type={document.type} />

@@ -32,7 +32,7 @@ export function ProjectsPage() {
               ))}
             </div>
             <a
-              className="project-link"
+              className="project-link text-[12px]"
               href={project.repoUrl}
               target="_blank"
               rel="noreferrer"
@@ -43,7 +43,7 @@ export function ProjectsPage() {
         ))}
       </div>
       <a
-        className="github-more-link"
+        className="github-more-link text-[12px]"
         href="https://github.com/iamhimanshu108?tab=repositories"
         target="_blank"
         rel="noreferrer"

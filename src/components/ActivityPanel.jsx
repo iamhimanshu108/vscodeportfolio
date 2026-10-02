@@ -24,7 +24,7 @@ export function ActivityPanel({
 }) {
   return (
     <aside className="activity-panel" aria-label={panelTitles[view]}>
-      <div className="pane-heading">
+      <div className="pane-heading text-[10px]">
         <span>{panelTitles[view]}</span>
         <button
           className="icon-button"
