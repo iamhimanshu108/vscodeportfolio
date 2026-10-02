@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   ChevronDown,
   ChevronRight,
-  Folder,
   FolderOpen,
   PanelLeftClose,
 } from "lucide-react";
@@ -54,11 +53,6 @@ export function Explorer({
                 <span>{document.fileName}</span>
               </button>
             ))}
-          </div>
-          <div className="tree-folder root-file">
-            <Folder size={15} className="folder-color" />
-            <span>public</span>
-                  <span className="tree-muted text-[10px]">empty</span>
           </div>
         </div>
       )}
