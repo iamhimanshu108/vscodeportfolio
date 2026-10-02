@@ -67,38 +67,39 @@ export function ContactPage() {
   };
 
   return (
-    <section className="portfolio-page contact-page">
-      <h1>
-        Let's talk<span className="title-period">.</span>
+    <section className="mx-auto w-full max-w-[900px] py-[17px] font-[var(--body)] text-[12px] text-[var(--text)] max-[760px]:pt-[13px] max-[520px]:py-[10px]">
+      <h1 className="m-0 font-[var(--heading)] text-[clamp(31px,3.6vw,42px)] leading-[1.08] font-bold tracking-[-0.04em] text-[#e3e7eb]">
+        Let's talk<span className="text-[var(--accent)]">.</span>
       </h1>
-      <div className="contact-layout">
-        <section className="contact-panel contact-form-panel">
-          <h2 id="contact-form-title">Send a message</h2>
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="contact-form-fields">
-              <label>
+      <div className="mt-6 grid grid-cols-2 items-start gap-4 max-[760px]:grid-cols-1">
+        <section className="min-w-0 rounded border border-[#303a3b] bg-[#171a1c] p-4">
+          <h2 className="mb-[15px] text-[15px] font-medium text-[#cbd5d7]" id="contact-form-title">Send a message</h2>
+          <form className="grid gap-[13px]" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-2 gap-3 max-[520px]:grid-cols-1">
+              <label className="grid gap-[6px] text-[#9ba5ad]">
                 Name
-                <input name="name" type="text" autoComplete="name" required />
+                <input className="w-full min-w-0 rounded border border-[#344240] bg-[#171b1c] px-[11px] py-[10px] text-[#d9e2e2] focus:border-[#69a39b] focus:outline-none" name="name" type="text" autoComplete="name" required />
               </label>
-              <label>
+              <label className="grid gap-[6px] text-[#9ba5ad]">
                 Email
                 <input
+                  className="w-full min-w-0 rounded border border-[#344240] bg-[#171b1c] px-[11px] py-[10px] text-[#d9e2e2] focus:border-[#69a39b] focus:outline-none"
                   name="email"
                   type="email"
                   autoComplete="email"
                   required
                 />
               </label>
-              <label>
+              <label className="grid gap-[6px] text-[#9ba5ad]">
                 Phone <span>(optional)</span>
-                <input name="phone" type="tel" autoComplete="tel" />
+                <input className="w-full min-w-0 rounded border border-[#344240] bg-[#171b1c] px-[11px] py-[10px] text-[#d9e2e2] focus:border-[#69a39b] focus:outline-none" name="phone" type="tel" autoComplete="tel" />
               </label>
-              <label className="contact-message-field">
+              <label className="col-span-full grid gap-[6px] text-[#9ba5ad] max-[520px]:col-auto">
                 Message
-                <textarea name="message" rows="5" required />
+                <textarea className="min-h-[120px] w-full min-w-0 resize-y rounded border border-[#344240] bg-[#171b1c] px-[11px] py-[10px] text-[#d9e2e2] focus:border-[#69a39b] focus:outline-none" name="message" rows="5" required />
               </label>
             </div>
-            <label className="contact-honeypot" aria-hidden="true">
+            <label className="absolute h-px w-px overflow-hidden whitespace-nowrap [clip-path:inset(50%)]" aria-hidden="true">
               Website
               <input
                 name="website"
@@ -108,14 +109,14 @@ export function ContactPage() {
               />
             </label>
             <button
-              className="contact-submit"
+              className="inline-flex min-h-10 items-center justify-start gap-2 rounded border border-[#46716b] bg-[#1c302e] px-3 py-2 text-[#d6eeeb] transition-colors hover:border-[#69a39b] hover:bg-[#23403c] disabled:cursor-wait disabled:opacity-[0.65]"
               type="submit"
               disabled={isSubmitting}
             >
               <Mail size={16} /> {isSubmitting ? "Sending..." : "Send message"}
             </button>
             <p
-              className="contact-submit-status"
+              className="m-0 min-h-0 text-[#9bcf9f] empty:hidden"
               role="status"
               aria-live="polite"
             >
@@ -124,42 +125,42 @@ export function ContactPage() {
           </form>
         </section>
         <aside
-          className="contact-panel contact-details-panel"
+          className="min-w-0 rounded border border-[#303a3b] bg-[#171a1c] p-4"
           aria-label="Contact details"
         >
-          <h2>Contact details</h2>
-          <a className="contact-email text-[10px]" href={`mailto:${profile.email}`}>
-            <span className="contact-icon">
+          <h2 className="mb-[15px] text-[15px] font-medium text-[#cbd5d7]">Contact details</h2>
+          <a className="flex max-w-none items-center gap-3 rounded-none border-0 bg-transparent p-0 text-[10px] text-[#cbd5d7] no-underline transition-colors hover:border-transparent hover:bg-transparent" href={`mailto:${profile.email}`}>
+            <span className="grid h-8 w-8 place-items-center rounded border border-[#3b5c57] text-[var(--accent)]">
               <Mail size={17} />
             </span>
-            <span>
-              <small>EMAIL</small>
-              <strong>{profile.email}</strong>
+            <span className="flex flex-col gap-1">
+              <small className="font-[var(--mono)] text-[8px] tracking-[0.1em] text-[#7d8b8d]">EMAIL</small>
+              <strong className="font-[var(--mono)] text-[11px] text-[#d9e2e2]">{profile.email}</strong>
             </span>
-            <ArrowUpRight size={16} />
+            <ArrowUpRight className="ml-auto text-[#91b9b4]" size={16} />
           </a>
-          <div className="social-links">
+          <div className="mt-[17px] grid grid-cols-2 gap-x-[18px] border-t border-[#30363a] max-[520px]:grid-cols-1">
             {socialLinks.map(({ name, href, Icon, detail }) => (
               <a
-                className="social-link text-[10px]"
+                className="flex min-w-0 items-center gap-[10px] border-b border-[#30363a] px-[2px] py-3 text-[10px] text-[#8c9a9e] no-underline transition-colors hover:text-[#d8e7e5]"
                 href={href}
                 target="_blank"
                 rel="noreferrer"
                 key={name}
               >
                 <Icon size={17} />
-                <span>
-                  <strong>{name}</strong>
-                  <small>{detail}</small>
+                <span className="flex flex-col gap-[3px]">
+                  <strong className="text-[10px] font-medium text-[#cbd2d7]">{name}</strong>
+                  <small className="text-[9px] text-[#7e888f]">{detail}</small>
                 </span>
-                <ArrowUpRight size={13} className="social-arrow" />
+                <ArrowUpRight size={13} className="ml-auto" />
               </a>
             ))}
           </div>
-      <div className="contact-resume text-[10px]">
+          <div className="mt-[18px] flex flex-wrap gap-2 text-[10px] text-[#7d878e]">
             <span>Want a concise overview?</span>
             <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
-              Open resume <ArrowUpRight size={13} />
+              <span className="inline-flex items-center gap-1 text-[#9dd1ca] no-underline">Open resume <ArrowUpRight size={13} /></span>
             </a>
           </div>
         </aside>

@@ -8,7 +8,6 @@ import { HomePage } from "../pages/HomePage.jsx";
 import { ProjectsPage } from "../pages/ProjectsPage.jsx";
 import { ResumePage } from "../pages/ResumePage.jsx";
 import { SkillsPage } from "../pages/SkillsPage.jsx";
-import "../pages.css";
 
 const pageComponents = {
   home: HomePage,

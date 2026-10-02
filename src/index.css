@@ -1,6 +1,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
+@theme {
+  --animate-cursor-blink: cursor-blink 0.8s steps(2, start) infinite;
+  --animate-type-code-line: type-code-line 8s steps(42, end) infinite;
+
+  @keyframes cursor-blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes type-code-line {
+    0%,
+    8% {
+      width: 0;
+    }
+    32%,
+    78% {
+      width: 100%;
+    }
+    92%,
+    100% {
+      width: 0;
+    }
+  }
+}
+
 :root {
   font-family: "Inter", sans-serif;
   color: #d8dce3;

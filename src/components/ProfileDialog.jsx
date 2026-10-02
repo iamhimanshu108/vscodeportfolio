@@ -50,15 +50,15 @@ export function ProfileDialog({ onClose }) {
           <p className="profile-dialog-location text-[11px]">
             <MapPin size={14} /> {profile.location}
           </p>
-          <div className="profile-social-links">
-            <a className="github-profile-link" href={profile.githubUrl} target="_blank" rel="noreferrer">
-              <strong>⌘</strong> GitHub <ArrowUpRight size={13} />
+          <div className="mt-[17px] flex flex-wrap justify-center gap-2">
+            <a className="inline-flex min-w-[105px] items-center justify-center gap-1 whitespace-nowrap rounded border border-[#3b4746] bg-[#26312f] px-2 py-[6px] font-[var(--mono)] text-[9px] text-[#d7e8e5] no-underline transition-colors hover:border-[#5c817a] hover:bg-[#2c3d39]" href={profile.githubUrl} target="_blank" rel="noreferrer">
+              <strong className="text-[13px] leading-none">⌘</strong> GitHub <ArrowUpRight size={13} />
             </a>
-            <a className="github-profile-link" href={profile.linkedinUrl} target="_blank" rel="noreferrer">
-              <strong>in</strong> LinkedIn <ArrowUpRight size={13} />
+            <a className="inline-flex min-w-[105px] items-center justify-center gap-1 whitespace-nowrap rounded border border-[#3b4746] bg-[#26312f] px-2 py-[6px] font-[var(--mono)] text-[9px] text-[#d7e8e5] no-underline transition-colors hover:border-[#5c817a] hover:bg-[#2c3d39]" href={profile.linkedinUrl} target="_blank" rel="noreferrer">
+              <strong className="text-[13px] leading-none">in</strong> LinkedIn <ArrowUpRight size={13} />
             </a>
-            <a className="github-profile-link" href={profile.xUrl} target="_blank" rel="noreferrer">
-              <strong>𝕏</strong> X <ArrowUpRight size={13} />
+            <a className="inline-flex min-w-[105px] items-center justify-center gap-1 whitespace-nowrap rounded border border-[#3b4746] bg-[#26312f] px-2 py-[6px] font-[var(--mono)] text-[9px] text-[#d7e8e5] no-underline transition-colors hover:border-[#5c817a] hover:bg-[#2c3d39]" href={profile.xUrl} target="_blank" rel="noreferrer">
+              <strong className="text-[13px] leading-none">𝕏</strong> X <ArrowUpRight size={13} />
             </a>
           </div>
         </div>
