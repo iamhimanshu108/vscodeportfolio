@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu } from "lucide-react";
 import { CommandPalette } from "./components/CommandPalette.jsx";
 import { ActivityBar } from "./components/ActivityBar.jsx";
@@ -118,23 +119,27 @@ function App() {
           onOpenProfile={() => setProfileOpen(true)}
           onOpenSettings={() => setSettingsOpen((open) => !open)}
         />
+        <AnimatePresence initial={false}>
         {explorerOpen && (
+          <motion.div className="sidebar-motion-shell" key="explorer" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -8 }} transition={{ duration: 0.22 }}>
           <Explorer
             selectedId={selectedId}
             onOpenDocument={openDocument}
             onClose={() => setSidebarView(null)}
             onOpenProfile={() => setProfileOpen(true)}
-          />
+          /></motion.div>
         )}
         {sidebarView && sidebarView !== "explorer" && (
+          <motion.div className="sidebar-motion-shell" key={sidebarView} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -8 }} transition={{ duration: 0.22 }}>
           <ActivityPanel
             view={sidebarView}
             selectedId={selectedId}
             onOpenDocument={openDocument}
             onShowOutput={() => setOutputOpen(true)}
             onClose={() => setSidebarView(null)}
-          />
+          /></motion.div>
         )}
+        </AnimatePresence>
         <EditorWorkspace
           selectedId={selectedId}
           selectedDocument={selectedDocument}

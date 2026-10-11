@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   ChevronDown,
   ChevronRight,
@@ -44,14 +45,15 @@ export function Explorer({
           </div>
           <div className="file-list">
             {documents.map((document) => (
-              <button
+              <motion.button
+                layout
                 key={document.id}
                 className={`file-row ${selectedId === document.id ? "is-selected" : ""}`}
                 onClick={() => onOpenDocument(document.id)}
               >
                 <FileTypeIcon type={document.type} />
                 <span>{document.fileName}</span>
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>

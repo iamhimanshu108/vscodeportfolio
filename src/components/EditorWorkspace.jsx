@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Command, PanelBottom, ChevronRight, X } from "lucide-react";
 import { documents } from "../data/portfolio.js";
 import { PageRenderer } from "./PageRenderer.jsx";
@@ -55,7 +56,7 @@ export function EditorWorkspace({
           const document = documents.find((item) => item.id === id);
           if (!document) return null;
           return (
-            <div className="tab-shell" key={id}>
+            <motion.div className="tab-shell" layout key={id}>
               <button
                 role="tab"
                 aria-selected={selectedId === id}
@@ -73,7 +74,7 @@ export function EditorWorkspace({
               >
                 <X size={13} />
               </button>
-            </div>
+            </motion.div>
           );
         })}
         <div className="tab-actions">
@@ -113,9 +114,18 @@ export function EditorWorkspace({
             <span key={index}>{index + 1}</span>
           ))}
         </div>
-        <article className="document-content" key={selectedId}>
-          <PageRenderer pageId={selectedId} onOpenDocument={onOpenDocument} />
-        </article>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.article
+            className="document-content"
+            key={selectedId}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <PageRenderer pageId={selectedId} onOpenDocument={onOpenDocument} />
+          </motion.article>
+        </AnimatePresence>
         <aside className="minimap" aria-hidden="true">
           <div className="minimap-lines">
             {Array.from({ length: 26 }, (_, index) => (
