@@ -59,6 +59,15 @@
   --gold: #ffd978;
   --green: #9bf2aa;
   --pink: #f0b8e6;
+  --syntax-keyword: #ff8fab;
+  --syntax-property: #8ec5ff;
+  --syntax-string: #ffc09f;
+  --syntax-number: #cbb8ff;
+  --syntax-boolean: #9bf2aa;
+  --syntax-function: #70e7d8;
+  --syntax-comment: #9bb3c1;
+  --syntax-punctuation: #ffd978;
+  --syntax-value: #d7e8f2;
   color: var(--text);
 }
 .app-shell.theme-highcontrast .titlebar-brand,
@@ -942,6 +951,247 @@
 .breadcrumbs svg {
   flex: 0 0 auto;
   color: #5f6872;
+}
+.breadcrumb-navigation {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: auto;
+}
+.breadcrumb-navigation .icon-button {
+  width: 21px;
+  height: 21px;
+}
+.breadcrumb-navigation .rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Shared code-editor treatment for rendered page data */
+.document-content {
+  font-family: var(--body);
+}
+.document-content :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--heading);
+}
+.document-content :is(code, pre, kbd, .font-mono, [class*="font-[var(--mono)]"]) {
+  font-family: var(--mono);
+}
+.document-content :is(p, li) {
+  max-width: 78ch;
+}
+.document-content :is(strong, b) {
+  color: var(--gold);
+}
+.document-content :is(label, small, time) {
+  color: var(--content-muted);
+}
+.document-content :is(code, pre) {
+  color: var(--accent-soft);
+}
+.document-content :is(ul, ol) {
+  padding-left: 1.25rem;
+}
+.document-content a {
+  text-underline-offset: 3px;
+}
+
+/* Rendered portfolio data as a consistent code-editor document */
+.document-content > section {
+  position: relative;
+  font-family: var(--mono);
+  color: var(--content-body);
+}
+.document-content > section::before {
+  content: "{"
+  ; position: absolute;
+  top: 0;
+  left: -18px;
+  color: var(--gold);
+  font: 700 16px/1 var(--mono);
+  opacity: 0.8;
+}
+.document-content > section::after {
+  content: "}"
+  ; display: block;
+  margin-top: 20px;
+  color: var(--gold);
+  font: 700 16px/1 var(--mono);
+  opacity: 0.8;
+}
+.document-content > section :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--mono);
+  letter-spacing: -0.02em;
+}
+.document-content > section > h1::before,
+.document-content > section > h2::before {
+  content: "const ";
+  color: var(--pink);
+  font: 500 0.55em var(--mono);
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+.document-content > section :is(p, li, label, input, textarea, button) {
+  font-family: var(--mono);
+}
+.document-content > section :is(p, li) {
+  color: var(--content-body) !important;
+}
+.document-content > section :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--content-heading) !important;
+}
+.document-content > section :is(h1, h2, h3, h4, h5, h6) span {
+  color: var(--accent) !important;
+}
+.document-content > section :is(p, li)::first-letter {
+  color: var(--content-body);
+}
+.document-content > section > :is(section, article) {
+  position: relative;
+  border-color: var(--border-soft);
+}
+.document-content > section > :is(section, article)::before {
+  content: "// data";
+  display: block;
+  margin: 0 0 7px;
+  color: var(--content-muted);
+  font: 9px var(--mono);
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+.document-content > section :is(strong, b) {
+  color: var(--gold) !important;
+}
+.document-content > section :is(time, small) {
+  color: var(--content-muted) !important;
+}
+.document-content > section :is(a, button) {
+  font-family: var(--mono);
+}
+.document-content > section :is(a:not([class*="bg-"])) {
+  color: var(--content-link) !important;
+}
+.document-content > section :is(input, textarea, select) {
+  color: var(--content-body);
+  background: var(--surface);
+  border-color: var(--border-soft);
+}
+.document-content > section :is(input, textarea, select):focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.document-content > section :is([class*="rounded"][class*="border"]):not(input):not(textarea):not(button) {
+  border-color: var(--border-soft);
+}
+.document-content > section :is([class*="font-[var(--mono)]"]) {
+  color: var(--content-link);
+}
+.document-content > section :is([class*="bg-[#1b2021]"], [class*="bg-[#1c2625]"], [class*="bg-[#171a1c]"], [class*="bg-[#191d1f]"]) {
+  background: var(--surface-raised);
+}
+.document-content > section :is([class*="border-b"], [class*="border-t"]) {
+  border-color: var(--border-soft);
+}
+.document-content > section :is([class*="text-[#778"], [class*="text-[#7"], [class*="text-[#8"]) {
+  color: var(--content-muted);
+}
+.document-content > section :is([class*="text-[#d"], [class*="text-[#e"]) {
+  color: var(--content-body);
+}
+
+/* JavaScript-inspired syntax palette */
+.document-content .syntax-keyword { color: var(--syntax-keyword) !important; }
+.document-content .syntax-property { color: var(--syntax-property) !important; }
+.document-content .syntax-string { color: var(--syntax-string) !important; }
+.document-content .syntax-number { color: var(--syntax-number) !important; }
+.document-content .syntax-boolean { color: var(--syntax-boolean) !important; }
+.document-content .syntax-function { color: var(--syntax-function) !important; }
+.document-content .syntax-comment { color: var(--syntax-comment) !important; }
+.document-content .syntax-punctuation { color: var(--syntax-punctuation) !important; }
+.document-content .syntax-value { color: var(--syntax-value) !important; }
+
+/* Map the existing page markup to syntax roles while keeping content rendered. */
+.document-content > section > h1,
+.document-content > section > h2,
+.document-content > section > h3 {
+  color: var(--syntax-value) !important;
+}
+.document-content > section > :is(p, div) > :is(h2, h3, strong) {
+  color: var(--syntax-property) !important;
+}
+.document-content > section > :is(p, div, article, section, aside) > :is(p, li) {
+  color: var(--syntax-string) !important;
+}
+.document-content > section :is(time, [class*="uppercase"], [class*="tracking-"]) {
+  color: var(--syntax-number) !important;
+}
+.document-content > section :is(a, button) {
+  color: var(--syntax-function) !important;
+}
+.document-content > section :is(input, textarea, select) {
+  color: var(--syntax-string) !important;
+}
+.document-content > section :is([class*="font-[var(--mono)]"]):not(:is(input, textarea, select)) {
+  color: var(--syntax-property);
+}
+.document-content > section :is([class*="bg-[#1b2021]"], [class*="bg-[#1c2625]"]) {
+  color: var(--syntax-string);
+  border-color: color-mix(in srgb, var(--syntax-property) 35%, var(--border-soft));
+}
+.document-content > section :is([class*="border"], [class*="border-b"], [class*="border-t"]) {
+  border-color: color-mix(in srgb, var(--syntax-punctuation) 24%, var(--border-soft));
+}
+.document-content > section > :is(div, section, aside)::after {
+  color: var(--syntax-punctuation);
+}
+
+/* Experience code document syntax and motion */
+.experience-code-block {
+  color: var(--syntax-value);
+}
+.experience-document-heading { animation: experience-fade-in 420ms var(--motion-ease) both; }
+.experience-comment {
+  margin-top: 24px;
+  color: var(--syntax-comment);
+  font: 10px/1.4 var(--mono);
+  letter-spacing: 0.05em;
+  animation: experience-fade-in 420ms var(--motion-ease) 90ms both;
+}
+.experience-document { margin-top: 28px; }
+.experience-entry {
+  padding-bottom: 26px;
+  animation: experience-entry-in 420ms var(--motion-ease) both;
+  animation-delay: calc(var(--entry-index, 0) * 110ms + 120ms);
+  transition: background-color var(--motion-standard) var(--motion-soft);
+}
+.experience-entry:last-child { padding-bottom: 0; }
+.experience-entry:hover { background: color-mix(in srgb, var(--syntax-property) 5%, transparent); }
+.experience-role { margin: 0 0 8px; font: 500 15px/1.4 var(--mono); }
+.experience-field { margin: 0 0 5px; font: 13px/1.5 var(--mono); }
+.experience-highlights { display: grid; gap: 6px; margin: 11px 0 0; padding: 0; list-style: none; font: 13px/1.65 var(--mono); }
+.experience-highlight { padding: 2px 5px; border-radius: 3px; animation: experience-fade-in 360ms var(--motion-ease) both; animation-delay: calc(var(--entry-index, 0) * 110ms + var(--highlight-index, 0) * 85ms + 300ms); transition: background-color var(--motion-standard) var(--motion-soft); }
+.experience-highlight:hover { background: color-mix(in srgb, var(--syntax-string) 7%, transparent); }
+.experience-fields h2 {
+  color: var(--syntax-value) !important;
+}
+.experience-fields h2 .syntax-property,
+.experience-fields p .syntax-property,
+.experience-entry time .syntax-property,
+.experience-highlights .syntax-property {
+  color: var(--syntax-property);
+}
+.experience-fields p {
+  color: var(--syntax-string) !important;
+}
+.experience-entry time {
+  color: var(--syntax-number) !important;
+}
+.experience-highlights li {
+  color: var(--syntax-string) !important;
+}
+
+@keyframes experience-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes experience-entry-in {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 .breadcrumb-current {
   color: #c6ccd2;

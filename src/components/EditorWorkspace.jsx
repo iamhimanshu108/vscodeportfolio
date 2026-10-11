@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Command, PanelBottom, ChevronRight, X } from "lucide-react";
 import { documents } from "../data/portfolio.js";
 import { PageRenderer } from "./PageRenderer.jsx";
@@ -12,8 +13,41 @@ export function EditorWorkspace({
   onCloseTab,
   onOpenPalette,
   onToggleOutput,
+  onPreviousDocument,
+  onNextDocument,
   children,
 }) {
+  const scrollRef = useRef(null);
+  const navigationLockRef = useRef(0);
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0, behavior: "auto" });
+  }, [selectedId]);
+
+  const handleWheel = (event) => {
+    const scrollElement = scrollRef.current;
+    if (!scrollElement || !event.deltaY) return;
+
+    const nestedScroller = event.target.closest?.(
+      '[class*="overflow-x-auto"], [class*="overflow-y-auto"], [class*="overflow-auto"]',
+    );
+    if (nestedScroller && nestedScroller !== scrollElement) return;
+
+    const atTop = scrollElement.scrollTop <= 2;
+    const atBottom =
+      scrollElement.scrollTop + scrollElement.clientHeight >=
+      scrollElement.scrollHeight - 2;
+    const now = Date.now();
+    if (now < navigationLockRef.current) return;
+
+    if (event.deltaY > 0 && atBottom) {
+      navigationLockRef.current = now + 500;
+      onNextDocument();
+    } else if (event.deltaY < 0 && atTop) {
+      navigationLockRef.current = now + 500;
+      onPreviousDocument();
+    }
+  };
+
   return (
     <main className="editor-workspace">
       <div className="editor-tabs" role="tablist" aria-label="Open files">
@@ -68,8 +102,12 @@ export function EditorWorkspace({
         <ChevronRight size={13} />
         <span className="breadcrumb-current">{selectedDocument.fileName}</span>
         <span className="breadcrumb-symbol">{selectedDocument.title}</span>
+        <span className="breadcrumb-navigation">
+          <button className="icon-button" onClick={onPreviousDocument} aria-label="Previous document" title="Previous document"><ChevronRight size={12} className="rotate-180" /></button>
+          <button className="icon-button" onClick={onNextDocument} aria-label="Next document" title="Next document"><ChevronRight size={12} /></button>
+        </span>
       </div>
-      <div className="editor-scroll">
+      <div className="editor-scroll" ref={scrollRef} onWheel={handleWheel}>
         <div className="line-gutter" aria-hidden="true">
           {Array.from({ length: 12 }, (_, index) => (
             <span key={index}>{index + 1}</span>

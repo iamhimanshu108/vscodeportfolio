@@ -56,6 +56,15 @@
   --gold: #e0bd75;
   --green: #8ac89a;
   --pink: #d2a0c7;
+  --syntax-keyword: #f38ba8;
+  --syntax-property: #9bc6ee;
+  --syntax-string: #f2b48f;
+  --syntax-number: #c8b6ff;
+  --syntax-boolean: #9be7a8;
+  --syntax-function: #70e7d8;
+  --syntax-comment: #8298a6;
+  --syntax-punctuation: #e0bd75;
+  --syntax-value: #d7e8f2;
   --body: "Inter", "Segoe UI", sans-serif;
   --heading: "Manrope", "Inter", sans-serif;
   --mono: "JetBrains Mono", monospace;

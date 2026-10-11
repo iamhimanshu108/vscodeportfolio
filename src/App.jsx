@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import { CommandPalette } from "./components/CommandPalette.jsx";
 import { ActivityBar } from "./components/ActivityBar.jsx";
@@ -30,15 +30,21 @@ function App() {
   const [zoom, setZoom] = useState(1);
   const selectedDocument =
     documents.find((document) => document.id === selectedId) ?? documents[0];
-  const toggleSidebarView = (view) =>
-    setSidebarView((current) => (current === view ? null : view));
-  const toggleExplorer = () => toggleSidebarView("explorer");
-
-  const openDocument = (id) => {
+  const openDocument = useCallback((id) => {
     setSelectedId(id);
     setOpenTabs((tabs) => (tabs.includes(id) ? tabs : [...tabs, id]));
     if (window.matchMedia("(max-width: 760px)").matches) setSidebarView(null);
-  };
+  }, []);
+  const navigateDocument = useCallback((direction) => {
+    const currentIndex = documents.findIndex((document) => document.id === selectedId);
+    const nextIndex = (currentIndex + direction + documents.length) % documents.length;
+    openDocument(documents[nextIndex].id);
+  }, [openDocument, selectedId]);
+  const openPreviousDocument = useCallback(() => navigateDocument(-1), [navigateDocument]);
+  const openNextDocument = useCallback(() => navigateDocument(1), [navigateDocument]);
+  const toggleSidebarView = (view) =>
+    setSidebarView((current) => (current === view ? null : view));
+  const toggleExplorer = () => toggleSidebarView("explorer");
 
   const closeTab = (id) => {
     if (openTabs.length < 2) return;
@@ -51,6 +57,17 @@ function App() {
 
   useEffect(() => {
     const onKeyDown = (event) => {
+      const target = event.target;
+      const isEditing = target instanceof HTMLElement &&
+        (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
+      if (!isEditing && (event.metaKey || event.ctrlKey) && event.key === "PageUp") {
+        event.preventDefault();
+        openPreviousDocument();
+      }
+      if (!isEditing && (event.metaKey || event.ctrlKey) && event.key === "PageDown") {
+        event.preventDefault();
+        openNextDocument();
+      }
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "p") {
         event.preventDefault();
         setPaletteOpen(true);
@@ -70,7 +87,7 @@ function App() {
       document.removeEventListener("keydown", onKeyDown);
       document.removeEventListener("pointerdown", onPointerDown);
     };
-  }, [paletteOpen, profileOpen]);
+  }, [openNextDocument, openPreviousDocument, paletteOpen, profileOpen]);
 
   return (
     <div
@@ -90,6 +107,8 @@ function App() {
         onToggleOutput={() => setOutputOpen((open) => !open)}
         onOpenSettings={() => setSettingsOpen(true)}
         onOpenPalette={() => setPaletteOpen(true)}
+        onPreviousDocument={openPreviousDocument}
+        onNextDocument={openNextDocument}
       />
       <div className="workspace">
         <ActivityBar
@@ -125,6 +144,8 @@ function App() {
           onCloseTab={closeTab}
           onOpenPalette={() => setPaletteOpen(true)}
           onToggleOutput={() => setOutputOpen((open) => !open)}
+          onPreviousDocument={openPreviousDocument}
+          onNextDocument={openNextDocument}
         >
           {outputOpen && (
             <OutputPanel

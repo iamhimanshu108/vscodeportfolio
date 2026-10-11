@@ -11,7 +11,7 @@ const menus = {
   Help: ["Welcome", "Show All Commands", "Documentation", "Keyboard Shortcuts Reference", "Video Tutorials", "Report Issue", "Check for Updates...", "About"],
 };
 
-export function TitleBar({ onOpenPalette, activeMenu, onMenuToggle }) {
+export function TitleBar({ onOpenPalette, activeMenu, onMenuToggle, onPreviousDocument, onNextDocument }) {
   return <header className="titlebar">
     <span className="vscode-logo" aria-label="Visual Studio Code"><Code2 size={20} /></span>
     <nav className="top-menu" aria-label="Application menu">
@@ -20,7 +20,10 @@ export function TitleBar({ onOpenPalette, activeMenu, onMenuToggle }) {
         {activeMenu === name && <div className="app-menu">{items.map((item, index) => <span key={item}><button>{item}</button>{[3, 6].includes(index) && <hr />}</span>)}</div>}
       </span>)}
     </nav>
-    <div className="titlebar-navigation" aria-hidden="true"><ArrowLeft size={16} /><ArrowRight size={16} /></div>
+    <div className="titlebar-navigation" aria-label="Document navigation">
+      <button className="icon-button" onClick={onPreviousDocument} aria-label="Previous document" title="Previous document (Ctrl+PageUp)"><ArrowLeft size={16} /></button>
+      <button className="icon-button" onClick={onNextDocument} aria-label="Next document" title="Next document (Ctrl+PageDown)"><ArrowRight size={16} /></button>
+    </div>
     <button className="search-trigger text-[10px]" onClick={onOpenPalette} aria-label="Search files and actions"><Search size={14} /><span>Search files and actions</span><kbd>Ctrl P</kbd></button>
   </header>;
 }
