@@ -29,25 +29,29 @@
 
 :root {
   font-family: "Inter", sans-serif;
-  color: #d8dce3;
-  background: #111315;
+  color: #f4f7f9;
+  background: #050607;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-optical-sizing: auto;
   font-weight: 400;
-  --canvas: #0f1419;
-  --surface: #151b21;
-  --surface-raised: #1c242c;
-  --surface-hover: #25313a;
-  --border: #2d3943;
-  --border-soft: #202a32;
-  --text: #d7dee5;
-  --text-secondary: #9aa7b2;
-  --text-muted: #687681;
-  --accent: #62c7bd;
-  --accent-soft: #9be0d7;
+  --canvas: #050607;
+  --surface: #0b0d0f;
+  --surface-raised: #14181c;
+  --surface-hover: #242b31;
+  --border: #56616b;
+  --border-soft: #303940;
+  --text: #f4f7f9;
+  --text-secondary: #d6dde3;
+  --text-muted: #aab5be;
+  --content-heading: #ffffff;
+  --content-body: #f0f3f5;
+  --content-muted: #c2ccd4;
+  --content-link: #70e7d8;
+  --accent: #63f0df;
+  --accent-soft: #b5fff5;
   --blue: #82b6f4;
   --gold: #e0bd75;
   --green: #8ac89a;
@@ -74,6 +78,28 @@ h4,
 h5,
 h6 {
   font-family: var(--heading);
+}
+
+.document-content :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--content-heading) !important;
+  letter-spacing: -0.025em;
+}
+
+.document-content :is(p, li) {
+  color: var(--content-body) !important;
+  line-height: 1.75;
+}
+
+.document-content :is(time, small) {
+  color: var(--content-muted) !important;
+}
+
+.document-content a:not([class*="bg-"]) {
+  color: var(--content-link) !important;
+}
+
+.document-content a:not([class*="bg-"]):hover {
+  color: var(--content-heading) !important;
 }
 
 * {
@@ -110,7 +136,7 @@ input:focus-visible {
 }
 
 ::selection {
-  background: #357c78;
+  background: #176d65;
   color: #f4fffe;
 }
 

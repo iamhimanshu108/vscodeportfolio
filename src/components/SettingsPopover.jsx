@@ -31,10 +31,10 @@ export function SettingsPopover({
           value={theme}
           onChange={(event) => onThemeChange(event.target.value)}
         >
+          <option value="highcontrast">Dark High Contrast</option>
           <option value="githubdarkplus">GitHub Dark+</option>
           <option value="midnight">Midnight</option>
           <option value="ocean">Ocean</option>
-          <option value="light">Light</option>
         </select>
       </label>
       <label>
@@ -43,8 +43,8 @@ export function SettingsPopover({
           value={font}
           onChange={(event) => onFontChange(event.target.value)}
         >
+          <option value="system">Modern sans</option>
           <option value="mono">Monospace</option>
-          <option value="system">System</option>
           <option value="serif">Serif</option>
         </select>
       </label>
@@ -55,9 +55,9 @@ export function SettingsPopover({
           onChange={(event) => onTextColorChange(event.target.value)}
         >
           <option value="default">VS Code default</option>
-          <option value="blue">Syntax blue</option>
-          <option value="green">Terminal green</option>
-          <option value="purple">Syntax purple</option>
+          <option value="blue">Cool blue</option>
+          <option value="green">Jade</option>
+          <option value="purple">Lavender</option>
         </select>
       </label>
       <label>

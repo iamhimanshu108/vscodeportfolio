@@ -22,8 +22,8 @@ function App() {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [theme, setTheme] = useState("githubdarkplus");
-  const [font, setFont] = useState("mono");
+  const [theme, setTheme] = useState("highcontrast");
+  const [font, setFont] = useState("system");
   const [textColor, setTextColor] = useState("default");
   const [viewOpen, setViewOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
