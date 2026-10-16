@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Command, PanelBottom, ChevronRight, X } from "lucide-react";
 import { documents } from "../data/portfolio.js";
@@ -20,39 +20,11 @@ export function EditorWorkspace({
   children,
 }) {
   const scrollRef = useRef(null);
-  const navigationLockRef = useRef(0);
-  const [scrollDirection, setScrollDirection] = useState(1);
+  const scrollDirection = 1;
   const reducedMotion = useReducedMotion();
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0, behavior: "auto" });
   }, [selectedId]);
-
-  const handleWheel = (event) => {
-    const scrollElement = scrollRef.current;
-    if (!scrollElement || !event.deltaY) return;
-
-    const nestedScroller = event.target.closest?.(
-      '[class*="overflow-x-auto"], [class*="overflow-y-auto"], [class*="overflow-auto"]',
-    );
-    if (nestedScroller && nestedScroller !== scrollElement) return;
-
-    const atTop = scrollElement.scrollTop <= 2;
-    const atBottom =
-      scrollElement.scrollTop + scrollElement.clientHeight >=
-      scrollElement.scrollHeight - 2;
-    const now = Date.now();
-    if (now < navigationLockRef.current) return;
-
-    if (event.deltaY > 0 && atBottom) {
-      navigationLockRef.current = now + 500;
-      setScrollDirection(1);
-      onNextDocument();
-    } else if (event.deltaY < 0 && atTop) {
-      navigationLockRef.current = now + 500;
-      setScrollDirection(-1);
-      onPreviousDocument();
-    }
-  };
 
   const pageVariants = {
     initial: (direction) => ({
@@ -136,7 +108,7 @@ export function EditorWorkspace({
           <button className="icon-button" onClick={onNextDocument} aria-label="Next document" title="Next document"><ChevronRight size={12} /></button>
         </span>
       </div>
-      <div className="editor-scroll" ref={scrollRef} onWheel={handleWheel}>
+      <div className="editor-scroll" ref={scrollRef}>
         <div className="line-gutter" aria-hidden="true">
           {Array.from({ length: 12 }, (_, index) => (
             <span key={index}>{index + 1}</span>

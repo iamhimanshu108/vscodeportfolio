@@ -12,6 +12,7 @@ import { StatusBar } from "./components/StatusBar.jsx";
 import { TitleBar } from "./components/TitleBar.jsx";
 import { SettingsPopover } from "./components/SettingsPopover.jsx";
 import { documents } from "./data/portfolio.js";
+import { panelVariants } from "./motion.js";
 import "./App.css";
 
 function App() {
@@ -121,7 +122,7 @@ function App() {
         />
         <AnimatePresence initial={false}>
         {explorerOpen && (
-          <motion.div className="sidebar-motion-shell" key="explorer" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -8 }} transition={{ duration: 0.22 }}>
+          <motion.div className="sidebar-motion-shell" key="explorer" variants={panelVariants} initial="hidden" animate="visible" exit="exit">
           <Explorer
             selectedId={selectedId}
             onOpenDocument={openDocument}
@@ -130,7 +131,7 @@ function App() {
           /></motion.div>
         )}
         {sidebarView && sidebarView !== "explorer" && (
-          <motion.div className="sidebar-motion-shell" key={sidebarView} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -8 }} transition={{ duration: 0.22 }}>
+          <motion.div className="sidebar-motion-shell" key={sidebarView} variants={panelVariants} initial="hidden" animate="visible" exit="exit">
           <ActivityPanel
             view={sidebarView}
             selectedId={selectedId}
