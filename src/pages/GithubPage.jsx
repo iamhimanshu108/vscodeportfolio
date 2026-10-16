@@ -1,3 +1,4 @@
+import "./GithubPage.css";
 import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
@@ -7,6 +8,7 @@ import {
   GitBranch,
   GitCommitHorizontal,
   Star,
+  UsersRound,
 } from "lucide-react";
 import { githubContent } from "../data/githubData.js";
 import { profile } from "../data/profileData.js";
@@ -153,14 +155,30 @@ export function GithubPage() {
     contributionState === "ready" ? getCurrentStreak(contributions) : null;
 
   const stats = [
-    { label: "Repositories", value: github?.public_repos, Icon: GitBranch },
-    { label: "Followers", value: github?.followers, Icon: GitBranch },
-    { label: "Total stars", value: github?.stars, Icon: Star },
-    { label: "Total forks", value: github?.forks, Icon: GitFork },
+    {
+      label: "Repositories",
+      value: github?.public_repos,
+      Icon: GitBranch,
+      tone: "mint",
+    },
+    {
+      label: "Followers",
+      value: github?.followers,
+      Icon: UsersRound,
+      tone: "blue",
+    },
+    { label: "Total stars", value: github?.stars, Icon: Star, tone: "gold" },
+    {
+      label: "Total forks",
+      value: github?.forks,
+      Icon: GitFork,
+      tone: "green",
+    },
     {
       label: "Contributions (1Y)",
       value: contributionTotal,
       Icon: GitCommitHorizontal,
+      tone: "teal",
       title: "GitHub calendar contributions, including more than commits",
     },
     {
@@ -168,85 +186,101 @@ export function GithubPage() {
       value: currentStreak,
       suffix: currentStreak == null ? "" : "days",
       Icon: Flame,
+      tone: "pink",
     },
   ];
 
   return (
-    <section
-      className="mx-auto w-full max-w-[900px] py-[17px] font-[var(--body)] text-[12px] text-[var(--text)] max-[760px]:pt-[7px] max-[520px]:py-[10px]"
-      aria-busy={loadState === "loading"}
-    >
-      <div className="mt-[19px] flex items-center gap-[14px] max-[760px]:gap-[9px] max-[520px]:gap-[9px]">
-        {github?.avatar_url ? (
-          <img
-            className="h-[58px] w-[58px] flex-none rounded-full border-2 border-[#73998f] bg-[#21282a] object-cover max-[760px]:h-12 max-[760px]:w-12 max-[760px]:basis-12 max-[520px]:h-10 max-[520px]:w-10 max-[520px]:basis-10"
-            src={github.avatar_url}
-            alt={`${github.login} avatar`}
-            referrerPolicy="no-referrer"
-          />
-        ) : (
-          <div className="grid h-[58px] w-[58px] flex-none place-items-center rounded-full border-2 border-[#73998f] bg-[#21282a] text-[#a9d5cd] max-[760px]:h-12 max-[760px]:w-12 max-[760px]:basis-12 max-[520px]:h-10 max-[520px]:w-10 max-[520px]:basis-10">
-            <GitBranch size={25} />
+    <main className="github-page" aria-busy={loadState === "loading"}>
+      <header className="github-profile">
+        <div className="github-identity">
+          {github?.avatar_url ? (
+            <img
+              className="github-avatar"
+              src={github.avatar_url}
+              alt={`${github.login} avatar`}
+              referrerPolicy="no-referrer"
+            />
+          ) : (
+            <div
+              className="github-avatar github-avatar-fallback"
+              aria-hidden="true"
+            >
+              <GitBranch size={25} />
+            </div>
+          )}
+          <div className="github-identity-copy">
+            <h1>{github?.name || profile.name}</h1>
+            <span>@{github?.login || profile.githubUsername}</span>
           </div>
-        )}
-        <div className="min-w-0">
-          <h1 className="wrap-anywhere font-[var(--mono)] text-[20px] font-semibold text-[#e3e7eb] max-[760px]:text-base max-[520px]:text-[13px]">{github?.name || profile.name}</h1>
-          <span className="mt-1 block font-[var(--mono)] text-[11px] text-[#8b969f] max-[520px]:text-[9px]">@{github?.login || profile.githubUsername}</span>
         </div>
         <a
-          className="ml-auto inline-flex items-center gap-[7px] whitespace-nowrap rounded border border-[#3b4746] bg-[#26312f] px-[11px] py-2 font-[var(--mono)] text-[10px] text-[#d7e8e5] no-underline transition-colors hover:border-[#5c817a] hover:bg-[#2c3d39] max-[760px]:gap-[5px] max-[760px]:p-[7px] max-[760px]:text-[9px] max-[760px]:[&>svg:last-child]:hidden max-[520px]:gap-1 max-[520px]:p-[6px] max-[520px]:text-[8px] max-[520px]:[&>svg:first-child]:w-[13px]"
+          className="github-profile-link"
           href={profile.githubUrl}
           target="_blank"
           rel="noreferrer"
         >
-          <GitBranch size={15} /> View Profile <ExternalLink size={12} />
+          <GitBranch size={15} aria-hidden="true" />
+          <span>View profile</span>
+          <ExternalLink size={12} aria-hidden="true" />
         </a>
-      </div>
-      <div className="my-3 mb-4 h-px bg-[#30363a]" />
-      <div className="grid grid-cols-6 gap-[9px] max-[760px]:grid-cols-3 max-[760px]:gap-[6px] max-[520px]:grid-cols-2">
-        {stats.map(({ label, value, Icon, title, suffix }) => (
-          <div className="flex min-h-[94px] min-w-0 flex-col items-center justify-center gap-2 rounded border border-[#30383b] bg-[#191d1f] max-[760px]:min-h-[82px] max-[760px]:gap-[6px] max-[520px]:min-h-[72px]" key={label} title={title}>
-            <Icon className="text-[#a1c9be]" size={16} />
-            <strong className="font-[var(--mono)] text-[23px] font-semibold text-[#e1e6e8] max-[760px]:text-[19px] max-[520px]:text-[17px]">{value == null ? "--" : formatCount(value)}</strong>
-            <span className="text-center font-[var(--mono)] text-[8px] tracking-[0.07em] text-[#879198] uppercase max-[760px]:text-[7px]">
+      </header>
+
+      <section className="github-stats" aria-label="GitHub profile statistics">
+        {stats.map(({ label, value, Icon, title, suffix, tone }) => (
+          <article
+            className={`github-stat github-stat--${tone}`}
+            key={label}
+            title={title}
+          >
+            <span className="github-stat-icon">
+              <Icon size={16} aria-hidden="true" />
+            </span>
+            <strong>{value == null ? "--" : formatCount(value)}</strong>
+            <span className="github-stat-label">
               {label}
               {suffix ? ` / ${suffix}` : ""}
             </span>
-          </div>
+          </article>
         ))}
-      </div>
+      </section>
+
       {loadState === "unavailable" && (
-        <p className="mt-[11px] text-[10px] leading-[1.6] text-[#d7b97c]">
+        <p className="github-notice">
           Live GitHub stats could not be loaded. Visit the public profile for
           current activity.
         </p>
       )}
       <section
-        className="mt-[18px] rounded border border-[#30383b] bg-[#171a1c] px-[13px] pt-3 pb-[10px]"
+        className="github-panel github-contributions"
         aria-label="GitHub contributions in the last year"
       >
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <h2 className="m-0 font-[var(--mono)] text-[11px] font-semibold tracking-[0.04em] text-[#d3d9de] uppercase">Contribution activity / last year</h2>
+        <div className="github-panel-header">
+          <h2>
+            Contribution activity <span>LAST YEAR</span>
+          </h2>
           {contributionState === "ready" && (
-            <span className="font-[var(--mono)] text-[9px] text-[#86929a]">{formatCount(contributionTotal)} total</span>
+            <span className="github-panel-total">
+              {formatCount(contributionTotal)} total
+            </span>
           )}
         </div>
         {contributionState === "loading" && (
-          <div className="py-[19px] font-[var(--mono)] text-[10px] text-[#818c94]">Loading contribution history...</div>
+          <div className="github-loading">Loading contribution history...</div>
         )}
         {contributionState === "unavailable" && (
-          <p className="mt-[11px] text-[10px] leading-[1.6] text-[#d7b97c]">
+          <p className="github-notice">
             Contribution history could not be loaded. View the activity on
             GitHub.
           </p>
         )}
         {contributionState === "ready" && (
-          <div className="overflow-x-auto pb-[3px] [scrollbar-color:#394144_transparent] [scrollbar-width:thin]">
+          <div className="github-contribution-scroll">
             <div
-              className="w-full min-w-[676px]"
+              className="github-contribution-chart"
               style={{ "--week-count": contributionWeeks.length }}
             >
-              <div className="relative block h-[15px] w-full font-[var(--mono)] text-[8px] text-[#818c94]" aria-hidden="true">
+              <div className="github-month-axis" aria-hidden="true">
                 {contributionWeeks.map((week, index) => {
                   const month = getMonthLabel(week);
                   const previousMonth =
@@ -254,22 +288,26 @@ export function GithubPage() {
                       ? getMonthLabel(contributionWeeks[index - 1])
                       : "";
                   return month && month !== previousMonth ? (
-                    <span className="absolute top-0 whitespace-nowrap" key={index} style={{ left: `${index * 13}px` }}>
+                    <span
+                      className="absolute top-0 whitespace-nowrap"
+                      key={index}
+                      style={{ left: `${index * 13}px` }}
+                    >
                       {month}
                     </span>
                   ) : null;
                 })}
               </div>
               <div
-                className="flex w-full items-start gap-[3px]"
+                className="github-contribution-grid"
                 role="img"
                 aria-label={`${contributionTotal} GitHub contributions during the last year`}
               >
                 {contributionWeeks.map((week, weekIndex) => (
-                  <div className="grid min-w-[7px] flex-[1_1_0] grid-rows-[repeat(7,10px)] gap-[3px]" key={weekIndex}>
+                  <div className="github-contribution-week" key={weekIndex}>
                     {week.map((day, dayIndex) => (
                       <span
-                        className={`block h-[10px] w-full rounded-[2px] ${contributionCellColors[day?.level ?? 0]}`}
+                        className={`github-contribution-cell ${contributionCellColors[day?.level ?? 0]}`}
                         title={
                           day
                             ? `${day.count} contributions on ${day.date}`
@@ -283,72 +321,84 @@ export function GithubPage() {
               </div>
             </div>
             <div
-              className="mt-[9px] flex items-center justify-end gap-1 font-[var(--mono)] text-[8px] text-[#818c94]"
+              className="github-contribution-legend"
               aria-label="Contribution intensity legend"
             >
               <span>Less</span>
               {[0, 1, 2, 3, 4].map((level) => (
-                <i className={`block h-[9px] w-[9px] rounded-[2px] ${contributionCellColors[level]}`} key={level} />
+                <i
+                  className={`github-contribution-cell ${contributionCellColors[level]}`}
+                  key={level}
+                />
               ))}
               <span>More</span>
             </div>
           </div>
         )}
       </section>
-      <div className="mt-[25px] flex items-center justify-between gap-3">
-        <h2 className="m-0 font-[var(--mono)] text-[11px] font-semibold tracking-[0.04em] text-[#d3d9de] uppercase max-[520px]:text-[9px]">Recent public repositories</h2>
-        <a
-          className="inline-flex items-center gap-1 whitespace-nowrap text-[9px] text-[#91c5bc] no-underline hover:text-[#d2eae5] max-[520px]:text-[8px]"
-          href={`${profile.githubUrl}?tab=repositories`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          All repositories <ArrowUpRight size={13} />
-        </a>
-      </div>
-      {loadState === "loading" && (
-        <div className="py-[19px] font-[var(--mono)] text-[10px] text-[#818c94]">
-          Loading public profile and repositories...
+      <section
+        className="github-repositories-section"
+        aria-label="Recent public repositories"
+      >
+        <div className="github-repositories-header">
+          <h2>Recent repositories</h2>
+          <a
+            className="github-all-repositories"
+            href={`${profile.githubUrl}?tab=repositories`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            All repositories <ArrowUpRight size={13} />
+          </a>
         </div>
-      )}
-      {loadState === "ready" && (
-        <div className="mt-[10px] border-t border-[#30363a]">
-          {repositories.map((repository) => (
-            <a
-              className="flex min-h-[54px] min-w-0 items-center gap-[13px] border-b border-[#30363a] px-[2px] py-2 text-[#aeb7be] no-underline transition-colors hover:bg-[#191e20] max-[760px]:[&>.repository-language]:hidden max-[520px]:gap-2 max-[520px]:[&>.repository-arrow]:hidden"
-              href={repository.html_url}
-              target="_blank"
-              rel="noreferrer"
-              key={repository.id}
-            >
-              <span className="flex min-w-0 flex-1 flex-col gap-1">
-                <strong className="overflow-hidden font-[var(--mono)] text-[10px] text-ellipsis whitespace-nowrap text-[#b9d9d2]">{repository.name}</strong>
-                <small className="max-w-full overflow-hidden text-[9px] text-ellipsis whitespace-nowrap text-[#808b93] max-[520px]:max-w-[190px]">{repository.description || "Public repository"}</small>
-              </span>
-              <span className="min-w-[60px] text-[9px] text-[#8c969d]">
-                {repository.language || "Code"}
-              </span>
-              <span className="inline-flex items-center gap-1 font-[var(--mono)] text-[9px] text-[#8e9aa1] max-[520px]:text-[8px]">
-                <Star className="text-[#c5ae75]" size={12} />
-                {formatCount(repository.stargazers_count)}
-              </span>
-              <span className="inline-flex items-center gap-1 font-[var(--mono)] text-[9px] text-[#8e9aa1] max-[520px]:text-[8px]">
-                <GitFork className="text-[#c5ae75]" size={12} />
-                {formatCount(repository.forks_count)}
-              </span>
-              <ArrowUpRight size={13} className="text-[#77828a]" />
-            </a>
-          ))}
-        </div>
-      )}
+        {loadState === "loading" && (
+          <div className="github-loading">
+            Loading public profile and repositories...
+          </div>
+        )}
+        {loadState === "ready" && (
+          <div className="github-repository-list">
+            {repositories.map((repository) => (
+              <a
+                className="github-repository"
+                href={repository.html_url}
+                target="_blank"
+                rel="noreferrer"
+                key={repository.id}
+              >
+                <span className="github-repository-copy">
+                  <strong>{repository.name}</strong>
+                  <small>{repository.description || "Public repository"}</small>
+                </span>
+                <span className="github-repository-language">
+                  {repository.language || "Code"}
+                </span>
+                <span className="github-repository-metric">
+                  <Star size={12} aria-hidden="true" />
+                  {formatCount(repository.stargazers_count)}
+                </span>
+                <span className="github-repository-metric github-repository-forks">
+                  <GitFork size={12} aria-hidden="true" />
+                  {formatCount(repository.forks_count)}
+                </span>
+                <ArrowUpRight
+                  className="github-repository-arrow"
+                  size={13}
+                  aria-hidden="true"
+                />
+              </a>
+            ))}
+          </div>
+        )}
+      </section>
       <a
-        className="mt-[14px] inline-flex items-center gap-1 text-[9px] text-[#91c5bc] no-underline hover:text-[#d2eae5]"
+        className="github-activity-link"
         href={`${profile.githubUrl}?tab=overview`}
         target="_blank"
         rel="noreferrer"
       >
         View contribution activity on GitHub <ArrowUpRight size={13} />
       </a>
-    </section>
+    </main>
   );
 }

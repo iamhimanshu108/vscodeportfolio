@@ -10,7 +10,7 @@ import {
 import { contactLinks } from "../data/contactData.js";
 import { profile } from "../data/profileData.js";
 
-const googleSheetsEndpoint = import.meta.env.VITE_GOOGLE_SHEETS_ENDPOINT;
+const web3FormsAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
 const socialIcons = {
   github: GitBranch,
@@ -31,26 +31,28 @@ export function ContactPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!googleSheetsEndpoint) {
-      setSubmitStatus("Google Sheets submission is not configured yet.");
+    if (!web3FormsAccessKey) {
+      setSubmitStatus("Contact form is not configured yet.");
       return;
     }
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    formData.append("access_key", web3FormsAccessKey);
     setIsSubmitting(true);
     setSubmitStatus("");
 
     try {
-      await fetch(googleSheetsEndpoint, {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        mode: "no-cors",
-        body: new URLSearchParams(
-          [...formData.entries()].map(([key, value]) => [key, String(value)]),
-        ),
+        body: formData,
       });
+      const result = await response.json();
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Form submission failed");
+      }
       form.reset();
-      setSubmitStatus("Your message was sent to the contact form.");
+      setSubmitStatus("Your message was sent. Thanks for reaching out.");
     } catch {
       setSubmitStatus("Could not send your message. Please email directly.");
     } finally {
@@ -65,12 +67,23 @@ export function ContactPage() {
       </h1>
       <div className="mt-6 grid grid-cols-2 items-start gap-4 max-[760px]:grid-cols-1">
         <section className="min-w-0 rounded border border-[#303a3b] bg-[#171a1c] p-4">
-          <h2 className="mb-[15px] text-[15px] font-medium text-[#cbd5d7]" id="contact-form-title">Send a message</h2>
+          <h2
+            className="mb-[15px] text-[15px] font-medium text-[#cbd5d7]"
+            id="contact-form-title"
+          >
+            Send a message
+          </h2>
           <form className="grid gap-[13px]" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-3 max-[520px]:grid-cols-1">
               <label className="grid gap-[6px] text-[#9ba5ad]">
                 Name
-                <input className="w-full min-w-0 rounded border border-[#344240] bg-[#171b1c] px-[11px] py-[10px] text-[#d9e2e2] focus:border-[#69a39b] focus:outline-none" name="name" type="text" autoComplete="name" required />
+                <input
+                  className="w-full min-w-0 rounded border border-[#344240] bg-[#171b1c] px-[11px] py-[10px] text-[#d9e2e2] focus:border-[#69a39b] focus:outline-none"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  required
+                />
               </label>
               <label className="grid gap-[6px] text-[#9ba5ad]">
                 Email
@@ -84,21 +97,29 @@ export function ContactPage() {
               </label>
               <label className="grid gap-[6px] text-[#9ba5ad]">
                 Phone <span>(optional)</span>
-                <input className="w-full min-w-0 rounded border border-[#344240] bg-[#171b1c] px-[11px] py-[10px] text-[#d9e2e2] focus:border-[#69a39b] focus:outline-none" name="phone" type="tel" autoComplete="tel" />
+                <input
+                  className="w-full min-w-0 rounded border border-[#344240] bg-[#171b1c] px-[11px] py-[10px] text-[#d9e2e2] focus:border-[#69a39b] focus:outline-none"
+                  name="phone"
+                  type="tel"
+                  autoComplete="tel"
+                />
               </label>
               <label className="col-span-full grid gap-[6px] text-[#9ba5ad] max-[520px]:col-auto">
                 Message
-                <textarea className="min-h-[120px] w-full min-w-0 resize-y rounded border border-[#344240] bg-[#171b1c] px-[11px] py-[10px] text-[#d9e2e2] focus:border-[#69a39b] focus:outline-none" name="message" rows="5" required />
+                <textarea
+                  className="min-h-[120px] w-full min-w-0 resize-y rounded border border-[#344240] bg-[#171b1c] px-[11px] py-[10px] text-[#d9e2e2] focus:border-[#69a39b] focus:outline-none"
+                  name="message"
+                  rows="5"
+                  required
+                />
               </label>
             </div>
-            <label className="absolute h-px w-px overflow-hidden whitespace-nowrap [clip-path:inset(50%)]" aria-hidden="true">
+            <label
+              className="absolute h-px w-px overflow-hidden whitespace-nowrap [clip-path:inset(50%)]"
+              aria-hidden="true"
+            >
               Website
-              <input
-                name="website"
-                type="text"
-                tabIndex={-1}
-                autoComplete="off"
-              />
+              <input name="botcheck" type="checkbox" tabIndex={-1} />
             </label>
             <button
               className="inline-flex min-h-10 items-center justify-start gap-2 rounded border border-[#46716b] bg-[#1c302e] px-3 py-2 text-[#d6eeeb] transition-colors hover:border-[#69a39b] hover:bg-[#23403c] disabled:cursor-wait disabled:opacity-[0.65]"
@@ -120,14 +141,23 @@ export function ContactPage() {
           className="min-w-0 rounded border border-[#303a3b] bg-[#171a1c] p-4"
           aria-label="Contact details"
         >
-          <h2 className="mb-[15px] text-[15px] font-medium text-[#cbd5d7]">Contact details</h2>
-          <a className="flex max-w-none items-center gap-3 rounded-none border-0 bg-transparent p-0 text-[10px] text-[#cbd5d7] no-underline transition-colors hover:border-transparent hover:bg-transparent" href={`mailto:${profile.email}`}>
+          <h2 className="mb-[15px] text-[15px] font-medium text-[#cbd5d7]">
+            Contact details
+          </h2>
+          <a
+            className="flex max-w-none items-center gap-3 rounded-none border-0 bg-transparent p-0 text-[10px] text-[#cbd5d7] no-underline transition-colors hover:border-transparent hover:bg-transparent"
+            href={`mailto:${profile.email}`}
+          >
             <span className="grid h-8 w-8 place-items-center rounded border border-[#3b5c57] text-[var(--accent)]">
               <Mail size={17} />
             </span>
             <span className="flex flex-col gap-1">
-              <small className="font-[var(--mono)] text-[8px] tracking-[0.1em] text-[#7d8b8d]">EMAIL</small>
-              <strong className="font-[var(--mono)] text-[11px] text-[#d9e2e2]">{profile.email}</strong>
+              <small className="font-[var(--mono)] text-[8px] tracking-[0.1em] text-[#7d8b8d]">
+                EMAIL
+              </small>
+              <strong className="font-[var(--mono)] text-[11px] text-[#d9e2e2]">
+                {profile.email}
+              </strong>
             </span>
             <ArrowUpRight className="ml-auto text-[#91b9b4]" size={16} />
           </a>
@@ -142,7 +172,9 @@ export function ContactPage() {
               >
                 <Icon size={17} />
                 <span className="flex flex-col gap-[3px]">
-                  <strong className="text-[10px] font-medium text-[#cbd2d7]">{name}</strong>
+                  <strong className="text-[10px] font-medium text-[#cbd2d7]">
+                    {name}
+                  </strong>
                   <small className="text-[9px] text-[#7e888f]">{detail}</small>
                 </span>
                 <ArrowUpRight size={13} className="ml-auto" />
@@ -152,7 +184,9 @@ export function ContactPage() {
           <div className="mt-[18px] flex flex-wrap gap-2 text-[10px] text-[#7d878e]">
             <span>Want a concise overview?</span>
             <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
-              <span className="inline-flex items-center gap-1 text-[#9dd1ca] no-underline">Open resume <ArrowUpRight size={13} /></span>
+              <span className="inline-flex items-center gap-1 text-[#9dd1ca] no-underline">
+                Open resume <ArrowUpRight size={13} />
+              </span>
             </a>
           </div>
         </aside>

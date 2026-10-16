@@ -16,10 +16,14 @@ export function ProjectsPage() {
     >
       <motion.header className="projects-heading" variants={variants.item}>
         <div className="projects-heading-copy">
-          <p className="projects-kicker"><span /> SELECTED WORK / 2025—26</p>
-          <h1>Things I’ve built<span>.</span></h1>
+          <h1>
+            Things I’ve built<span>.</span>
+          </h1>
         </div>
-        <div className="projects-count" aria-label={`${projects.length} projects`}>
+        <div
+          className="projects-count"
+          aria-label={`${projects.length} projects`}
+        >
           <strong>{String(projects.length).padStart(2, "0")}</strong>
           <span>PROJECTS</span>
         </div>
@@ -43,7 +47,9 @@ export function ProjectsPage() {
                 }}
               />
               <div className="project-preview-overlay">
-                <span className="project-index">{String(index + 1).padStart(2, "0")}</span>
+                <span className="project-index">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 <span className="project-file-name">{project.fileName}</span>
               </div>
             </div>

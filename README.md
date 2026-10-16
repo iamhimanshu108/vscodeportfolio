@@ -15,12 +15,8 @@ Update `src/data/portfolio.js` for the profile, contact and social links, projec
 
 The GitHub page loads the public avatar, repository and follower counts, stars, forks, and recent repositories from the GitHub API. Change `profile.githubUsername` in the data file to use a different public account.
 
-## Contact form to Google Sheets
+## Contact form
 
-1. Open the target spreadsheet and select **Extensions > Apps Script**.
-2. Copy `google-apps-script/Code.gs` into the Apps Script editor and save.
-3. Choose **Deploy > New deployment > Web app**. Set **Execute as** to your account and access to **Anyone**, then deploy and authorize it.
-4. Copy the deployed web app URL into `.env.local` as `VITE_GOOGLE_SHEETS_ENDPOINT`, using `.env.example` as a template.
-5. Restart the Vite server. Form submissions append timestamp, date, name, phone, email, and message to the `Sheet1` tab.
+The contact form uses [Web3Forms](https://web3forms.com/) to deliver messages to the configured recipient. Set `VITE_WEB3FORMS_ACCESS_KEY` to your Web3Forms access key in `.env.local` for local development and in Vercel's project environment variables for deployments. Redeploy after changing the Vercel value. Vite embeds `VITE_` variables into client code, so this access key is public by design; use the key issued for your domain and configure its allowed domains in Web3Forms.
 
-The web app URL is public so the portfolio can submit without Google sign-in. The Apps Script validates fields and includes a basic honeypot; it is not a substitute for stronger abuse protection if the form receives spam.
+Web3Forms is a third-party service, so submissions are subject to its availability and plan limits. The form includes a honeypot field for basic spam filtering.

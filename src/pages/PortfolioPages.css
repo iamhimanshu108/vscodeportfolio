@@ -6,15 +6,13 @@
 }
 
 .home-eyebrow,
-.projects-kicker,
 .projects-heading > span {
   color: #7f8b93;
   font: 10px/1.5 var(--mono);
   letter-spacing: 0.08em;
 }
 
-.home-kicker,
-.projects-kicker {
+.home-kicker {
   margin: 0 0 13px;
   color: #8eaaa8;
   font: 10px var(--mono);

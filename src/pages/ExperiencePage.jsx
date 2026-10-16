@@ -14,9 +14,11 @@ export function ExperiencePage() {
       initial="hidden"
       animate="visible"
     >
-      <motion.header className="experience-page-header" variants={variants.item}>
+      <motion.header
+        className="experience-page-header"
+        variants={variants.item}
+      >
         <div>
-          <p className="experience-page-kicker"><span /> CAREER TIMELINE</p>
           <h1 className="experience-document-heading">
             Experience<span>.</span>
           </h1>
@@ -48,7 +50,9 @@ export function ExperiencePage() {
                     </span>
                     <span>{item.company}</span>
                   </div>
-                  <span className={`experience-status ${isCurrent ? "is-current" : ""}`}>
+                  <span
+                    className={`experience-status ${isCurrent ? "is-current" : ""}`}
+                  >
                     {isCurrent ? "CURRENT" : "PAST ROLE"}
                   </span>
                 </div>
