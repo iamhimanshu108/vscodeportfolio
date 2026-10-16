@@ -11,7 +11,7 @@ import { ProfileDialog } from "./components/ProfileDialog.jsx";
 import { StatusBar } from "./components/StatusBar.jsx";
 import { TitleBar } from "./components/TitleBar.jsx";
 import { SettingsPopover } from "./components/SettingsPopover.jsx";
-import { documents } from "./data/portfolio.js";
+import { documents } from "./data/navigationData.js";
 import { panelVariants } from "./motion.js";
 import "./App.css";
 

@@ -6,7 +6,8 @@ import {
   FolderOpen,
   PanelLeftClose,
 } from "lucide-react";
-import { documents, profile } from "../data/portfolio.js";
+import { documents } from "../data/navigationData.js";
+import { profile } from "../data/profileData.js";
 import { FileTypeIcon } from "./FileTypeIcon.jsx";
 
 export function Explorer({

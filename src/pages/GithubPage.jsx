@@ -8,7 +8,8 @@ import {
   GitCommitHorizontal,
   Star,
 } from "lucide-react";
-import { profile } from "../data/portfolio.js";
+import { githubContent } from "../data/githubData.js";
+import { profile } from "../data/profileData.js";
 
 const formatCount = (value) =>
   new Intl.NumberFormat("en", {
@@ -82,7 +83,7 @@ export function GithubPage() {
     const loadContributionData = async () => {
       try {
         const response = await fetch(
-          `https://github-contributions-api.jogruber.de/v4/${profile.githubUsername}?y=last`,
+          `${githubContent.contributionApi}/${profile.githubUsername}?y=${githubContent.contributionPeriod}`,
           { signal: controller.signal },
         );
         if (!response.ok)
@@ -99,7 +100,7 @@ export function GithubPage() {
       try {
         const headers = { Accept: "application/vnd.github+json" };
         const response = await fetch(
-          `https://api.github.com/users/${profile.githubUsername}`,
+          `${githubContent.profileApi}/${profile.githubUsername}`,
           { headers, signal: controller.signal },
         );
         if (!response.ok) throw new Error("GitHub profile is unavailable");

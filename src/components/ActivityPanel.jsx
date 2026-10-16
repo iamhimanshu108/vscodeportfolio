@@ -6,7 +6,9 @@ import {
   Play,
   Radio,
 } from "lucide-react";
-import { documents, profile, skills } from "../data/portfolio.js";
+import { skills } from "../data/skillsData.js";
+import { documents } from "../data/navigationData.js";
+import { profile } from "../data/profileData.js";
 
 const panelTitles = {
   "source-control": "SOURCE CONTROL",

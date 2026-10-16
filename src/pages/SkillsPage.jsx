@@ -7,7 +7,7 @@ import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstruct
 import LayersIcon from "@mui/icons-material/Layers";
 import StorageIcon from "@mui/icons-material/Storage";
 import { motion } from "framer-motion";
-import { skills } from "../data/portfolio.js";
+import { skills } from "../data/skillsData.js";
 import { useMotionVariants } from "../motion.js";
 
 const categoryIcons = {

@@ -7,7 +7,7 @@ import {
   Search,
   Settings,
 } from "lucide-react";
-import { profile } from "../data/portfolio.js";
+import { profile } from "../data/profileData.js";
 
 const activityViews = [
   { id: "explorer", label: "Explorer", Icon: Folder },

@@ -1,5 +1,5 @@
 import { ArrowUpRight, Award } from "lucide-react";
-import { certificates } from "../data/portfolio.js";
+import { certificates } from "../data/certificatesData.js";
 
 export function CertificatesPage() {
   return (

@@ -1,5 +1,5 @@
 import { ArrowUpRight, GraduationCap } from "lucide-react";
-import { education } from "../data/portfolio.js";
+import { education } from "../data/educationData.js";
 
 export function EducationPage() {
   return (

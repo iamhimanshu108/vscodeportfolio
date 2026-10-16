@@ -7,31 +7,23 @@ import {
   Mail,
   Send,
 } from "lucide-react";
-import { profile } from "../data/portfolio.js";
+import { contactLinks } from "../data/contactData.js";
+import { profile } from "../data/profileData.js";
 
 const googleSheetsEndpoint = import.meta.env.VITE_GOOGLE_SHEETS_ENDPOINT;
 
-const socialLinks = [
-  {
-    name: "GitHub",
-    href: profile.githubUrl,
-    Icon: GitBranch,
-    detail: "Source and projects",
-  },
-  {
-    name: "LinkedIn",
-    href: profile.linkedinUrl,
-    Icon: Network,
-    detail: "Professional profile",
-  },
-  { name: "X", href: profile.xUrl, Icon: Send, detail: "Social profile" },
-  {
-    name: "Website",
-    href: profile.website,
-    Icon: Globe2,
-    detail: "Personal website",
-  },
-];
+const socialIcons = {
+  github: GitBranch,
+  linkedin: Network,
+  x: Send,
+  website: Globe2,
+};
+
+const socialLinks = contactLinks.map((link) => ({
+  ...link,
+  href: profile[link.profileField],
+  Icon: socialIcons[link.icon],
+}));
 
 export function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Command, PanelBottom, ChevronRight, X } from "lucide-react";
-import { documents } from "../data/portfolio.js";
+import { documents } from "../data/navigationData.js";
 import { PageRenderer } from "./PageRenderer.jsx";
 import { FileTypeIcon } from "./FileTypeIcon.jsx";
 import { motionEase } from "../motion.js";

@@ -1,24 +1,71 @@
-import { experience } from "../data/portfolio.js";
+import { BriefcaseBusiness, CalendarDays } from "lucide-react";
+import { motion } from "framer-motion";
+import { experience } from "../data/experienceData.js";
+import { useMotionVariants } from "../motion.js";
 
 export function ExperiencePage() {
+  const variants = useMotionVariants();
+
   return (
-    <section className="mx-auto w-full max-w-[900px] py-[17px] font-[var(--body)] text-[12px] text-[var(--text)] max-[760px]:pt-[13px] max-[520px]:py-[10px]">
-      <h1 className="experience-document-heading m-0 font-[var(--heading)] text-[clamp(31px,3.6vw,42px)] leading-[1.08] font-bold tracking-[-0.04em] text-[#e3e7eb]"><span className="syntax-punctuation">#</span> Experience</h1>
-      <div className="experience-code-block">
-        <div className="experience-comment syntax-comment">// experience</div>
-        <div className="experience-document">
-          {experience.map((item, index) => (
-            <article className="experience-entry" style={{ "--entry-index": index }} key={item.id}>
-              <h2 className="experience-role"><span className="syntax-punctuation">##</span> <span className="syntax-property">role:</span> <span className="syntax-value">{item.role}</span></h2>
-              <p className="experience-field"><span className="syntax-property">company:</span> <span className="syntax-string">{item.company}</span></p>
-              <p className="experience-field"><span className="syntax-property">period:</span> <span className="syntax-number">{item.period}</span></p>
-              <ul className="experience-highlights">
-                {item.highlights.map((highlight, highlightIndex) => <li className="experience-highlight syntax-string" style={{ "--highlight-index": highlightIndex }} key={highlight}><span className="syntax-property">highlight</span><span className="syntax-punctuation">[{highlightIndex}]</span><span className="syntax-punctuation">:</span> {highlight}</li>)}
-              </ul>
-            </article>
-          ))}
+    <motion.section
+      className="experience-page"
+      variants={variants.stagger}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.header className="experience-page-header" variants={variants.item}>
+        <div>
+          <p className="experience-page-kicker"><span /> CAREER TIMELINE</p>
+          <h1 className="experience-document-heading">
+            Experience<span>.</span>
+          </h1>
         </div>
-      </div>
-    </section>
+        <span className="experience-count">
+          {String(experience.length).padStart(2, "0")} roles
+        </span>
+      </motion.header>
+
+      <motion.div className="experience-timeline" variants={variants.stagger}>
+        {experience.map((item) => {
+          const isCurrent = item.period.toLowerCase().includes("present");
+
+          return (
+            <motion.article
+              className="experience-entry"
+              variants={variants.item}
+              whileHover={variants.reduced ? undefined : { y: -3 }}
+              key={item.id}
+            >
+              <div className="experience-timeline-marker" aria-hidden="true">
+                <span className={isCurrent ? "is-current" : ""} />
+              </div>
+              <div className="experience-card">
+                <div className="experience-card-topline">
+                  <div className="experience-company">
+                    <span className="experience-company-icon">
+                      <BriefcaseBusiness size={16} aria-hidden="true" />
+                    </span>
+                    <span>{item.company}</span>
+                  </div>
+                  <span className={`experience-status ${isCurrent ? "is-current" : ""}`}>
+                    {isCurrent ? "CURRENT" : "PAST ROLE"}
+                  </span>
+                </div>
+                <h2 className="experience-role">{item.role}</h2>
+                <p className="experience-period">
+                  <CalendarDays size={14} aria-hidden="true" />
+                  <span>{item.period}</span>
+                </p>
+                <ul className="experience-highlights">
+                  {item.highlights.map((highlight, highlightIndex) => (
+                    <li key={`${item.id}-${highlightIndex}`}>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+            </motion.article>
+          );
+        })}
+      </motion.div>
+    </motion.section>
   );
 }

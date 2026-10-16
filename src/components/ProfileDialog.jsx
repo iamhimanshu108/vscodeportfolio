@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, MapPin, X } from "lucide-react";
-import { profile } from "../data/portfolio.js";
+import { profile } from "../data/profileData.js";
 
 export function ProfileDialog({ onClose }) {
   const [avatarLoadFailed, setAvatarLoadFailed] = useState(false);
@@ -46,7 +46,6 @@ export function ProfileDialog({ onClose }) {
             />
           )}
           <h2 id="profile-dialog-title">{profile.name}</h2>
-          <p className="profile-dialog-role">{profile.role}</p>
           <p className="profile-dialog-location text-[11px]">
             <MapPin size={14} /> {profile.location}
           </p>

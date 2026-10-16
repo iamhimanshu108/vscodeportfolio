@@ -8,7 +8,7 @@ import {
   Search,
   X,
 } from "lucide-react";
-import { documents } from "../data/portfolio.js";
+import { documents } from "../data/navigationData.js";
 
 export function CommandPalette({
   explorerOpen,
