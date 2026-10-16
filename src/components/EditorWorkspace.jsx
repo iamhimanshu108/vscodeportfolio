@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Command, PanelBottom, ChevronRight, X } from "lucide-react";
 import { documents } from "../data/portfolio.js";
 import { PageRenderer } from "./PageRenderer.jsx";
 import { FileTypeIcon } from "./FileTypeIcon.jsx";
+import { motionEase } from "../motion.js";
 
 export function EditorWorkspace({
   selectedId,
@@ -20,6 +21,8 @@ export function EditorWorkspace({
 }) {
   const scrollRef = useRef(null);
   const navigationLockRef = useRef(0);
+  const [scrollDirection, setScrollDirection] = useState(1);
+  const reducedMotion = useReducedMotion();
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0, behavior: "auto" });
   }, [selectedId]);
@@ -42,11 +45,36 @@ export function EditorWorkspace({
 
     if (event.deltaY > 0 && atBottom) {
       navigationLockRef.current = now + 500;
+      setScrollDirection(1);
       onNextDocument();
     } else if (event.deltaY < 0 && atTop) {
       navigationLockRef.current = now + 500;
+      setScrollDirection(-1);
       onPreviousDocument();
     }
+  };
+
+  const pageVariants = {
+    initial: (direction) => ({
+      opacity: 0,
+      y: reducedMotion ? 0 : direction > 0 ? 18 : -18,
+    }),
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: reducedMotion ? 0.12 : 0.42,
+        ease: motionEase,
+      },
+    },
+    exit: (direction) => ({
+      opacity: 0,
+      y: reducedMotion ? 0 : direction > 0 ? -12 : 12,
+      transition: {
+        duration: reducedMotion ? 0.08 : 0.28,
+        ease: motionEase,
+      },
+    }),
   };
 
   return (
@@ -114,14 +142,15 @@ export function EditorWorkspace({
             <span key={index}>{index + 1}</span>
           ))}
         </div>
-        <AnimatePresence mode="wait" initial={false}>
+        <AnimatePresence mode="wait" initial={false} custom={scrollDirection}>
           <motion.article
             className="document-content"
             key={selectedId}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+            custom={scrollDirection}
+            variants={pageVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
           >
             <PageRenderer pageId={selectedId} onOpenDocument={onOpenDocument} />
           </motion.article>
