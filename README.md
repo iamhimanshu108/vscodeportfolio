@@ -1,22 +1,48 @@
 # Himanshu Yadav Portfolio
 
-A responsive React + JavaScript portfolio presented as a VS Code-inspired workspace.
+A responsive React portfolio presented as a VS Code-inspired workspace.
 
-## Run locally
+## Getting started
 
 ```sh
 npm install
+cp .env.example .env.local
+```
+
+Add your Web3Forms access key to `.env.local`:
+
+```env
+VITE_WEB3FORMS_ACCESS_KEY=your_web3forms_access_key
+```
+
+Start the development server:
+
+```sh
 npm run dev
 ```
 
-## Edit portfolio content
+## Project commands
 
-Update `src/data/portfolio.js` for the profile, contact and social links, projects, skills, experience, education, certificates, resume URL, and GitHub username. The page components read from this shared JavaScript file.
+```sh
+npm run build
+npm run lint
+npm run preview
+```
 
-The GitHub page loads the public avatar, repository and follower counts, stars, forks, and recent repositories from the GitHub API. Change `profile.githubUsername` in the data file to use a different public account.
+## Portfolio content
+
+Content is maintained in focused modules under `src/data/`:
+
+- `profileData.js`: name, email, social URLs, resume URL, and GitHub username.
+- `contactData.js`: social links shown on the Contact page.
+- `projectsData.js`, `skillsData.js`, `experienceData.js`, `educationData.js`, and `certificatesData.js`: portfolio entries for each page.
+- `homeData.js`, `aboutData.js`, and `navigationData.js`: home/about copy and workspace navigation.
+- `githubData.js`: public GitHub and contribution API endpoints.
+
+The GitHub page loads public profile and repository details from the GitHub API, plus contribution history from the configured contribution API. Set `profile.githubUsername` in `src/data/profileData.js` to use another account.
 
 ## Contact form
 
-The contact form uses [Web3Forms](https://web3forms.com/) to deliver messages to the configured recipient. Set `VITE_WEB3FORMS_ACCESS_KEY` to your Web3Forms access key in `.env.local` for local development and in Vercel's project environment variables for deployments. Redeploy after changing the Vercel value. Vite embeds `VITE_` variables into client code, so this access key is public by design; use the key issued for your domain and configure its allowed domains in Web3Forms.
+The form sends messages through [Web3Forms](https://web3forms.com/). Set `VITE_WEB3FORMS_ACCESS_KEY` in `.env.local` for local development and in your Vercel project environment variables for deployments. Select the environments where the form should work and redeploy after changing the variable.
 
-Web3Forms is a third-party service, so submissions are subject to its availability and plan limits. The form includes a honeypot field for basic spam filtering.
+Because Vite embeds `VITE_` variables in client code, this access key is public by design. Do not use it for private credentials. Web3Forms availability and plan limits apply; the form also includes a honeypot field for basic spam filtering.
