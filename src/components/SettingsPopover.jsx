@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./SettingsPopover.css";
 import { Type, Palette, X, Hash, PanelRight, WrapText } from "lucide-react";
 
 export function SettingsPopover({

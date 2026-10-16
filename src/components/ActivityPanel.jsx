@@ -1,3 +1,4 @@
+import "./ActivityPanel.css";
 import {
   ExternalLink,
   FileCode2,

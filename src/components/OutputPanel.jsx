@@ -1,3 +1,4 @@
+import "./OutputPanel.css";
 import { Check, X } from "lucide-react";
 
 export function OutputPanel({ document, openTabCount, onClose }) {

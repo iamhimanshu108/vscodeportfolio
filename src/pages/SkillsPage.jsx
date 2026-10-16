@@ -1,3 +1,4 @@
+import "./SkillsPage.css";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import CloudQueueIcon from "@mui/icons-material/CloudQueue";
 import CodeIcon from "@mui/icons-material/Code";

@@ -1,0 +1,84 @@
+
+.activity-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 7px 10px;
+  overflow-y: auto;
+}
+.activity-panel-label {
+  margin: 12px 5px 5px;
+  color: #78858d;
+  font: 10px var(--mono);
+}
+.activity-panel-row,
+.activity-panel-link,
+.activity-panel-card,
+.activity-panel-primary {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 9px;
+  border: 0;
+  border-radius: 3px;
+  color: #aeb7bd;
+  background: transparent;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+.activity-panel-row:hover,
+.activity-panel-link:hover,
+.activity-panel-card:hover {
+  color: #e0e4e9;
+  background: #222629;
+}
+.activity-panel-row.is-selected {
+  color: #e1e5e9;
+  background: #282c30;
+}
+.activity-panel-row svg,
+.activity-panel-link svg {
+  flex: 0 0 auto;
+  color: var(--accent);
+}
+.activity-panel-row span,
+.activity-panel-link span {
+  flex: 1;
+  min-width: 0;
+}
+.activity-panel-card {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 4px;
+}
+.activity-panel-card strong {
+  color: #cbd2d8;
+  font-weight: 500;
+}
+.activity-panel-card span,
+.activity-panel-hint {
+  margin: 0;
+  color: #7f8991;
+}
+.activity-panel-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 9px;
+  color: #9bcf9f;
+}
+.activity-panel-primary {
+  justify-content: center;
+  color: #10191a;
+  background: var(--accent);
+  font-weight: 600;
+}
+.activity-panel-primary:hover {
+  filter: brightness(1.08);
+}
+.activity-panel-hint {
+  padding: 4px 9px;
+  line-height: 1.5;
+}

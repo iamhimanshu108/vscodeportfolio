@@ -1,0 +1,47 @@
+.home-page,
+.projects-page {
+  width: min(100%, 960px);
+  margin: 0 auto;
+  font-size: 12px;
+}
+
+.home-eyebrow,
+.projects-kicker,
+.projects-heading > span {
+  color: #7f8b93;
+  font: 10px/1.5 var(--mono);
+  letter-spacing: 0.08em;
+}
+
+.home-kicker,
+.projects-kicker {
+  margin: 0 0 13px;
+  color: #8eaaa8;
+  font: 10px var(--mono);
+  letter-spacing: 0.16em;
+}
+
+.home-hero-copy h1,
+.projects-heading h1 {
+  margin: 0;
+  color: var(--home-ink);
+  font: 600 clamp(40px, 5vw, 64px) / 1.03 var(--heading);
+  letter-spacing: -0.06em;
+}
+
+.home-focus-list,
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.home-focus-list span,
+.project-tech span {
+  padding: 5px 8px;
+  border: 1px solid #354143;
+  border-radius: 4px;
+  color: #a9bbb9;
+  background: #1a2222;
+  font: 10px var(--mono);
+}

@@ -1,0 +1,91 @@
+
+.app-shell.theme-highcontrast .statusbar {
+  color: #9fe7bd;
+}
+.app-shell.theme-highcontrast .statusbar {
+  color: #fff;
+  background: #071015;
+  border-top-color: var(--border);
+}
+.statusbar {
+  height: 24px;
+  flex: 0 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 0 6px;
+  color: #dfe8ef;
+  background: #111b22;
+  border-top: 1px solid #273139;
+  font: 9px var(--mono);
+}
+.status-left,
+.status-right {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.status-item {
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 7px;
+  color: inherit;
+  white-space: nowrap;
+}
+.statusbar button.status-item {
+  border: 0;
+  cursor: pointer;
+}
+.status-activity {
+  padding-left: 0;
+}
+.status-live-dot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 50%;
+  background: #76d68d;
+  box-shadow: 0 0 0 3px rgba(118, 214, 141, 0.18);
+}
+.status-panel-button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.status-panel-button:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.status-current-file {
+  opacity: 0.82;
+}
+.status-language,
+.status-encoding {
+  opacity: 0.9;
+}
+
+.status-live-dot {
+  animation: status-pulse 2.4s ease-in-out infinite;
+}
+@media (max-width: 760px) {
+  .status-current-file {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .statusbar {
+    font-size: 8px;
+  }
+  .status-item {
+    padding: 0 5px;
+  }
+  .status-encoding {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .statusbar { min-height: 20px; height: 20px; }
+  .status-item { padding: 0 4px; }
+}

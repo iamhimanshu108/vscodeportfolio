@@ -1,3 +1,4 @@
+import "./AboutPage.css";
 import { BriefcaseBusiness, GraduationCap, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { aboutContent } from "../data/aboutData.js";

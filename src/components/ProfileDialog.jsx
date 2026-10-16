@@ -1,3 +1,4 @@
+import "./ProfileDialog.css";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, MapPin, X } from "lucide-react";
 import { profile } from "../data/profileData.js";

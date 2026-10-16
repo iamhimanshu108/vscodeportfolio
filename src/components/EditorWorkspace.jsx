@@ -1,3 +1,4 @@
+import "./EditorWorkspace.css";
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Command, PanelBottom, ChevronRight, X } from "lucide-react";

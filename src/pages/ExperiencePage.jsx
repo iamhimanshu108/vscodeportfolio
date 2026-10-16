@@ -1,3 +1,4 @@
+import "./ExperiencePage.css";
 import { BriefcaseBusiness, CalendarDays } from "lucide-react";
 import { motion } from "framer-motion";
 import { experience } from "../data/experienceData.js";

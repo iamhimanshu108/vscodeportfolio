@@ -1,3 +1,4 @@
+import "./ActivityBar.css";
 import {
   Bug,
   Boxes,

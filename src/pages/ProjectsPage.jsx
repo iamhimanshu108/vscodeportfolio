@@ -1,3 +1,5 @@
+import "./ProjectsPage.css";
+import "./PortfolioPages.css";
 import { ArrowUpRight, ExternalLink, GitBranch } from "lucide-react";
 import { motion } from "framer-motion";
 import { projects } from "../data/projectsData.js";

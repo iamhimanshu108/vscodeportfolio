@@ -1,0 +1,123 @@
+
+.output-panel {
+  height: 112px;
+  flex: 0 0 112px;
+  border-top: 1px solid var(--border);
+  background: #17191b;
+  animation: pane-in 0.18s ease-out;
+}
+.output-heading {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px 0 17px;
+  border-bottom: 1px solid #292d30;
+}
+.output-tabs {
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+}
+.output-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #77818a;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+}
+.output-tab.is-current {
+  color: #d1d6dc;
+  border-bottom: 1px solid var(--accent);
+}
+.output-tab b {
+  padding: 1px 5px;
+  border-radius: 8px;
+  background: #303438;
+  color: #aeb6be;
+  font: 9px var(--mono);
+}
+.output-content {
+  height: 77px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  overflow: hidden;
+  color: #a2abb3;
+  font: 10px var(--mono);
+}
+.output-mark {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  color: #a9d5b2;
+  background: #203529;
+}
+.output-label {
+  color: #d2aa78;
+}
+.output-separator {
+  color: #59636b;
+}
+.output-spacer {
+  flex: 1;
+}
+.output-content code {
+  padding: 4px 7px;
+  border: 1px solid #303639;
+  border-radius: 3px;
+  color: #89939c;
+  font: 9px var(--mono);
+  white-space: nowrap;
+}
+.output-content code b {
+  color: #bbd7d0;
+  font-weight: 400;
+}
+
+@media (max-width: 980px) {
+  .output-content {
+    gap: 6px;
+  }
+  .output-content code {
+    padding: 4px 5px;
+  }
+}
+@media (max-width: 760px) {
+  .output-panel {
+    height: 93px;
+    flex-basis: 93px;
+  }
+  .output-content {
+    height: 58px;
+    padding: 0 12px;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+  .output-content code {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .output-tabs {
+    gap: 13px;
+  }
+  .output-content {
+    font-size: 9px;
+  }
+}
+@media (max-height: 650px) and (min-width: 761px) {
+  .output-panel {
+    height: 82px;
+    flex-basis: 82px;
+  }
+  .output-content {
+    height: 47px;
+  }
+}

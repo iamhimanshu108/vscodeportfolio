@@ -1,0 +1,72 @@
+
+.app-shell.theme-highcontrast .activitybar {
+  background: #07090a;
+}
+.app-shell.theme-highcontrast .activity-button.is-active {
+  color: #fff;
+}
+.activitybar {
+  width: 48px;
+  flex: 0 0 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 0;
+  background: #11171c;
+  border-right: 1px solid var(--border-soft);
+}
+.activity-spacer {
+  flex: 1;
+}
+.activity-button {
+  width: 47px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  color: #77818a;
+  background: transparent;
+  border: 0;
+  border-right: 2px solid transparent;
+  cursor: pointer;
+}
+.activity-button:hover {
+  color: #d8dce3;
+}
+.activity-button.is-active {
+  color: #e2e7eb;
+  border-right-color: var(--accent);
+}
+.activity-profile-button {
+  position: relative;
+}
+.activity-profile-button img {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #78919b;
+}
+@media (max-width: 760px) {
+  .activitybar {
+    width: 42px;
+    flex-basis: 42px;
+  }
+  .activity-button {
+    width: 41px;
+  }
+}
+@media (max-width: 520px) {
+  .activitybar {
+    width: 38px;
+    flex-basis: 38px;
+  }
+  .activity-button {
+    width: 37px;
+    height: 40px;
+  }
+}
+@media (max-width: 520px) {
+  .activitybar { width: 32px; flex-basis: 32px; }
+  .activity-button { width: 31px; height: 34px; }
+}

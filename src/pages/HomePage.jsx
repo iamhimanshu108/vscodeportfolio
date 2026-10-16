@@ -1,3 +1,5 @@
+import "./HomePage.css";
+import "./PortfolioPages.css";
 import { ArrowDownRight, ArrowUpRight, Braces, Download, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import { homeContent } from "../data/homeData.js";

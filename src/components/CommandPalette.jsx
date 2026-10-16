@@ -1,3 +1,4 @@
+import "./CommandPalette.css";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowDown,

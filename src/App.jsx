@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu } from "lucide-react";
+import "./App.css";
 import { CommandPalette } from "./components/CommandPalette.jsx";
 import { ActivityBar } from "./components/ActivityBar.jsx";
 import { ActivityPanel } from "./components/ActivityPanel.jsx";
@@ -13,7 +14,6 @@ import { TitleBar } from "./components/TitleBar.jsx";
 import { SettingsPopover } from "./components/SettingsPopover.jsx";
 import { documents } from "./data/navigationData.js";
 import { panelVariants } from "./motion.js";
-import "./App.css";
 
 function App() {
   const [selectedId, setSelectedId] = useState("home");

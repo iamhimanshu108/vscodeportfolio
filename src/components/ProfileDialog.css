@@ -1,0 +1,73 @@
+
+.profile-dialog-backdrop {
+  position: fixed;
+  z-index: 12;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: #080a0bd1;
+  backdrop-filter: blur(3px);
+}
+.profile-dialog {
+  width: min(360px, 100%);
+  overflow: hidden;
+  border: 1px solid #444b50;
+  border-radius: 5px;
+  background: #202326;
+  box-shadow: 0 20px 60px #0009;
+  animation: palette-in 0.16s ease-out;
+}
+.profile-dialog-top {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px 0 14px;
+  border-bottom: 1px solid #343a3e;
+  color: #869199;
+  font: 9px var(--mono);
+  letter-spacing: 0.08em;
+}
+.profile-dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 22px;
+}
+.profile-photo-large {
+  width: 132px;
+  height: 132px;
+  border: 2px solid #73998f;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #21282a;
+}
+.profile-photo-fallback {
+  display: grid;
+  place-items: center;
+  color: #d4f3ee;
+  background: #245552;
+  font: 600 22px var(--mono);
+}
+.profile-dialog-content h2 {
+  margin: 16px 0 0;
+  color: #e2e7eb;
+  font-size: 16px;
+  font-weight: 600;
+}
+.profile-dialog-role,
+.profile-dialog-location {
+  margin-top: 6px;
+  color: #99a3ab;
+  font-size: 11px;
+}
+.profile-dialog-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #818c94;
+}
+.profile-dialog-location svg {
+  color: var(--accent);
+}

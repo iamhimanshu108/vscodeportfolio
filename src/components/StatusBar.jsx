@@ -1,3 +1,4 @@
+import "./StatusBar.css";
 import { PanelBottom } from "lucide-react";
 
 export function StatusBar({ document, outputOpen, onToggleOutput, onOpenSettings, onOpenPalette }) {

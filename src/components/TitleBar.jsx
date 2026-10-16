@@ -1,3 +1,4 @@
+import "./TitleBar.css";
 import { ArrowLeft, ArrowRight, Code2, Search } from "lucide-react";
 
 const menus = {
