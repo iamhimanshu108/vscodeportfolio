@@ -632,7 +632,6 @@
 .app-shell .tree-root,
 .app-shell .tree-folder,
 .app-shell .file-row,
-.app-shell .activity-button,
 .app-shell .status-item,
 .app-shell .settings-popover label,
 .app-shell .view-popover button {
@@ -705,9 +704,9 @@
   color: var(--content-body) !important;
 }
 
-.app-shell.text-blue :is(.tree-root, .tree-folder, .file-row, .activity-button, .status-item, .settings-popover label, .view-popover button),
-.app-shell.text-green :is(.tree-root, .tree-folder, .file-row, .activity-button, .status-item, .settings-popover label, .view-popover button),
-.app-shell.text-purple :is(.tree-root, .tree-folder, .file-row, .activity-button, .status-item, .settings-popover label, .view-popover button) {
+.app-shell.text-blue :is(.tree-root, .tree-folder, .file-row, .status-item, .settings-popover label, .view-popover button),
+.app-shell.text-green :is(.tree-root, .tree-folder, .file-row, .status-item, .settings-popover label, .view-popover button),
+.app-shell.text-purple :is(.tree-root, .tree-folder, .file-row, .status-item, .settings-popover label, .view-popover button) {
   color: var(--chrome-text);
 }
 
