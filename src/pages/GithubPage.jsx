@@ -1,5 +1,6 @@
 import "./GithubPage.css";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   ExternalLink,
@@ -12,6 +13,7 @@ import {
 } from "lucide-react";
 import { githubContent } from "../data/githubData.js";
 import { profile } from "../data/profileData.js";
+import { useMotionVariants } from "../motion.js";
 
 const formatCount = (value) =>
   new Intl.NumberFormat("en", {
@@ -73,6 +75,7 @@ const contributionCellColors = [
 ];
 
 export function GithubPage() {
+  const variants = useMotionVariants();
   const [github, setGithub] = useState(null);
   const [repositories, setRepositories] = useState([]);
   const [loadState, setLoadState] = useState("loading");
@@ -191,8 +194,14 @@ export function GithubPage() {
   ];
 
   return (
-    <main className="github-page" aria-busy={loadState === "loading"}>
-      <header className="github-profile">
+    <motion.main
+      className="github-page"
+      aria-busy={loadState === "loading"}
+      variants={variants.stagger}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.header className="github-profile" variants={variants.item}>
         <div className="github-identity">
           {github?.avatar_url ? (
             <img
@@ -224,12 +233,19 @@ export function GithubPage() {
           <span>View profile</span>
           <ExternalLink size={12} aria-hidden="true" />
         </a>
-      </header>
+      </motion.header>
 
-      <section className="github-stats" aria-label="GitHub profile statistics">
+      <motion.section
+        className="github-stats"
+        aria-label="GitHub profile statistics"
+        variants={variants.stagger}
+      >
         {stats.map(({ label, value, Icon, title, suffix, tone }) => (
-          <article
+          <motion.article
             className={`github-stat github-stat--${tone}`}
+            variants={variants.item}
+            whileHover={variants.reduced ? undefined : { y: -3 }}
+            transition={{ duration: 0.18 }}
             key={label}
             title={title}
           >
@@ -241,19 +257,20 @@ export function GithubPage() {
               {label}
               {suffix ? ` / ${suffix}` : ""}
             </span>
-          </article>
+          </motion.article>
         ))}
-      </section>
+      </motion.section>
 
       {loadState === "unavailable" && (
-        <p className="github-notice">
+        <motion.p className="github-notice" variants={variants.item}>
           Live GitHub stats could not be loaded. Visit the public profile for
           current activity.
-        </p>
+        </motion.p>
       )}
-      <section
+      <motion.section
         className="github-panel github-contributions"
         aria-label="GitHub contributions in the last year"
+        variants={variants.item}
       >
         <div className="github-panel-header">
           <h2>
@@ -335,10 +352,11 @@ export function GithubPage() {
             </div>
           </div>
         )}
-      </section>
-      <section
+      </motion.section>
+      <motion.section
         className="github-repositories-section"
         aria-label="Recent public repositories"
+        variants={variants.item}
       >
         <div className="github-repositories-header">
           <h2>Recent repositories</h2>
@@ -357,10 +375,18 @@ export function GithubPage() {
           </div>
         )}
         {loadState === "ready" && (
-          <div className="github-repository-list">
+          <motion.div
+            className="github-repository-list"
+            variants={variants.stagger}
+            initial="hidden"
+            animate="visible"
+          >
             {repositories.map((repository) => (
-              <a
+              <motion.a
                 className="github-repository"
+                variants={variants.item}
+                whileHover={variants.reduced ? undefined : { x: 3 }}
+                transition={{ duration: 0.16 }}
                 href={repository.html_url}
                 target="_blank"
                 rel="noreferrer"
@@ -386,19 +412,20 @@ export function GithubPage() {
                   size={13}
                   aria-hidden="true"
                 />
-              </a>
+              </motion.a>
             ))}
-          </div>
+          </motion.div>
         )}
-      </section>
-      <a
+      </motion.section>
+      <motion.a
         className="github-activity-link"
+        variants={variants.item}
         href={`${profile.githubUrl}?tab=overview`}
         target="_blank"
         rel="noreferrer"
       >
         View contribution activity on GitHub <ArrowUpRight size={13} />
-      </a>
-    </main>
+      </motion.a>
+    </motion.main>
   );
 }

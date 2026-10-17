@@ -1,6 +1,7 @@
 import "./ProfileDialog.css";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, MapPin, X } from "lucide-react";
+import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { MdClose, MdLocationOn, MdOpenInNew } from "react-icons/md";
 import { profile } from "../data/profileData.js";
 
 export function ProfileDialog({ onClose }) {
@@ -32,7 +33,7 @@ export function ProfileDialog({ onClose }) {
             onClick={onClose}
             aria-label="Close profile"
           >
-            <X size={16} />
+            <MdClose size={18} />
           </button>
         </div>
         <div className="profile-dialog-content">
@@ -48,17 +49,17 @@ export function ProfileDialog({ onClose }) {
           )}
           <h2 id="profile-dialog-title">{profile.name}</h2>
           <p className="profile-dialog-location text-[11px]">
-            <MapPin size={14} /> {profile.location}
+            <MdLocationOn size={16} aria-hidden="true" /> {profile.location}
           </p>
           <div className="mt-[17px] flex flex-wrap justify-center gap-2">
             <a className="inline-flex min-w-[105px] items-center justify-center gap-1 whitespace-nowrap rounded border border-[#3b4746] bg-[#26312f] px-2 py-[6px] font-[var(--mono)] text-[9px] text-[#d7e8e5] no-underline transition-colors hover:border-[#5c817a] hover:bg-[#2c3d39]" href={profile.githubUrl} target="_blank" rel="noreferrer">
-              <strong className="text-[13px] leading-none">⌘</strong> GitHub <ArrowUpRight size={13} />
+              <FaGithub size={13} aria-hidden="true" /> GitHub <MdOpenInNew size={14} aria-hidden="true" />
             </a>
             <a className="inline-flex min-w-[105px] items-center justify-center gap-1 whitespace-nowrap rounded border border-[#3b4746] bg-[#26312f] px-2 py-[6px] font-[var(--mono)] text-[9px] text-[#d7e8e5] no-underline transition-colors hover:border-[#5c817a] hover:bg-[#2c3d39]" href={profile.linkedinUrl} target="_blank" rel="noreferrer">
-              <strong className="text-[13px] leading-none">in</strong> LinkedIn <ArrowUpRight size={13} />
+              <FaLinkedin size={13} aria-hidden="true" /> LinkedIn <MdOpenInNew size={14} aria-hidden="true" />
             </a>
             <a className="inline-flex min-w-[105px] items-center justify-center gap-1 whitespace-nowrap rounded border border-[#3b4746] bg-[#26312f] px-2 py-[6px] font-[var(--mono)] text-[9px] text-[#d7e8e5] no-underline transition-colors hover:border-[#5c817a] hover:bg-[#2c3d39]" href={profile.xUrl} target="_blank" rel="noreferrer">
-              <strong className="text-[13px] leading-none">𝕏</strong> X <ArrowUpRight size={13} />
+              <FaXTwitter size={12} aria-hidden="true" /> X <MdOpenInNew size={14} aria-hidden="true" />
             </a>
           </div>
         </div>
