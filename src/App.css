@@ -10,6 +10,13 @@
 }
 .app-shell {
   color: var(--text);
+  --chrome-bg: #0d1117;
+  --chrome-panel: #151b21;
+  --chrome-raised: #20262d;
+  --chrome-hover: #29343b;
+  --chrome-border: #303940;
+  --chrome-text: #d7dee5;
+  --chrome-muted: #9aa7b2;
 }
 .app-shell.theme-githubdarkplus {
   --canvas: #0d1117;
@@ -21,6 +28,13 @@
   --text-secondary: #8b949e;
   --text-muted: #6e7681;
   --accent: #58a6ff;
+  --chrome-bg: #0d1117;
+  --chrome-panel: #161b22;
+  --chrome-raised: #21262d;
+  --chrome-hover: #30363d;
+  --chrome-border: #30363d;
+  --chrome-text: #c9d1d9;
+  --chrome-muted: #8b949e;
   color: var(--text);
 }
 
@@ -38,6 +52,13 @@
   --border-soft: #143b4b;
   --accent: #55c7e8;
   --content-link: #7dd3fc;
+  --chrome-bg: #081d2b;
+  --chrome-panel: #0b2636;
+  --chrome-raised: #103448;
+  --chrome-hover: #16445a;
+  --chrome-border: #1b536b;
+  --chrome-text: #d7dee5;
+  --chrome-muted: #9aa7b2;
 }
 .app-shell.theme-highcontrast {
   --canvas: #050607;
@@ -68,6 +89,13 @@
   --syntax-comment: #9bb3c1;
   --syntax-punctuation: #ffd978;
   --syntax-value: #d7e8f2;
+  --chrome-bg: #050607;
+  --chrome-panel: #0b0d0f;
+  --chrome-raised: #14181c;
+  --chrome-hover: #242b31;
+  --chrome-border: #303940;
+  --chrome-text: #f4f7f9;
+  --chrome-muted: #aab5be;
   color: var(--text);
 }
 .app-shell.theme-highcontrast .titlebar-brand,
@@ -150,32 +178,88 @@
 .app-shell.font-mono {
   --body: "JetBrains Mono", monospace;
   --heading: "JetBrains Mono", monospace;
+  --mono: "JetBrains Mono", monospace;
+  --sans: "JetBrains Mono", monospace;
 }
 .app-shell.font-system {
   --body: "Inter", "Segoe UI", sans-serif;
   --heading: "Manrope", "Inter", sans-serif;
+  --mono: "Inter", "Segoe UI", sans-serif;
+  --sans: "Inter", "Segoe UI", sans-serif;
 }
 .app-shell.font-serif {
   --body: Georgia, "Times New Roman", serif;
   --heading: Georgia, "Times New Roman", serif;
+  --mono: Georgia, "Times New Roman", serif;
+  --sans: Georgia, "Times New Roman", serif;
+}
+.app-shell.theme-midnight {
+  --canvas: #090d18;
+  --surface: #0f1626;
+  --surface-raised: #172238;
+  --surface-hover: #22314b;
+  --border: #354664;
+  --border-soft: #263550;
+  --text: #e4eaff;
+  --text-secondary: #bdc9df;
+  --text-muted: #8494b2;
+  --content-heading: #e4eaff;
+  --content-body: #bdc9df;
+  --content-muted: #8494b2;
+  --content-link: #8ab4ff;
+  --accent: #8ab4ff;
+  --accent-soft: #c3d7ff;
+  --blue: #90baff;
+  --green: #8bd5a9;
+  --chrome-bg: #090d18;
+  --chrome-panel: #0f1626;
+  --chrome-raised: #172238;
+  --chrome-hover: #22314b;
+  --chrome-border: #354664;
+  --chrome-text: #e4eaff;
+  --chrome-muted: #8494b2;
 }
 .app-shell.text-blue {
+  --text: #e4f0ff;
+  --text-secondary: #b6d4f4;
+  --text-muted: #90afd0;
   --content-heading: #e4f0ff;
   --content-body: #b6d4f4;
   --content-muted: #90afd0;
   --content-link: #91caff;
+  --chrome-text: #e4f0ff;
+  --chrome-muted: #90afd0;
+  --syntax-comment: #90afd0;
+  --syntax-property: #91caff;
+  --syntax-value: #b6d4f4;
 }
 .app-shell.text-green {
+  --text: #e5f6ec;
+  --text-secondary: #b9d7c3;
+  --text-muted: #91b39d;
   --content-heading: #e5f6ec;
   --content-body: #b9d7c3;
   --content-muted: #91b39d;
   --content-link: #8be0b0;
+  --chrome-text: #e5f6ec;
+  --chrome-muted: #91b39d;
+  --syntax-comment: #91b39d;
+  --syntax-property: #8be0b0;
+  --syntax-value: #b9d7c3;
 }
 .app-shell.text-purple {
+  --text: #f2eaff;
+  --text-secondary: #d1bee8;
+  --text-muted: #aa91c2;
   --content-heading: #f2eaff;
   --content-body: #d1bee8;
   --content-muted: #aa91c2;
   --content-link: #d2a8ff;
+  --chrome-text: #f2eaff;
+  --chrome-muted: #aa91c2;
+  --syntax-comment: #aa91c2;
+  --syntax-property: #d2a8ff;
+  --syntax-value: #d1bee8;
 }
 .icon-button {
   width: 27px;
@@ -507,6 +591,142 @@
 @keyframes status-pulse {
   0%, 100% { box-shadow: 0 0 0 3px rgba(118, 214, 141, 0.18); }
   50% { box-shadow: 0 0 0 6px rgba(118, 214, 141, 0.03); }
+}
+
+.app-shell .titlebar,
+.app-shell .explorer,
+.app-shell .activity-panel,
+.app-shell .activitybar,
+.app-shell .settings-popover,
+.app-shell .view-popover,
+.app-shell .app-menu,
+.app-shell .output-panel,
+.app-shell .explorer-footer {
+  color: var(--chrome-text);
+  background-color: var(--chrome-panel);
+  border-color: var(--chrome-border);
+}
+
+.app-shell .editor-tabs,
+.app-shell .editor-tab.is-current,
+.app-shell .minimap {
+  background-color: var(--chrome-bg);
+}
+
+.app-shell .editor-tab,
+.app-shell .search-trigger,
+.app-shell .settings-popover select {
+  color: var(--chrome-text);
+  background-color: var(--chrome-raised);
+  border-color: var(--chrome-border);
+}
+
+.app-shell .breadcrumbs,
+.app-shell .statusbar {
+  color: var(--chrome-muted);
+  background-color: var(--chrome-panel);
+  border-color: var(--chrome-border);
+}
+
+.app-shell .top-menu button,
+.app-shell .tree-root,
+.app-shell .tree-folder,
+.app-shell .file-row,
+.app-shell .activity-button,
+.app-shell .status-item,
+.app-shell .settings-popover label,
+.app-shell .view-popover button {
+  color: var(--chrome-text);
+}
+
+.app-shell :is(.top-menu button, .tree-root, .tree-folder, .file-row, .activity-button, .status-item, .view-popover button):hover {
+  color: var(--content-heading);
+  background-color: var(--chrome-hover);
+}
+
+.app-shell .file-row.is-selected,
+.app-shell .activity-button.is-active {
+  color: var(--content-heading);
+  background-color: var(--chrome-hover);
+}
+
+.app-shell .app-menu button {
+  color: var(--chrome-text);
+}
+
+.app-shell .app-menu button:hover,
+.app-shell .view-popover button:hover {
+  color: var(--content-heading);
+  background-color: var(--chrome-hover);
+}
+
+.app-shell .search-trigger kbd {
+  color: var(--chrome-muted);
+  background-color: var(--chrome-bg);
+  border-color: var(--chrome-border);
+}
+
+.app-shell .settings-popover {
+  background: var(--chrome-raised);
+}
+
+.app-shell .settings-popover select {
+  background-color: var(--chrome-bg);
+}
+
+.app-shell .settings-heading,
+.app-shell .view-popover strong,
+.app-shell .tree-muted,
+.app-shell .explorer-person span {
+  color: var(--chrome-muted);
+}
+
+.app-shell.text-blue .document-content :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--content-heading) !important;
+}
+
+.app-shell.text-blue .document-content :is(p, li, time, small, label, strong, b) {
+  color: var(--content-body) !important;
+}
+
+.app-shell.text-green .document-content :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--content-heading) !important;
+}
+
+.app-shell.text-green .document-content :is(p, li, time, small, label, strong, b) {
+  color: var(--content-body) !important;
+}
+
+.app-shell.text-purple .document-content :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--content-heading) !important;
+}
+
+.app-shell.text-purple .document-content :is(p, li, time, small, label, strong, b) {
+  color: var(--content-body) !important;
+}
+
+.app-shell.text-blue :is(.tree-root, .tree-folder, .file-row, .activity-button, .status-item, .settings-popover label, .view-popover button),
+.app-shell.text-green :is(.tree-root, .tree-folder, .file-row, .activity-button, .status-item, .settings-popover label, .view-popover button),
+.app-shell.text-purple :is(.tree-root, .tree-folder, .file-row, .activity-button, .status-item, .settings-popover label, .view-popover button) {
+  color: var(--chrome-text);
+}
+
+.app-shell.text-blue :is(.titlebar-brand, .pane-heading, .settings-heading, .view-popover strong, .statusbar),
+.app-shell.text-green :is(.titlebar-brand, .pane-heading, .settings-heading, .view-popover strong, .statusbar),
+.app-shell.text-purple :is(.titlebar-brand, .pane-heading, .settings-heading, .view-popover strong, .statusbar) {
+  color: var(--chrome-text);
+}
+
+.app-shell.text-blue .home-hero-copy h1,
+.app-shell.text-green .home-hero-copy h1,
+.app-shell.text-purple .home-hero-copy h1 {
+  color: var(--content-heading);
+}
+
+.app-shell.text-blue .home-hero-copy .home-intro,
+.app-shell.text-green .home-hero-copy .home-intro,
+.app-shell.text-purple .home-hero-copy .home-intro {
+  color: var(--content-body);
 }
 
 @keyframes viewport-pulse {

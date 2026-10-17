@@ -1,9 +1,11 @@
 import { useState } from "react";
 import "./ContactPage.css";
+import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { ArrowUpRight, Globe2, Mail } from "lucide-react";
 import { contactLinks } from "../data/contactData.js";
 import { profile } from "../data/profileData.js";
+import { useMotionVariants } from "../motion.js";
 
 const web3FormsAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
@@ -21,6 +23,7 @@ const socialLinks = contactLinks.map((link) => ({
 }));
 
 export function ContactPage() {
+  const variants = useMotionVariants();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
@@ -65,25 +68,31 @@ export function ContactPage() {
   };
 
   return (
-    <main className="contact-page">
-      <h1 className="contact-title">
+    <motion.main
+      className="contact-page"
+      variants={variants.stagger}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.h1 className="contact-title" variants={variants.item}>
         Let's talk<span className="contact-title-dot">.</span>
-      </h1>
-      <div className="contact-layout">
-        <section
+      </motion.h1>
+      <motion.div className="contact-layout" variants={variants.stagger}>
+        <motion.section
           className="contact-panel contact-form-panel"
           aria-labelledby="contact-form-title"
+          variants={variants.item}
         >
           <h2 className="contact-panel-title" id="contact-form-title">
             Send a message
           </h2>
           <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="contact-fields">
-              <label className="contact-field">
+            <motion.div className="contact-fields" variants={variants.stagger}>
+              <motion.label className="contact-field" variants={variants.item}>
                 Name
                 <input name="name" type="text" autoComplete="name" required />
-              </label>
-              <label className="contact-field">
+              </motion.label>
+              <motion.label className="contact-field" variants={variants.item}>
                 Email
                 <input
                   name="email"
@@ -91,12 +100,15 @@ export function ContactPage() {
                   autoComplete="email"
                   required
                 />
-              </label>
-              <label className="contact-field contact-message-field">
+              </motion.label>
+              <motion.label
+                className="contact-field contact-message-field"
+                variants={variants.item}
+              >
                 Message
                 <textarea name="message" rows="5" required />
-              </label>
-            </div>
+              </motion.label>
+            </motion.div>
             <label
               className="absolute h-px w-px overflow-hidden whitespace-nowrap [clip-path:inset(50%)]"
               aria-hidden="true"
@@ -104,14 +116,16 @@ export function ContactPage() {
               Website
               <input name="botcheck" type="checkbox" tabIndex={-1} />
             </label>
-            <button
+            <motion.button
               className="contact-submit"
               type="submit"
               disabled={isSubmitting}
+              whileHover={variants.reduced ? undefined : { y: -2 }}
+              whileTap={variants.reduced ? undefined : { scale: 0.98 }}
             >
               <Mail size={16} aria-hidden="true" />
               {isSubmitting ? "Sending..." : "Send message"}
-            </button>
+            </motion.button>
             <p
               className={`contact-status ${submitStatus ? `contact-status--${submitStatus.type}` : ""}`}
               role="status"
@@ -120,15 +134,20 @@ export function ContactPage() {
               {submitStatus?.message}
             </p>
           </form>
-        </section>
-        <aside
+        </motion.section>
+        <motion.aside
           className="contact-panel contact-details-panel"
           aria-labelledby="contact-details-title"
+          variants={variants.item}
         >
           <h2 className="contact-panel-title" id="contact-details-title">
             Contact details
           </h2>
-          <a className="contact-email-link" href={`mailto:${profile.email}`}>
+          <motion.a
+            className="contact-email-link"
+            href={`mailto:${profile.email}`}
+            whileHover={variants.reduced ? undefined : { x: 2 }}
+          >
             <span className="contact-email-icon" aria-hidden="true">
               <Mail size={17} />
             </span>
@@ -141,11 +160,17 @@ export function ContactPage() {
               size={16}
               aria-hidden="true"
             />
-          </a>
-          <nav className="contact-social-links" aria-label="Social profiles">
+          </motion.a>
+          <motion.nav
+            className="contact-social-links"
+            aria-label="Social profiles"
+            variants={variants.stagger}
+          >
             {socialLinks.map(({ name, href, Icon, icon }) => (
-              <a
+              <motion.a
                 className={`contact-social-link contact-social-link--${icon}`}
+                variants={variants.item}
+                whileHover={variants.reduced ? undefined : { x: 2 }}
                 href={href}
                 target="_blank"
                 rel="noreferrer"
@@ -154,11 +179,11 @@ export function ContactPage() {
                 <Icon size={17} aria-hidden="true" />
                 <span>{name}</span>
                 <ArrowUpRight size={13} aria-hidden="true" />
-              </a>
+              </motion.a>
             ))}
-          </nav>
-        </aside>
-      </div>
-    </main>
+          </motion.nav>
+        </motion.aside>
+      </motion.div>
+    </motion.main>
   );
 }
