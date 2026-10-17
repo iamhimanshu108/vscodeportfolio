@@ -17,17 +17,15 @@ export function HomePage({ onOpenDocument }) {
   ];
   return (
     <motion.div className="home-page" variants={variants.stagger} initial="hidden" animate="visible">
-      <motion.div className="home-eyebrow" variants={variants.item}>
-        <span className="text-[#d2a0c7]">const</span>{" "}
-        <span className="text-[#9bc6ee]">developer</span>{" "}
-        <span className="text-[#7d8790]">=</span>{" "}
-        <span className="text-[#e0bd75]">&#123;</span>
-      </motion.div>
       <div className="home-hero-grid">
         <motion.section className="home-hero-copy" variants={variants.item}>
           <p className="home-kicker"><span />{homeContent.eyebrow}</p>
           <h1>{profile.name}<span>.</span></h1>
           <p className="home-intro">{homeContent.intro}</p>
+          <motion.div className="home-experience-pill" variants={variants.item} initial="hidden" animate="visible">
+            <span className="home-experience-value">2+</span>
+            <span className="home-experience-copy">Years of experience</span>
+          </motion.div>
           <div className="home-focus-list" aria-label="Areas of focus">
             {profile.focusAreas.map((focus) => <span key={focus}>{focus}</span>)}
           </div>
@@ -43,7 +41,13 @@ export function HomePage({ onOpenDocument }) {
             </button>
           </div>
         </motion.section>
-        <motion.aside className="terminal-preview" variants={variants.item} aria-label="Developer profile code preview">
+        <motion.aside
+          className="terminal-preview"
+          variants={variants.item}
+          aria-label="Developer profile code preview"
+          animate={{ y: [0, -7, 0], rotateX: [0, 1, 0] }}
+          transition={{ duration: 5.4, ease: "easeInOut", repeat: Infinity }}
+        >
           <div className="terminal-preview-bar">
             <div className="terminal-window-controls" aria-hidden="true"><i /><i /><i /></div>
             <span className="terminal-preview-tab"><span />{homeContent.preview.fileName}</span>

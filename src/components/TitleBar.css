@@ -13,8 +13,8 @@
   flex: 0 0 42px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 0 12px;
+  gap: 14px;
+  padding: 0 8px;
   background: #151b21;
   border-bottom: 1px solid var(--border-soft);
   color: var(--text-secondary);
@@ -30,6 +30,7 @@
   justify-content: center;
   color: #4daafc;
   flex: 0 0 24px;
+  line-height: 0;
 }
 .top-menu button {
   padding: 4px 7px;
@@ -78,7 +79,8 @@
 }
 .titlebar-navigation {
   display: flex;
-  gap: 10px;
+  flex: 0 0 auto;
+  gap: 8px;
   color: #87939c;
   margin-left: 10px;
 }
@@ -127,6 +129,8 @@
 }
 .search-trigger {
   width: min(440px, 42vw);
+  min-width: 180px;
+  flex: 0 1 440px;
   height: 27px;
   margin: 0 auto;
   display: flex;

@@ -1,25 +1,35 @@
 import "./SkillsPage.css";
 import {
-  Atom,
-  Box,
-  Braces,
   BrainCircuit,
   Cloud,
   Code2,
-  Database,
-  FileCode2,
   Gauge,
-  GitBranch,
   Layers3,
   Network,
   PanelsTopLeft,
   PlugZap,
   Search,
-  Server,
   Sparkles,
-  Terminal,
   Workflow,
 } from "lucide-react";
+import {
+  SiDocker,
+  SiFastapi,
+  SiGit,
+  SiGithubactions,
+  SiGoogleappsscript,
+  SiJavascript,
+  SiLangchain,
+  SiLinux,
+  SiMongodb,
+  SiMysql,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiTypescript,
+} from "react-icons/si";
 import { motion } from "framer-motion";
 import { skills } from "../data/skillsData.js";
 import { useMotionVariants } from "../motion.js";
@@ -31,24 +41,39 @@ const categoryIcons = {
   automation: Workflow,
 };
 
+const skillIcons = {
+  "MERN Stack": { Icon: SiMongodb, color: "#47a248" },
+  React: { Icon: SiReact, color: "#61dafb" },
+  "Next.js": { Icon: SiNextdotjs, color: "#ffffff" },
+  "Node.js": { Icon: SiNodedotjs, color: "#5fa04e" },
+  TypeScript: { Icon: SiTypescript, color: "#3178c6" },
+  JavaScript: { Icon: SiJavascript, color: "#f7df1e" },
+  "REST APIs": { Icon: PlugZap, color: "#e99a55" },
+  Python: { Icon: SiPython, color: "#3776ab" },
+  FastAPI: { Icon: SiFastapi, color: "#009688" },
+  "Gen AI": { Icon: BrainCircuit, color: "#a78bfa" },
+  "AI Integrations": { Icon: Sparkles, color: "#c084fc" },
+  RAG: { Icon: Search, color: "#60a5fa" },
+  LLMs: { Icon: SiLangchain, color: "#1c9b83" },
+  Microservices: { Icon: Network, color: "#6db8ff" },
+  PostgreSQL: { Icon: SiPostgresql, color: "#4169e1" },
+  MongoDB: { Icon: SiMongodb, color: "#47a248" },
+  MySQL: { Icon: SiMysql, color: "#4479a1" },
+  Docker: { Icon: SiDocker, color: "#2496ed" },
+  Git: { Icon: SiGit, color: "#f05032" },
+  "CI/CD": { Icon: SiGithubactions, color: "#2088ff" },
+  Linux: { Icon: SiLinux, color: "#fcc624" },
+  "System Design": { Icon: Network, color: "#8b9eff" },
+  "API Design": { Icon: PanelsTopLeft, color: "#62b7d8" },
+  "Scalable Systems": { Icon: Gauge, color: "#8bcf9b" },
+  Automation: { Icon: Workflow, color: "#8bcf9b" },
+  "Workflow Design": { Icon: Workflow, color: "#77c997" },
+  "API Integrations": { Icon: PlugZap, color: "#5fbfbd" },
+  "Apps Script": { Icon: SiGoogleappsscript, color: "#4285f4" },
+};
+
 function getSkillIcon(item) {
-  if (/^react$/i.test(item)) return Atom;
-  if (/^next\.js$/i.test(item)) return PanelsTopLeft;
-  if (/typescript|javascript/i.test(item)) return Braces;
-  if (/^git$/i.test(item)) return GitBranch;
-  if (/database|postgres|mongo|mysql|sql/i.test(item)) return Database;
-  if (/rag/i.test(item)) return Search;
-  if (/ai|gen|llm|gemini/i.test(item)) return BrainCircuit;
-  if (/integration|rest api|api design/i.test(item)) return PlugZap;
-  if (/microservices|system design/i.test(item)) return Network;
-  if (/scalable/i.test(item)) return Gauge;
-  if (/python|linux/i.test(item)) return Terminal;
-  if (/node|fastapi|backend/i.test(item)) return Server;
-  if (/docker/i.test(item)) return Box;
-  if (/ci\/cd|automation|workflow/i.test(item)) return Workflow;
-  if (/apps script/i.test(item)) return FileCode2;
-  if (/mern|stack/i.test(item)) return Layers3;
-  return Code2;
+  return skillIcons[item] ?? { Icon: Code2, color: null };
 }
 
 const categoryAccents = {
@@ -93,16 +118,10 @@ export function SkillsPage() {
                   </span>
                   <h2>{category.title}</h2>
                 </div>
-                <span
-                  className="skills-item-count"
-                  aria-label={`${category.items.length} skills`}
-                >
-                  {String(category.items.length).padStart(2, "0")}
-                </span>
               </div>
               <ul className="skills-chip-list">
-                {category.items.map((item, index) => {
-                  const SkillIcon = getSkillIcon(item);
+                {category.items.map((item) => {
+                  const { Icon: SkillIcon, color } = getSkillIcon(item);
                   return (
                     <motion.li
                       className="skills-chip"
@@ -110,11 +129,12 @@ export function SkillsPage() {
                       transition={{ duration: 0.18 }}
                       key={item}
                     >
-                      <SkillIcon size={14} aria-hidden="true" />
+                      <SkillIcon
+                        size={14}
+                        aria-hidden="true"
+                        style={color ? { color } : undefined}
+                      />
                       <span>{item}</span>
-                      <span className="skills-chip-index" aria-hidden="true">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
                     </motion.li>
                   );
                 })}

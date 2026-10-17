@@ -1,123 +1,166 @@
-
 .output-panel {
-  height: 112px;
-  flex: 0 0 112px;
+  height: 136px;
+  flex: 0 0 136px;
+  min-height: 0;
+  overflow: hidden;
   border-top: 1px solid var(--border);
-  background: #17191b;
+  background: var(--surface);
   animation: pane-in 0.18s ease-out;
 }
+
 .output-heading {
-  height: 34px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 12px 0 17px;
-  border-bottom: 1px solid #292d30;
+  padding: 0 8px 0 16px;
+  border-bottom: 1px solid var(--border-soft);
 }
+
 .output-tabs {
   height: 100%;
   display: flex;
   align-items: stretch;
   gap: 20px;
 }
+
 .output-tab {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  color: #77818a;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
+  gap: 6px;
+  color: var(--text-muted);
+  font: 10px/1 var(--body);
+  letter-spacing: 0.04em;
 }
+
 .output-tab.is-current {
-  color: #d1d6dc;
-  border-bottom: 1px solid var(--accent);
+  color: var(--text-secondary);
 }
+
+.output-tab.is-current::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: var(--accent);
+  content: "";
+}
+
 .output-tab b {
-  padding: 1px 5px;
+  min-width: 16px;
+  padding: 2px 5px;
   border-radius: 8px;
-  background: #303438;
-  color: #aeb6be;
-  font: 9px var(--mono);
+  background: var(--surface-hover);
+  color: var(--text-muted);
+  font: 9px/1 var(--mono);
+  text-align: center;
 }
+
+.output-heading > .icon-button {
+  width: 25px;
+  height: 25px;
+}
+
 .output-content {
-  height: 77px;
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  height: calc(100% - 35px);
+  overflow: auto;
+  padding: 13px 17px;
+  color: var(--text-secondary);
+  font: 10px/1.5 var(--mono);
+  scrollbar-color: var(--border) transparent;
+  scrollbar-width: thin;
+}
+
+.output-line {
   display: flex;
+  min-width: 0;
   align-items: center;
   gap: 8px;
-  padding: 0 18px;
-  overflow: hidden;
-  color: #a2abb3;
-  font: 10px var(--mono);
-}
-.output-mark {
-  display: grid;
-  place-items: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  color: #a9d5b2;
-  background: #203529;
-}
-.output-label {
-  color: #d2aa78;
-}
-.output-separator {
-  color: #59636b;
-}
-.output-spacer {
-  flex: 1;
-}
-.output-content code {
-  padding: 4px 7px;
-  border: 1px solid #303639;
-  border-radius: 3px;
-  color: #89939c;
-  font: 9px var(--mono);
   white-space: nowrap;
 }
+
+.output-mark {
+  display: grid;
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  color: #8dd9a1;
+  background: color-mix(in srgb, #4caf68 16%, var(--surface));
+}
+
+.output-label {
+  color: var(--syntax-function);
+}
+
+.output-separator {
+  color: var(--text-muted);
+}
+
+.output-line-details {
+  gap: 14px;
+  padding-left: 23px;
+  color: var(--text-muted);
+}
+
+.output-content code {
+  color: var(--text-muted);
+  font: inherit;
+}
+
 .output-content code b {
-  color: #bbd7d0;
+  color: var(--text-secondary);
   font-weight: 400;
 }
 
-@media (max-width: 980px) {
-  .output-content {
-    gap: 6px;
-  }
-  .output-content code {
-    padding: 4px 5px;
-  }
-}
 @media (max-width: 760px) {
   .output-panel {
-    height: 93px;
-    flex-basis: 93px;
+    height: 112px;
+    flex-basis: 112px;
   }
+
   .output-content {
-    height: 58px;
-    padding: 0 12px;
-    flex-wrap: wrap;
-    align-content: center;
-  }
-  .output-content code {
-    display: none;
+    padding: 11px 12px;
   }
 }
+
 @media (max-width: 520px) {
-  .output-tabs {
-    gap: 13px;
+  .output-panel {
+    height: 98px;
+    flex-basis: 98px;
   }
+
+  .output-tabs {
+    gap: 14px;
+  }
+
   .output-content {
+    gap: 5px;
+    padding: 9px 10px;
     font-size: 9px;
   }
+
+  .output-line-details {
+    gap: 10px;
+    padding-left: 23px;
+  }
 }
+
 @media (max-height: 650px) and (min-width: 761px) {
   .output-panel {
-    height: 82px;
-    flex-basis: 82px;
+    height: 110px;
+    flex-basis: 110px;
   }
-  .output-content {
-    height: 47px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .output-panel {
+    animation: none;
   }
 }

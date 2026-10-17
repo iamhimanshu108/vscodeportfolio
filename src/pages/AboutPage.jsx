@@ -31,16 +31,25 @@ export function AboutPage() {
             <span>{profile.location}</span>
           </p>
         </div>
-        <aside className="about-hero-aside" aria-label="Profile overview">
+        <motion.aside
+          className="about-hero-aside"
+          aria-label="Profile overview"
+          variants={variants.item}
+        >
           <span className="about-hero-aside-label">
             CURRENTLY BUILDING WITH
           </span>
-          <ul className="about-stack-list">
+          <motion.ul
+            className="about-stack-list"
+            variants={variants.stagger}
+            initial="hidden"
+            animate="visible"
+          >
             {aboutContent.stack.map((item) => (
-              <li key={item}>{item}</li>
+              <motion.li key={item} variants={variants.item}>{item}</motion.li>
             ))}
-          </ul>
-        </aside>
+          </motion.ul>
+        </motion.aside>
       </motion.header>
       <motion.section className="about-section" variants={variants.item}>
         <div className="about-section-heading">
@@ -57,8 +66,13 @@ export function AboutPage() {
           <span>02</span>
           <h2>Experience &amp; education</h2>
         </div>
-        <div className="about-markdown-columns">
-          <div className="about-markdown-card">
+        <motion.div
+          className="about-markdown-columns"
+          variants={variants.stagger}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div className="about-markdown-card" variants={variants.item}>
             <div className="about-card-icon">
               <BriefcaseBusiness size={17} aria-hidden="true" />
             </div>
@@ -68,8 +82,8 @@ export function AboutPage() {
               {currentRole.company} <span>/</span> {currentRole.period}
             </p>
             <p>{currentRole.highlights[0]}</p>
-          </div>
-          <div className="about-markdown-card">
+          </motion.div>
+          <motion.div className="about-markdown-card" variants={variants.item}>
             <div className="about-card-icon">
               <GraduationCap size={18} aria-hidden="true" />
             </div>
@@ -84,8 +98,8 @@ export function AboutPage() {
               {previousEducation.degree} · {previousEducation.institution}{" "}
               <span>/</span> {previousEducation.period}
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </motion.section>
       <motion.section
         className="about-section about-focus-section"
@@ -95,11 +109,16 @@ export function AboutPage() {
           <span>03</span>
           <h2>Areas of focus</h2>
         </div>
-        <ul className="about-focus-list">
+        <motion.ul
+          className="about-focus-list"
+          variants={variants.stagger}
+          initial="hidden"
+          animate="visible"
+        >
           {profile.focusAreas.map((focus) => (
-            <li key={focus}>{focus}</li>
+            <motion.li key={focus} variants={variants.item}>{focus}</motion.li>
           ))}
-        </ul>
+        </motion.ul>
         <motion.div
           className="about-closing-frame"
           initial={
@@ -116,7 +135,7 @@ export function AboutPage() {
           <motion.span
             className="about-closing-accent"
             aria-hidden="true"
-            initial={{ scaleX: 0 }}
+            initial={{ scaleX: variants.reduced ? 1 : 0 }}
             animate={{ scaleX: 1 }}
             transition={{
               duration: variants.reduced ? 0 : 0.55,

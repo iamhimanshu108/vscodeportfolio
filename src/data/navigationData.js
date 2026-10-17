@@ -29,9 +29,9 @@ export const documents = [
   },
   {
     id: "skills",
-    fileName: "Skills.js",
+    fileName: "Skills.jsx",
     title: "Skills",
-    type: "javascript",
+    type: "react",
     shortDescription: "Tools and technologies",
   },
   {

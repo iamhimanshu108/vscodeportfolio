@@ -125,15 +125,6 @@
   font: 600 12px/1.4 var(--heading);
 }
 
-.skills-item-count {
-  align-self: flex-start;
-  padding: 4px 6px;
-  border: 1px solid var(--border-soft);
-  border-radius: 4px;
-  color: var(--content-muted);
-  font: 8px/1 var(--mono);
-}
-
 .skills-chip-list {
   display: flex;
   flex-wrap: wrap;
@@ -167,12 +158,6 @@
 
 .skills-chip > span:first-of-type {
   min-width: 0;
-}
-
-.skills-chip-index {
-  margin-left: 3px;
-  color: var(--text-muted);
-  font-size: 7px;
 }
 
 .skills-chip:hover {

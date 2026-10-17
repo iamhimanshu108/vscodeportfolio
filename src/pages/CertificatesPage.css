@@ -1,28 +1,64 @@
 .certificates-page {
-  width: min(100%, 900px);
+  width: min(100%, 960px);
   margin: 0 auto;
-  padding: 9px 0 24px;
+  padding: 8px 0 24px;
   color: var(--content-body);
 }
 .certificates-page-header {
-  padding-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+  padding: 5px 0 22px;
   border-bottom: 1px solid var(--border-soft);
+}
+.certificates-heading-copy {
+  min-width: 0;
 }
 .certificates-title {
   margin: 0;
   color: var(--content-heading);
-  font: 600 clamp(34px, 4vw, 48px)/1.08 var(--heading);
-  letter-spacing: -0.05em;
+  font: 600 clamp(36px, 4.5vw, 54px)/1.05 var(--heading);
+  letter-spacing: -0.055em;
 }
 .certificates-title > span {
   color: var(--accent);
 }
+.certificates-intro {
+  margin: 10px 0 0;
+  color: var(--content-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+.certificates-count {
+  display: grid;
+  min-width: 82px;
+  justify-items: center;
+  gap: 2px;
+  padding: 12px 15px;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+}
+.certificates-count strong {
+  color: var(--content-heading);
+  font: 600 25px/1 var(--mono);
+}
+.certificates-count > span {
+  color: var(--content-muted);
+  font: 8px/1.5 var(--mono);
+  letter-spacing: 0.12em;
+}
 .certificates-source {
   overflow: hidden;
-  margin-top: 18px;
   border: 1px solid var(--border-soft);
-  border-radius: 7px;
-  background: color-mix(in srgb, var(--surface) 90%, var(--canvas));
+  border-radius: 9px;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--surface-raised) 72%, var(--canvas)),
+    var(--surface)
+  );
   box-shadow: 0 12px 30px #0002;
 }
 .certificates-source-bar {
@@ -82,10 +118,21 @@
 }
 .certificate-object {
   position: relative;
-  padding: 3px 0 8px;
+  margin: 5px 0;
+  padding: 7px 10px 9px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition:
+    border-color var(--motion-fast) var(--motion-soft),
+    background-color var(--motion-fast) var(--motion-soft),
+    box-shadow var(--motion-fast) var(--motion-soft);
 }
 .certificate-object + .certificate-object {
-  border-top: 1px solid color-mix(in srgb, var(--border-soft) 60%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--border-soft) 72%, transparent);
+}
+.certificate-object:hover {
+  border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
+  background: color-mix(in srgb, var(--accent) 3%, var(--surface));
 }
 .certificates-indent {
   white-space: pre;
@@ -123,8 +170,26 @@
   .certificates-page {
     padding-top: 5px;
   }
-  .certificates-source {
-    margin-top: 14px;
+  .certificates-page-header {
+    gap: 12px;
+    margin-bottom: 17px;
+    padding-bottom: 17px;
+  }
+  .certificates-title {
+    font-size: 36px;
+  }
+  .certificates-intro {
+    font-size: 11px;
+  }
+  .certificates-count {
+    min-width: 62px;
+    padding: 9px 8px;
+  }
+  .certificates-count strong {
+    font-size: 20px;
+  }
+  .certificates-count > span {
+    font-size: 7px;
   }
   .certificates-code {
     padding: 12px 11px 14px;
@@ -135,6 +200,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .certificate-object,
   .certificates-link {
     transition: none;
   }

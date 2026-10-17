@@ -18,12 +18,27 @@ export function CertificatesPage() {
         className="certificates-page-header"
         variants={variants.item}
       >
-        <h1 className="certificates-title">
-          Certificates<span>.</span>
-        </h1>
+        <div className="certificates-heading-copy">
+          <h1 className="certificates-title">
+            Certificates<span>.</span>
+          </h1>
+          <p className="certificates-intro">
+            Courses and credentials that reflect my ongoing learning.
+          </p>
+        </div>
+        <div
+          className="certificates-count"
+          aria-label={`${certificates.length} certificates`}
+        >
+          <strong>{String(certificates.length).padStart(2, "0")}</strong>
+          <span>CERTIFICATES</span>
+        </div>
       </motion.header>
 
-      <motion.div className="certificates-source" variants={variants.item}>
+      <motion.div
+        className="certificates-source"
+        variants={variants.item}
+      >
         <div className="certificates-source-bar">
           <span className="certificates-file-icon">
             <Code2 size={14} />
@@ -31,7 +46,7 @@ export function CertificatesPage() {
           <span>certificates.js</span>
           <span className="certificates-source-mode">READ ONLY</span>
         </div>
-        <div className="certificates-code">
+        <motion.div className="certificates-code" variants={variants.stagger}>
           <div className="certificates-code-line">
             <span className="certificates-keyword">export const</span>{" "}
             <span className="certificates-identifier">certificates</span>{" "}
@@ -42,6 +57,8 @@ export function CertificatesPage() {
             <motion.article
               className="certificate-object"
               variants={variants.item}
+              whileHover={variants.reduced ? undefined : { y: -2 }}
+              transition={{ duration: 0.18 }}
               key={certificate.id}
             >
               <div className="certificates-code-line">
@@ -135,7 +152,7 @@ export function CertificatesPage() {
           <div className="certificates-code-line">
             <span className="certificates-punctuation">];</span>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </motion.section>
   );

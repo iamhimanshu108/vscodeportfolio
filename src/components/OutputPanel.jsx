@@ -20,19 +20,17 @@ export function OutputPanel({ document, openTabCount, onClose }) {
         </button>
       </div>
       <div className="output-content">
-        <span className="output-mark">
-          <Check size={13} />
-        </span>
-        <span className="output-label">portfolio</span>
-        <span className="output-separator">/</span>
-        <span>view rendered</span>
-        <span className="output-spacer" />
-        <code>
-          activeFile: <b>{document.fileName}</b>
-        </code>
-        <code>
-          openTabs: <b>{openTabCount}</b>
-        </code>
+        <div className="output-line">
+          <span className="output-mark"><Check size={12} /></span>
+          <span className="output-label">portfolio</span>
+          <span className="output-separator">—</span>
+          <span>view rendered successfully</span>
+        </div>
+        <div className="output-line output-line-details">
+          <span className="output-indent" aria-hidden="true" />
+          <code>activeFile: <b>{document.fileName}</b></code>
+          <code>openTabs: <b>{openTabCount}</b></code>
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import "./TitleBar.css";
-import { ArrowLeft, ArrowRight, Code2, Search } from "lucide-react";
+import { ArrowLeft, ArrowRight, Search } from "lucide-react";
+import { VscVscode } from "react-icons/vsc";
 
 const menus = {
   File: ["New Text File", "New File...", "Open...", "Open Folder...", "Save", "Save As...", "Save All", "Auto Save"],
@@ -14,7 +15,7 @@ const menus = {
 
 export function TitleBar({ onOpenPalette, activeMenu, onMenuToggle, onPreviousDocument, onNextDocument }) {
   return <header className="titlebar">
-    <span className="vscode-logo" aria-label="Visual Studio Code"><Code2 size={20} /></span>
+    <span className="vscode-logo" aria-label="Visual Studio Code"><VscVscode size={20} /></span>
     <nav className="top-menu" aria-label="Application menu">
       {Object.entries(menus).map(([name, items]) => <span className="menu-anchor" key={name}>
         <button onClick={() => onMenuToggle(name)}>{name}</button>
