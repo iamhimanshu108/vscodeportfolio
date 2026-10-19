@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  overflow-x: hidden;
   background: var(--canvas);
   font-size: 14px;
 }
@@ -353,6 +354,7 @@
   scrollbar-width: none;
   background: #131a20;
   border-bottom: 1px solid var(--border);
+  overflow-y: hidden;
 }
 .editor-tabs::-webkit-scrollbar {
   display: none;
@@ -824,6 +826,25 @@
   .editor-tabs { min-height: 27px; height: 27px; }
   .editor-tab { min-width: 82px; height: 27px; padding: 0 6px; font-size: 8px; }
   .mobile-menu-button { right: 8px; bottom: 25px; width: 30px; height: 30px; }
+}
+
+@media (max-width: 760px) {
+  .document-content,
+  .document-content > section,
+  .home-page,
+  .projects-page,
+  .certificates-page,
+  .skills-page {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .document-content :is(p, li, a, code) {
+    overflow-wrap: anywhere;
+  }
+  .document-content :is(h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: normal;
+    word-break: normal;
+  }
 }
 @media (max-width: 760px) { .home-hero-grid, .projects-grid { grid-template-columns: 1fr; } }
 @media (max-width: 520px) {.home-hero-copy h1, .projects-heading h1 { font-size: 38px; } }

@@ -11,14 +11,15 @@ export const profile = {
   resumeUrl:
     "https://drive.google.com/file/d/1KOeUEkU3p2jdlHc8vNT_i3xOJifZ_dnT/view?usp=sharing",
   resumeSummary:
-    "Full Stack Web Developer and Automation Specialist focused on MERN, Python, FastAPI, Generative AI, RAG, system design, DevOps, and workflow automation.",
+    "Full Stack JavaScript Developer and AI Automation Specialist focused on MERN, React, Next.js, Python, Generative AI, Agentic AI, DevOps, and system design.",
   workspaceName: "HIMANSHU-PORTFOLIO",
   focusAreas: [
-    "GenAI",
-    "RAG pipelines",
-    "Microservices",
-    "AI Integrations",
-    "Automation",
-    "Scalable web systems",
+    "MERN Stack",
+    "React + Next.js",
+    "Python + AI",
+    "Generative AI",
+    "Agentic AI",
+    "DevOps",
+    "System Design",
   ],
 };

@@ -27,6 +27,11 @@ export function EditorWorkspace({
     scrollRef.current?.scrollTo({ top: 0, behavior: "auto" });
   }, [selectedId]);
 
+  useEffect(() => {
+    const activeTab = document.querySelector('.editor-tabs [role="tab"][aria-selected="true"]');
+    activeTab?.scrollIntoView({ inline: "nearest", block: "nearest", behavior: "smooth" });
+  }, [selectedId, openTabs.length]);
+
   const pageVariants = {
     initial: (direction) => ({
       opacity: 0,

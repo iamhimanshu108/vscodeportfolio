@@ -1,9 +1,9 @@
 export const aboutContent = {
   workSummary:
-    "I build intelligent full-stack products with MERN, Python, FastAPI, and modern AI. My work spans full-stack web development, backend APIs, Generative AI and RAG integrations, and workflow automation. I have built with MERN, Python and FastAPI, and Java with Spring Boot.",
+    "I build scalable full-stack products with MERN, React, Next.js, Python, and modern AI. My work spans full-stack JavaScript, Python AI services, Generative AI and Agentic AI workflows, DevOps, system design, and business automation.",
   specialization:
-    "Specializing in GenAI, RAG pipelines, automation, and scalable web systems.",
-  stack: ["MERN stack", "Python · FastAPI", "Generative AI · RAG", "Java · Spring Boot"],
+    "Specializing in MERN applications, Python AI services, Agentic AI, DevOps, system design, and workflow automation.",
+  stack: ["MERN · React · Next.js", "Python · FastAPI", "Generative AI · Agentic AI", "DevOps · System Design"],
   closing:
     "Building practical systems where thoughtful engineering meets useful AI.",
 };

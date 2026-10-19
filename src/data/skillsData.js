@@ -1,22 +1,22 @@
 export const skills = [
   {
-    id: "full-stack-engineering",
-    title: "Full-Stack Engineering",
-    items: ["MERN Stack", "React", "Next.js", "Node.js", "TypeScript", "JavaScript", "REST APIs"],
+    id: "full-stack-javascript",
+    title: "Full-Stack JavaScript",
+    items: ["MERN Stack", "JavaScript", "React", "Next.js", "Node.js", "REST APIs"],
   },
   {
-    id: "ai-data",
-    title: "AI, Data & Backend",
-    items: ["Python", "FastAPI", "Gen AI", "AI Integrations", "RAG", "LLMs", "Microservices", "PostgreSQL", "MongoDB", "MySQL"],
+    id: "python-ai-agentic",
+    title: "Python, AI & Agentic Systems",
+    items: ["Python", "FastAPI", "Generative AI", "Agentic AI", "RAG", "LLMs", "AI Integrations"],
   },
   {
-    id: "devops-architecture",
-    title: "DevOps & Architecture",
-    items: ["Docker", "Git", "CI/CD", "Linux", "System Design", "API Design", "Scalable Systems"],
+    id: "devops-system-design",
+    title: "DevOps & System Design",
+    items: ["Docker", "Git", "CI/CD", "Linux", "Cloud Deployment", "System Design", "Scalable Systems"],
   },
   {
-    id: "automation",
-    title: "Automation & Integrations",
-    items: ["Automation", "Workflow Design", "API Integrations", "Apps Script"],
+    id: "automation-data",
+    title: "Automation & Data",
+    items: ["Workflow Automation", "API Integrations", "MongoDB", "PostgreSQL", "MySQL"],
   },
 ];

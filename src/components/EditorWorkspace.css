@@ -372,6 +372,46 @@
     padding-top: 19px;
   }
 }
+
+@media (max-width: 520px) {
+  .editor-tabs {
+    min-width: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: 6px;
+  }
+  .tab-shell { flex: 0 0 auto; }
+  .editor-tab {
+    min-width: 88px;
+    max-width: 128px;
+    gap: 5px;
+    padding: 0 7px;
+    font-size: 9px;
+  }
+  .editor-tab span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .tab-close { width: 24px; height: 24px; }
+  .tab-actions {
+    position: sticky;
+    right: 0;
+    z-index: 2;
+    flex: 0 0 auto;
+    padding-inline: 3px;
+    background: var(--surface);
+    box-shadow: -8px 0 12px color-mix(in srgb, var(--surface) 70%, transparent);
+  }
+  .breadcrumbs > span:not(.breadcrumb-current),
+  .breadcrumbs > svg { display: none; }
+  .breadcrumbs .breadcrumb-current {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .breadcrumb-navigation { flex: 0 0 auto; }
+}
 @media (min-width: 761px) {
   .document-content {
     width: 100%;

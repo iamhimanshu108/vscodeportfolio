@@ -35,10 +35,10 @@ import { skills } from "../data/skillsData.js";
 import { useMotionVariants } from "../motion.js";
 
 const categoryIcons = {
-  "full-stack-engineering": Layers3,
-  "ai-data": Sparkles,
-  "devops-architecture": Cloud,
-  automation: Workflow,
+  "full-stack-javascript": Layers3,
+  "python-ai-agentic": Sparkles,
+  "devops-system-design": Cloud,
+  "automation-data": Workflow,
 };
 
 const skillIcons = {
@@ -51,7 +51,8 @@ const skillIcons = {
   "REST APIs": { Icon: PlugZap, color: "#e99a55" },
   Python: { Icon: SiPython, color: "#3776ab" },
   FastAPI: { Icon: SiFastapi, color: "#009688" },
-  "Gen AI": { Icon: BrainCircuit, color: "#a78bfa" },
+  "Generative AI": { Icon: BrainCircuit, color: "#a78bfa" },
+  "Agentic AI": { Icon: BrainCircuit, color: "#c084fc" },
   "AI Integrations": { Icon: Sparkles, color: "#c084fc" },
   RAG: { Icon: Search, color: "#60a5fa" },
   LLMs: { Icon: SiLangchain, color: "#1c9b83" },
@@ -63,11 +64,11 @@ const skillIcons = {
   Git: { Icon: SiGit, color: "#f05032" },
   "CI/CD": { Icon: SiGithubactions, color: "#2088ff" },
   Linux: { Icon: SiLinux, color: "#fcc624" },
+  "Cloud Deployment": { Icon: Cloud, color: "#60a5fa" },
   "System Design": { Icon: Network, color: "#8b9eff" },
   "API Design": { Icon: PanelsTopLeft, color: "#62b7d8" },
   "Scalable Systems": { Icon: Gauge, color: "#8bcf9b" },
-  Automation: { Icon: Workflow, color: "#8bcf9b" },
-  "Workflow Design": { Icon: Workflow, color: "#77c997" },
+  "Workflow Automation": { Icon: Workflow, color: "#8bcf9b" },
   "API Integrations": { Icon: PlugZap, color: "#5fbfbd" },
   "Apps Script": { Icon: SiGoogleappsscript, color: "#4285f4" },
 };
@@ -77,10 +78,10 @@ function getSkillIcon(item) {
 }
 
 const categoryAccents = {
-  "full-stack-engineering": "mint",
-  "ai-data": "blue",
-  "devops-architecture": "gold",
-  automation: "green",
+  "full-stack-javascript": "mint",
+  "python-ai-agentic": "blue",
+  "devops-system-design": "gold",
+  "automation-data": "green",
 };
 
 export function SkillsPage() {
