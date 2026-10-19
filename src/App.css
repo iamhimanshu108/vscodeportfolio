@@ -31,7 +31,7 @@
   translate: 0 0;
   transition: translate 0.3s ease-out;
 }
-.app-shell > :not(.app-pointer-light) {
+.app-shell > :not(.app-pointer-light):not(.titlebar) {
   position: relative;
   z-index: 1;
 }
@@ -631,8 +631,12 @@
 .app-shell .output-panel,
 .app-shell .explorer-footer {
   color: var(--chrome-text);
-  background-color: var(--chrome-panel);
+  background-color: color-mix(in srgb, var(--chrome-panel) 86%, transparent);
   border-color: var(--chrome-border);
+}
+
+.app-shell .app-menu {
+  backdrop-filter: blur(12px);
 }
 
 .app-shell .editor-tabs,

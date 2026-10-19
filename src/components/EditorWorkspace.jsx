@@ -21,6 +21,10 @@ export function EditorWorkspace({
   children,
 }) {
   const scrollRef = useRef(null);
+  const navigationLockRef = useRef(false);
+  const touchStartYRef = useRef(null);
+  const wheelDeltaRef = useRef(0);
+  const wheelResetTimeoutRef = useRef(null);
   const scrollDirection = 1;
   const reducedMotion = useReducedMotion();
   useEffect(() => {
@@ -52,6 +56,58 @@ export function EditorWorkspace({
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, [selectedId, reducedMotion]);
+
+  useEffect(() => {
+    const scrollElement = scrollRef.current;
+    if (!scrollElement) return undefined;
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const isInteractiveTarget = (target) => target instanceof Element && target.closest("a, button, input, textarea, select, [contenteditable=\"true\"]");
+    const atTop = () => scrollElement.scrollTop <= 2;
+    const atBottom = () => scrollElement.scrollTop + scrollElement.clientHeight >= scrollElement.scrollHeight - 2;
+    const navigate = (direction, event) => {
+      if (navigationLockRef.current) return;
+      navigationLockRef.current = true;
+      wheelDeltaRef.current = 0;
+      event?.preventDefault();
+      if (direction > 0) onNextDocument();
+      else onPreviousDocument();
+      window.setTimeout(() => {
+        navigationLockRef.current = false;
+      }, reducedMotion ? 180 : 760);
+    };
+    const onWheel = (event) => {
+      if (isCoarsePointer || isInteractiveTarget(event.target)) return;
+      wheelDeltaRef.current += event.deltaY;
+      if (wheelResetTimeoutRef.current) window.clearTimeout(wheelResetTimeoutRef.current);
+      wheelResetTimeoutRef.current = window.setTimeout(() => {
+        wheelDeltaRef.current = 0;
+      }, 180);
+      if (Math.abs(wheelDeltaRef.current) < 48) return;
+      const movingDown = wheelDeltaRef.current > 0;
+      if ((movingDown && atBottom()) || (!movingDown && atTop())) {
+        navigate(movingDown ? 1 : -1, event);
+      }
+    };
+    const onTouchStart = (event) => {
+      if (event.touches.length === 1) touchStartYRef.current = event.touches[0].clientY;
+    };
+    const onTouchEnd = (event) => {
+      if (touchStartYRef.current === null || isInteractiveTarget(event.target)) return;
+      const deltaY = touchStartYRef.current - (event.changedTouches[0]?.clientY ?? touchStartYRef.current);
+      touchStartYRef.current = null;
+      if (Math.abs(deltaY) < 60) return;
+      if ((deltaY > 0 && atBottom()) || (deltaY < 0 && atTop())) navigate(deltaY > 0 ? 1 : -1);
+    };
+    scrollElement.addEventListener("wheel", onWheel, { passive: false });
+    scrollElement.addEventListener("touchstart", onTouchStart, { passive: true });
+    scrollElement.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      scrollElement.removeEventListener("wheel", onWheel);
+      scrollElement.removeEventListener("touchstart", onTouchStart);
+      scrollElement.removeEventListener("touchend", onTouchEnd);
+      if (wheelResetTimeoutRef.current) window.clearTimeout(wheelResetTimeoutRef.current);
+    };
+  }, [onNextDocument, onPreviousDocument, reducedMotion, selectedId]);
 
   const pageVariants = {
     initial: (direction) => ({

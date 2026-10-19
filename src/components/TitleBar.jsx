@@ -19,7 +19,7 @@ export function TitleBar({ onOpenPalette, activeMenu, onMenuToggle, onPreviousDo
     <nav className="top-menu" aria-label="Application menu">
       {Object.entries(menus).map(([name, items]) => <span className="menu-anchor" key={name}>
         <button onClick={() => onMenuToggle(name)}>{name}</button>
-        {activeMenu === name && <div className="app-menu">{items.map((item, index) => <span key={item}><button>{item}</button>{[3, 6].includes(index) && <hr />}</span>)}</div>}
+        <div className={`app-menu ${activeMenu === name ? "is-open" : ""}`}>{items.map((item, index) => <span key={item}><button>{item}</button>{[3, 6].includes(index) && <hr />}</span>)}</div>
       </span>)}
     </nav>
     <div className="titlebar-navigation" aria-label="Document navigation">
