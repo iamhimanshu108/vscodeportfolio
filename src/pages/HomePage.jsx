@@ -1,6 +1,7 @@
 import "./HomePage.css";
 import "./PortfolioPages.css";
-import { ArrowDownRight, ArrowUpRight, Braces, Download, FileText } from "lucide-react";
+import { useRef } from "react";
+import { ArrowDownRight, ArrowUpRight, Braces, Download } from "lucide-react";
 import { motion } from "framer-motion";
 import { homeContent } from "../data/homeData.js";
 import { profile } from "../data/profileData.js";
@@ -8,6 +9,7 @@ import { useMotionVariants } from "../motion.js";
 
 export function HomePage({ onOpenDocument }) {
   const variants = useMotionVariants();
+  const terminalRef = useRef(null);
   const lines = [
     <><span className="text-[#d2a0c7]">export const</span> <span className="text-[#9bc6ee]">profile</span> <span className="text-[#7d8790]">=</span> <span className="text-[#e0bd75]">&#123;</span></>,
     <><span className="text-[#a6c9e7]">name</span><span className="text-[#7d8790]">:</span> <span className="text-[#d6ac86]">'{profile.name}'</span><span className="text-[#7d8790]">,</span></>,
@@ -19,8 +21,7 @@ export function HomePage({ onOpenDocument }) {
     <motion.div className="home-page" variants={variants.stagger} initial="hidden" animate="visible">
       <div className="home-hero-grid">
         <motion.section className="home-hero-copy" variants={variants.item}>
-          <p className="home-kicker"><span />{homeContent.eyebrow}</p>
-          <h1>{profile.name}<span>.</span></h1>
+          <h1 className="home-name link">{profile.name}<span>.</span></h1>
           <p className="home-intro">{homeContent.intro}</p>
           <motion.div className="home-experience-pill" variants={variants.item} initial="hidden" animate="visible">
             <span className="home-experience-value">2+</span>
@@ -36,17 +37,26 @@ export function HomePage({ onOpenDocument }) {
             <a className="home-secondary-action" href={profile.resumeUrl} target="_blank" rel="noreferrer">
               <Download size={14} aria-hidden="true" /> Resume <ArrowUpRight size={13} aria-hidden="true" />
             </a>
-            <button className="home-tertiary-action" onClick={() => onOpenDocument("about")}>
-              <FileText size={14} aria-hidden="true" /> About
-            </button>
           </div>
         </motion.section>
         <motion.aside
+          ref={terminalRef}
           className="terminal-preview"
           variants={variants.item}
           aria-label="Developer profile code preview"
-          animate={{ y: [0, -7, 0], rotateX: [0, 1, 0] }}
-          transition={{ duration: 5.4, ease: "easeInOut", repeat: Infinity }}
+          onPointerMove={(event) => {
+            const card = terminalRef.current;
+            if (!card || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+            const bounds = card.getBoundingClientRect();
+            const x = event.clientX - bounds.left;
+            const y = event.clientY - bounds.top;
+            const rotateY = (x / bounds.width - 0.5) * 20;
+            const rotateX = -(y / bounds.height - 0.5) * 20;
+            card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          }}
+          onPointerLeave={() => {
+            if (terminalRef.current) terminalRef.current.style.transform = "perspective(600px) rotateX(0deg) rotateY(0deg)";
+          }}
         >
           <div className="terminal-preview-bar">
             <div className="terminal-window-controls" aria-hidden="true"><i /><i /><i /></div>

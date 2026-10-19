@@ -1,4 +1,5 @@
 .app-shell {
+  position: relative;
   height: 100vh;
   height: 100dvh;
   min-height: 540px;
@@ -7,6 +8,31 @@
   overflow: hidden;
   background: var(--canvas);
   font-size: 14px;
+}
+.app-pointer-light {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 14%, transparent), transparent 68%);
+  filter: blur(12px);
+  opacity: 0.8;
+  pointer-events: none;
+  transform: translate3d(-999px, -999px, 0) translate(-50%, -50%);
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+.app-shell button,
+.app-shell a {
+  translate: 0 0;
+  transition: translate 0.3s ease-out;
+}
+.app-shell > :not(.app-pointer-light) {
+  position: relative;
+  z-index: 1;
 }
 .app-shell {
   color: var(--text);

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu } from "lucide-react";
 import "./App.css";
@@ -16,6 +16,12 @@ import { documents } from "./data/navigationData.js";
 import { panelVariants } from "./motion.js";
 
 function App() {
+  const appRef = useRef(null);
+  const lightRef = useRef(null);
+  const pointerFrameRef = useRef(null);
+  const pointerPositionRef = useRef({ x: 0, y: 0 });
+  const magneticFrameRef = useRef(null);
+  const magneticStateRef = useRef({ target: null, x: 0, y: 0 });
   const [selectedId, setSelectedId] = useState("home");
   const [openTabs, setOpenTabs] = useState(["home"]);
   const [sidebarView, setSidebarView] = useState("explorer");
@@ -91,11 +97,98 @@ function App() {
     };
   }, [openNextDocument, openPreviousDocument, paletteOpen, profileOpen]);
 
+  useEffect(() => {
+    const app = appRef.current;
+    const light = lightRef.current;
+    if (!app || !light || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+
+    const onPointerMove = (event) => {
+      const bounds = app.getBoundingClientRect();
+      pointerPositionRef.current = {
+        x: event.clientX - bounds.left,
+        y: event.clientY - bounds.top,
+      };
+      if (pointerFrameRef.current) return;
+      pointerFrameRef.current = requestAnimationFrame(() => {
+        const { x, y } = pointerPositionRef.current;
+        light.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+        pointerFrameRef.current = null;
+      });
+    };
+
+    app.addEventListener("pointermove", onPointerMove);
+    return () => {
+      app.removeEventListener("pointermove", onPointerMove);
+      if (pointerFrameRef.current) cancelAnimationFrame(pointerFrameRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    const app = appRef.current;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const coarsePointer = window.matchMedia("(pointer: coarse)");
+    if (!app || prefersReducedMotion.matches || coarsePointer.matches) return undefined;
+
+    const resetTarget = (target) => {
+      if (target) target.style.translate = "";
+    };
+
+    const onPointerMove = (event) => {
+      if (event.pointerType === "touch") return;
+      const source = event.target instanceof Element ? event.target : null;
+      const target = source?.closest("button, a");
+      const previousTarget = magneticStateRef.current.target;
+      if (!target || !app.contains(target)) {
+        resetTarget(previousTarget);
+        magneticStateRef.current.target = null;
+        return;
+      }
+
+      const bounds = target.getBoundingClientRect();
+      const centerX = bounds.left + bounds.width / 2;
+      const centerY = bounds.top + bounds.height / 2;
+      const dx = event.clientX - centerX;
+      const dy = event.clientY - centerY;
+      const distance = Math.hypot(dx, dy);
+      if (distance >= 120) {
+        resetTarget(target);
+        magneticStateRef.current.target = null;
+        return;
+      }
+
+      if (previousTarget && previousTarget !== target) resetTarget(previousTarget);
+      const pull = (120 - distance) / 120;
+      magneticStateRef.current = { target, x: dx * pull * 0.4, y: dy * pull * 0.4 };
+      if (magneticFrameRef.current) return;
+      magneticFrameRef.current = requestAnimationFrame(() => {
+        const { target: activeTarget, x, y } = magneticStateRef.current;
+        if (activeTarget) activeTarget.style.translate = `${x}px ${y}px`;
+        magneticFrameRef.current = null;
+      });
+    };
+
+    const onPointerLeave = () => {
+      resetTarget(magneticStateRef.current.target);
+      magneticStateRef.current.target = null;
+    };
+
+    app.addEventListener("pointermove", onPointerMove);
+    app.addEventListener("pointerleave", onPointerLeave);
+    return () => {
+      app.removeEventListener("pointermove", onPointerMove);
+      app.removeEventListener("pointerleave", onPointerLeave);
+      resetTarget(magneticStateRef.current.target);
+      if (magneticFrameRef.current) cancelAnimationFrame(magneticFrameRef.current);
+    };
+  }, []);
+
   return (
     <div
+      ref={appRef}
       className={`app-shell theme-${theme} font-${font} text-${textColor}`}
       style={{ zoom }}
     >
+      <div ref={lightRef} className="app-pointer-light" aria-hidden="true" />
       <TitleBar
         explorerOpen={explorerOpen}
         outputOpen={outputOpen}

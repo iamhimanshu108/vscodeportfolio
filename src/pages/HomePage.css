@@ -6,6 +6,27 @@
 .home-kicker { display: flex; align-items: center; gap: 9px; }
 .home-kicker > span { width: 7px; height: 7px; border-radius: 50%; background: #64d6a2; box-shadow: 0 0 12px #64d6a277; }
 .home-hero-copy h1 span { color: var(--accent); }
+.home-name {
+  position: relative;
+  display: inline-block;
+}
+.home-name::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -8px;
+  left: 0;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.home-name:hover::after,
+.home-name:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
 .home-role { margin: 13px 0 0; color: #a9d4ce; font: 14px var(--mono); }
 .home-intro { max-width: 470px; margin: 21px 0 0; color: var(--home-copy); font-size: 15px; line-height: 1.8; }
 .home-experience-pill {
@@ -49,7 +70,7 @@
 .home-tertiary-action { color: #aab9bd; background: transparent; border: 1px solid transparent; }
 .home-primary-action:hover, .home-secondary-action:hover, .home-tertiary-action:hover { transform: translateY(-2px); }
 .home-primary-action:focus-visible, .home-secondary-action:focus-visible, .home-tertiary-action:focus-visible { outline: 2px solid #75d7c8; outline-offset: 3px; }
-.terminal-preview { position: relative; overflow: hidden; border: 1px solid #34474a; border-radius: 9px; background: linear-gradient(145deg, #192224, #111719); box-shadow: 0 25px 60px #0005, inset 0 1px #ffffff08; transform-style: preserve-3d; }
+.terminal-preview { position: relative; overflow: hidden; border: 1px solid #34474a; border-radius: 9px; background: linear-gradient(145deg, #192224, #111719); box-shadow: 0 25px 60px #0005, inset 0 1px #ffffff08; transform-style: preserve-3d; transition: transform 0.3s ease-out; will-change: transform; }
 .terminal-preview::before {
   content: "";
   position: absolute;
