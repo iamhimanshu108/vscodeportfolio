@@ -39,8 +39,9 @@ function App() {
   const selectedDocument =
     documents.find((document) => document.id === selectedId) ?? documents[0];
   const openDocument = useCallback((id) => {
-    setSelectedId(id);
-    setOpenTabs((tabs) => (tabs.includes(id) ? tabs : [...tabs, id]));
+    const normalizedId = id === "certificates" ? "education" : id;
+    setSelectedId(normalizedId);
+    setOpenTabs((tabs) => (tabs.includes(normalizedId) ? tabs : [...tabs, normalizedId]));
     if (window.matchMedia("(max-width: 760px)").matches) setSidebarView(null);
   }, []);
   const navigateDocument = useCallback((direction) => {

@@ -32,6 +32,27 @@ export function EditorWorkspace({
     activeTab?.scrollIntoView({ inline: "nearest", block: "nearest", behavior: "smooth" });
   }, [selectedId, openTabs.length]);
 
+  useEffect(() => {
+    const content = document.querySelector(".document-content");
+    if (!content) return undefined;
+    const sections = content.querySelectorAll(":scope > section, :scope > div > section, :scope > section > article, :scope > section > section");
+    sections.forEach((section) => section.classList.add("section-reveal"));
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      sections.forEach((section) => section.classList.add("is-in-view"));
+      return undefined;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { root: scrollRef.current, threshold: 0.12 });
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [selectedId, reducedMotion]);
+
   const pageVariants = {
     initial: (direction) => ({
       opacity: 0,

@@ -1,5 +1,4 @@
 import { AboutPage } from "../pages/AboutPage.jsx";
-import { CertificatesPage } from "../pages/CertificatesPage.jsx";
 import { ContactPage } from "../pages/ContactPage.jsx";
 import { EducationPage } from "../pages/EducationPage.jsx";
 import { ExperiencePage } from "../pages/ExperiencePage.jsx";
@@ -16,7 +15,7 @@ const pageComponents = {
   experience: ExperiencePage,
   skills: SkillsPage,
   education: EducationPage,
-  certificates: CertificatesPage,
+  certificates: EducationPage,
   github: GithubPage,
   contact: ContactPage,
   resume: ResumePage,

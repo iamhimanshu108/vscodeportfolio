@@ -1,6 +1,6 @@
 export const profile = {
   name: "Himanshu Yadav",
-  email: "hiyadav2022@gmail.com",
+  email: "iamhimanshu.in1@gmail.com",
   location: "Guwahati, India",
   website: "https://www.iamhimanshu.in",
   githubUsername: "iamhimanshu108",

@@ -861,6 +861,18 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .editor-scroll {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+  .section-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Use the available editor width on desktop instead of leaving a large gutter before the minimap. */
 @media (min-width: 761px) {
   .explorer,
@@ -900,7 +912,7 @@
 }
 .file-row:hover, .activity-panel-row:hover, .activity-panel-card:hover, .icon-button:hover, .editor-tab:hover,
 .search-trigger:hover, .home-primary-action:hover, .home-secondary-action:hover { transform: translateY(-1px); }
-.editor-scroll { scroll-behavior: smooth; overscroll-behavior: contain; scrollbar-gutter: stable; }
+.editor-scroll { scroll-behavior: smooth; overscroll-behavior: contain; scrollbar-gutter: stable; scroll-snap-type: y proximity; }
 .editor-tabs { box-shadow: inset 0 -1px color-mix(in srgb, var(--accent) 10%, transparent); }
 .editor-tab.is-current { box-shadow: inset 0 2px var(--accent), 0 -1px 0 var(--canvas); }
 .mobile-menu-button { transition: transform var(--motion-fast) var(--motion-soft), box-shadow var(--motion-fast) var(--motion-soft); }

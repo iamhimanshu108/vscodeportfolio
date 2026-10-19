@@ -106,10 +106,10 @@ export function ActivityPanel({
           ))}
           <button
             className="activity-panel-row"
-            onClick={() => onOpenDocument("certificates")}
+            onClick={() => onOpenDocument("education")}
           >
             <FileCode2 size={16} />
-            <span>View certificates</span>
+            <span>View education &amp; certificates</span>
           </button>
         </div>
       )}

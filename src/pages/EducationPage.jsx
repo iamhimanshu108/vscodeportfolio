@@ -1,12 +1,17 @@
 import "./EducationPage.css";
+import "./CertificatesPage.css";
 import {
   ArrowUpRight,
   CalendarDays,
   GraduationCap,
   MapPin,
+  Award,
+  CalendarDays as CertificateCalendar,
+  ExternalLink,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { education } from "../data/educationData.js";
+import { certificates } from "../data/certificatesData.js";
 import { useMotionVariants } from "../motion.js";
 
 export function EducationPage() {
@@ -85,6 +90,38 @@ export function EducationPage() {
           );
         })}
       </motion.div>
+      <motion.section className="education-certificates-section" variants={variants.item}>
+        <div className="education-certificates-heading">
+          <div>
+            <h2>Certificates<span>.</span></h2>
+          </div>
+          <span className="education-count">{String(certificates.length).padStart(2, "0")} records</span>
+        </div>
+        <motion.div className="certificates-grid" variants={variants.stagger}>
+          {certificates.map((certificate, index) => (
+            <motion.article className="certificate-card" variants={variants.item} key={certificate.id}>
+              <div className="certificate-card-topline">
+                <span className="certificate-card-icon"><Award size={16} /></span>
+                <span className="certificate-card-index">{String(index + 1).padStart(2, "0")}</span>
+                <span className="certificate-card-status">VERIFIED LEARNING</span>
+              </div>
+              <h2>{certificate.title}</h2>
+              <div className="certificate-card-meta">
+                <span>{certificate.issuer}</span>
+                <span><CertificateCalendar size={13} /> {certificate.issueDate}</span>
+              </div>
+              <p>{certificate.description}</p>
+              <div className="certificate-card-skills" aria-label="Skills covered">
+                {certificate.skills.map((skill) => <span key={skill}>{skill}</span>)}
+              </div>
+              {certificate.credentialId && <div className="certificate-credential-id"><span>CREDENTIAL ID</span><code>{certificate.credentialId}</code></div>}
+              <a className="certificates-link" href={certificate.certificateUrl} target="_blank" rel="noreferrer" aria-label={`View ${certificate.title}`}>
+                Open credential <ExternalLink size={14} />
+              </a>
+            </motion.article>
+          ))}
+        </motion.div>
+      </motion.section>
     </motion.section>
   );
 }

@@ -42,13 +42,6 @@ export const documents = [
     shortDescription: "Education history",
   },
   {
-    id: "certificates",
-    fileName: "Certificates.js",
-    title: "Certificates",
-    type: "javascript",
-    shortDescription: "Courses and credentials",
-  },
-  {
     id: "github",
     fileName: "Github.md",
     title: "GitHub",
