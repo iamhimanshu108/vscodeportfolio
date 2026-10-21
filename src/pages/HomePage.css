@@ -107,3 +107,22 @@
     gap: clamp(24px, 3.5vw, 52px);
   }
 }
+
+/* Keep the hero copy readable when the editor is viewed on a phone. This
+   rule lives after the desktop grid declaration so it wins the page-local
+   cascade over the terminal preview's desktop minimum width. */
+@media (max-width: 760px) {
+  .home-hero-grid {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-hero-copy,
+  .home-intro,
+  .terminal-preview {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+}

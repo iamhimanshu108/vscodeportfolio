@@ -230,3 +230,20 @@
 .project-preview img {
   display: block;
 }
+
+/* Use the full mobile content width for each project card. This page-local
+   rule comes last so it overrides the shared desktop grid on small screens. */
+@media (max-width: 760px) {
+  .projects-grid {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-card,
+  .project-preview,
+  .project-card-body {
+    width: 100%;
+    min-width: 0;
+  }
+}

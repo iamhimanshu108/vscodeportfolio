@@ -923,4 +923,191 @@
 .mobile-menu-button:hover { transform: translateY(-2px); box-shadow: 0 8px 24px #0008; }
 .file-row:focus-visible, .activity-panel-row:focus-visible, .activity-panel-card:focus-visible, .project-card:focus-visible, .home-primary-action:focus-visible, .home-secondary-action:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
+/* Responsive shell contract: keep the editor usable without allowing any
+   child panel or document to widen the viewport on touch devices. */
+.app-shell,
+.app-shell * {
+  box-sizing: border-box;
+}
+
+.mobile-sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .workspace {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .mobile-sidebar-backdrop {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    display: block;
+    width: 100%;
+    border: 0;
+    background: rgba(0, 0, 0, 0.48);
+    cursor: pointer;
+  }
+
+  .sidebar-motion-shell {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    bottom: 0;
+    left: 42px;
+    width: min(300px, calc(100vw - 42px));
+    max-width: calc(100vw - 42px);
+    box-shadow: 14px 0 36px rgba(0, 0, 0, 0.55);
+  }
+
+  .sidebar-motion-shell > .explorer,
+  .sidebar-motion-shell > .activity-panel {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    flex-basis: 100%;
+    box-shadow: none;
+  }
+
+  .editor-workspace,
+  .editor-scroll,
+  .document-content {
+    max-width: 100%;
+  }
+
+  .document-content {
+    width: auto;
+    flex: 1 1 0;
+  }
+
+  .editor-scroll {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 520px) {
+  .sidebar-motion-shell {
+    left: 36px;
+    width: min(300px, calc(100vw - 36px));
+    max-width: calc(100vw - 36px);
+  }
+
+  .mobile-sidebar-backdrop {
+    touch-action: manipulation;
+  }
+}
+
+@media (pointer: coarse) {
+  .app-pointer-light {
+    display: none;
+  }
+
+  .app-shell button,
+  .app-shell a {
+    translate: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .document-content :is(.experience-page, .education-page, .certificates-page, .skills-document, .github-page, .about-markdown-preview, .contact-page, .resume-page) {
+    width: 100%;
+    max-width: none;
+  }
+
+  .document-content :is(.experience-page-header, .education-page-header, .certificates-page-header, .skills-page-header, .github-page-header) {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .document-content :is(.experience-card, .education-card, .certificate-card, .project-card, .about-markdown-card, .contact-panel, .skills-group) {
+    min-width: 0;
+  }
+
+  .document-content :is(img, svg, canvas) {
+    max-width: 100%;
+  }
+
+  .document-content :is(pre, code, .certificates-code, .github-table-wrap) {
+    max-width: 100%;
+  }
+
+  .document-content :is(pre, .certificates-code, .github-table-wrap) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 520px) {
+  .app-shell {
+    min-height: 0;
+    min-height: 100dvh;
+  }
+
+  .document-content {
+    padding-right: max(8px, env(safe-area-inset-right));
+    padding-left: max(8px, env(safe-area-inset-left));
+  }
+
+  .document-content :is(.experience-page-header, .education-page-header, .certificates-page-header, .skills-page-header, .github-page-header, .projects-heading) {
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .document-content :is(.experience-count, .education-count, .certificates-count, .projects-count) {
+    flex: 0 0 auto;
+  }
+
+  .document-content :is(.experience-card-topline, .education-card-topline, .certificate-card-topline, .project-links, .contact-email-link) {
+    flex-wrap: wrap;
+  }
+
+  .document-content :is(button, a, input, textarea, select) {
+    touch-action: manipulation;
+  }
+}
+
+/* Normal document scrolling: the editor is the only vertical scroll surface
+   and reaching an edge never changes the active document. */
+.editor-scroll {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: auto;
+  scroll-snap-type: none;
+}
+
+.document-content {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+@media (max-width: 760px) {
+  .editor-scroll {
+    touch-action: pan-y;
+  }
+
+  .document-content {
+    padding-right: max(15px, env(safe-area-inset-right));
+    padding-left: max(15px, env(safe-area-inset-left));
+  }
+}
+
+@media (max-width: 520px) {
+  .document-content {
+    padding-right: max(8px, env(safe-area-inset-right));
+    padding-left: max(8px, env(safe-area-inset-left));
+  }
+}
+
 /* Markdown preview treatment for About.md. */

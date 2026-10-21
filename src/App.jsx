@@ -24,7 +24,9 @@ function App() {
   const magneticStateRef = useRef({ target: null, x: 0, y: 0 });
   const [selectedId, setSelectedId] = useState("home");
   const [openTabs, setOpenTabs] = useState(["home"]);
-  const [sidebarView, setSidebarView] = useState("explorer");
+  const [sidebarView, setSidebarView] = useState(() =>
+    window.matchMedia("(max-width: 760px)").matches ? null : "explorer"
+  );
   const explorerOpen = sidebarView === "explorer";
   const [outputOpen, setOutputOpen] = useState(true);
   const [paletteOpen, setPaletteOpen] = useState(false);
@@ -235,6 +237,14 @@ function App() {
           /></motion.div>
         )}
         </AnimatePresence>
+        {sidebarView && (
+          <button
+            className="mobile-sidebar-backdrop"
+            type="button"
+            aria-label="Close sidebar"
+            onClick={() => setSidebarView(null)}
+          />
+        )}
         <EditorWorkspace
           selectedId={selectedId}
           selectedDocument={selectedDocument}
