@@ -1,4 +1,4 @@
-# Himanshu Yadav Portfolio
+# Himanshu Kumar Yadav Portfolio
 
 A responsive React portfolio presented as a VS Code-inspired workspace.
 
