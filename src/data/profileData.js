@@ -1,5 +1,5 @@
 export const profile = {
-  name: "Himanshu Yadav",
+  name: "Himanshu Kumar Yadav",
   email: "iamhimanshu.in1@gmail.com",
   location: "Guwahati, India",
   website: "https://www.iamhimanshu.in",
@@ -12,7 +12,7 @@ export const profile = {
     "https://drive.google.com/file/d/1KOeUEkU3p2jdlHc8vNT_i3xOJifZ_dnT/view?usp=sharing",
   resumeSummary:
     "Full Stack JavaScript Developer and AI Automation Specialist focused on MERN, React, Next.js, Python, Generative AI, Agentic AI, DevOps, and system design.",
-  workspaceName: "HIMANSHU-PORTFOLIO",
+  workspaceName: "HIMANSHU-KUMAR-YADAV-PORTFOLIO",
   focusAreas: [
     "MERN Stack",
     "React + Next.js",
